@@ -1,5 +1,5 @@
 import React from 'react';
-import {facebook, instagram, twitter, linkedin} from "../constant/constant.js"
+import {facebook, instagram, twitter, linkedin} from "../constant/constant.ts"
 // Tailwind CSS classes are used directly within the className attribute
 
 const Footer: React.FC = () => {
@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Social Icons */}
-            <div className="flex space-x-4 mt-4">
+            <div className="flex space-x-6 mt-4">
               <a href="#" > <img src={facebook} alt="icon" /></a> 
               <a href="#" > <img src={instagram} alt="icon" /></a> 
               <a href="#" > <img src={twitter} alt="icon" /></a> 
