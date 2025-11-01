@@ -1,7 +1,39 @@
-import { SlashIcon } from "lucide-react"
+import { SlashIcon, Store } from "lucide-react"
+import { Icon } from "@iconify/react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "../components/ui/breadcrumb"
 import { about_image } from "../constant/constant"
+import { nanoid } from 'nanoid';
+
 const About: React.FC = () => {
+  const info = [
+    {
+      id: nanoid(),
+      icon: <Icon icon="iconoir:shop-four-tiles" width="24" height="24" />,
+      price:10.5,
+      description: "Sellers active in our site"
+    },
+    {
+      id: nanoid(),
+      icon: <Icon icon="streamline:dollar-coin" width="14" height="14" />,
+      price:10.5,
+      description: "Monthly product sell"
+    },
+    {
+      id: nanoid(),
+      icon: <Icon icon="fluent:shopping-bag-16-regular" width="16" height="16" />,
+      price:10.5,
+      description: "Sellers active in our site"
+    },
+    {
+      id: nanoid(),
+      icon: <Icon icon="healthicons:money-bag-outline" width="48" height="48" />,
+      price:10.5,
+      description: "Sellers active in our site"
+    },
+  ]
+  
+  
+
   return (
     <section className="pt-20">
       <div className="container">
@@ -39,6 +71,12 @@ const About: React.FC = () => {
             <div className="about_image">
               <img src={about_image} alt="image" />
             </div>
+
+          </div>
+
+
+
+          <div>
 
           </div>
         </div>
