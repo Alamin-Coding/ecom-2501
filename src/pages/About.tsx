@@ -8,27 +8,27 @@ const About: React.FC = () => {
   const info = [
     {
       id: nanoid(),
-      icon: <Icon icon="iconoir:shop-four-tiles" width="24" height="24" />,
-      price:10.5,
+      icon: <Icon icon="iconoir:shop-four-tiles" width="40" height="40" />,
+      total:10.5,
       description: "Sellers active in our site"
     },
     {
       id: nanoid(),
-      icon: <Icon icon="streamline:dollar-coin" width="14" height="14" />,
-      price:10.5,
+      icon: <Icon icon="streamline:dollar-coin" width="40" height="40" />,
+      total:33,
       description: "Monthly product sell"
     },
     {
       id: nanoid(),
-      icon: <Icon icon="fluent:shopping-bag-16-regular" width="16" height="16" />,
-      price:10.5,
-      description: "Sellers active in our site"
+      icon: <Icon icon="fluent:shopping-bag-16-regular" width="40" height="40" />,
+      total:45.5,
+      description: "Customer active in our site"
     },
     {
       id: nanoid(),
-      icon: <Icon icon="healthicons:money-bag-outline" width="48" height="48" />,
-      price:10.5,
-      description: "Sellers active in our site"
+      icon: <Icon icon="healthicons:money-bag-outline" width="40" height="40" />,
+      total:25,
+      description: "Anual gross sale in our site"
     },
   ]
   
@@ -76,9 +76,24 @@ const About: React.FC = () => {
 
 
 
-          <div>
-
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-between items-center">
+  {
+    info.map((item) => {
+      return (
+        <div className="py-8 px-8 flex flex-col w-full max-w-[270px]  border border-[rgba(0,0,0,0.31)] items-center justify-center" key={item.id}>
+          <div className="rounded-full flex items-center justify-center bg-[rgba(47,46,48,0.31)] w-20 h-20 mb-6">
+            <div className="rounded-full flex items-center justify-center bg-button w-[58px] h-[58px] text-white">
+              {item.icon}
+            </div>
           </div>
+          <p className="font-inter text-[32px] font-bold mb-3">{item.total}k</p>
+          <p className="font-poppins text-[14px] max-w-[213px]">{item.description}</p>
+        </div>
+      );
+    })
+  }
+</div>
+
         </div>
       </div>
     </section>
