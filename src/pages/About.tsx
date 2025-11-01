@@ -1,7 +1,13 @@
 
 const About:React.FC = () => {
   return (
-    <div>About</div>
+    <section>
+      <div className="container">
+        <div className="about_container">
+          
+        </div>
+      </div>
+    </section>
   )
 }
 
