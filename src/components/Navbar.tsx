@@ -4,7 +4,7 @@ import { Link } from "react-router"
 
 const Navbar: React.FC = () => {
   return (
-    <header className="border-b border-button">
+    <header className="border-b border-[rgba(0,0,0,0.29)]">
       {/* Top Header Design  */}
       <div className="py-[15px] bg-button text-text">
         <div className="container">
