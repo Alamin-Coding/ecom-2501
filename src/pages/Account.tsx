@@ -71,7 +71,7 @@ const Account: React.FC = () => {
                     </aside>
 
                     {/* Profile Edit Form */}
-                    <div className="col-span-9 font-poppins bg-white shadow-contact rounded-lg p-10">
+                    <div className="col-span-9 font-poppins bg-white shadow-contact rounded-sm py-10 px-20">
                         <h2 className="text-xl font-medium text-button2 mb-6">
                             Edit Your Profile
                         </h2>
@@ -79,55 +79,55 @@ const Account: React.FC = () => {
                         <form className="grid grid-cols-2 gap-6">
                             {/* First Name */}
                             <div>
-                                <label className="block text-sm font-medium mb-2">
+                                <label className="block text-sm  mb-2">
                                     First Name <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     type="text"
-                                    defaultValue="Md"
-                                    className="w-full bg-gray-100 h-[45px] rounded-md px-4 text-gray-600 outline-none"
+                                    placeholder="First name"
+                                    className="w-full bg-gray-100 h-[50px]  px-4 text-gray-600 outline-none"
                                 />
                             </div>
 
                             {/* Last Name */}
                             <div>
-                                <label className="block text-sm font-medium mb-2">
+                                <label className="block text-sm  mb-2">
                                     Last Name <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     type="text"
-                                    defaultValue="Rimel"
-                                    className="w-full bg-gray-100 h-[45px] rounded-md px-4 text-gray-600 outline-none"
+                                    placeholder="Last name"
+                                    className="w-full bg-gray-100 h-[50px]  px-4 text-gray-600 outline-none"
                                 />
                             </div>
 
                             {/* Email */}
                             <div>
-                                <label className="block text-sm font-medium mb-2">
+                                <label className="block text-sm  mb-2">
                                     Email <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     type="email"
-                                    defaultValue="rimel1111@gmail.com"
-                                    className="w-full bg-gray-100 h-[45px] rounded-md px-4 text-gray-600 outline-none"
+                                    placeholder="Your email"
+                                    className="w-full bg-gray-100 h-[50px]  px-4 text-gray-600 outline-none"
                                 />
                             </div>
 
                             {/* Address */}
                             <div>
-                                <label className="block text-sm font-medium mb-2">
+                                <label className="block text-sm  mb-2">
                                     Address <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     type="text"
-                                    defaultValue="Kingston, 5236, United State"
-                                    className="w-full bg-gray-100 h-[45px] rounded-md px-4 text-gray-600 outline-none"
+                                    className="w-full bg-gray-100 h-[50px]  px-4 text-gray-600 outline-none"
+                                    placeholder="Your Address"
                                 />
                             </div>
 
                             {/* Password Section */}
                             <div className="col-span-2 mt-4">
-                                <h3 className="font-semibold text-gray-800 mb-3">
+                                <h3 className=" text-gray-800 mb-3">
                                     Password Changes
                                 </h3>
 
@@ -135,23 +135,23 @@ const Account: React.FC = () => {
                                     <input
                                         type="password"
                                         placeholder="Current Password"
-                                        className="w-full bg-gray-100 h-[45px] rounded-md px-4 text-gray-600 outline-none"
+                                        className="w-full bg-gray-100 h-[50px]  px-4 text-gray-600 outline-none"
                                     />
                                     <input
                                         type="password"
                                         placeholder="New Password"
-                                        className="w-full bg-gray-100 h-[45px] rounded-md px-4 text-gray-600 outline-none"
+                                        className="w-full bg-gray-100 h-[50px]  px-4 text-gray-600 outline-none"
                                     />
                                     <input
                                         type="password"
                                         placeholder="Confirm New Password"
-                                        className="w-full bg-gray-100 h-[45px] rounded-md px-4 text-gray-600 outline-none"
+                                        className="w-full bg-gray-100 h-[50px] px-4 text-gray-600 outline-none"
                                     />
                                 </div>
                             </div>
 
                             {/* Buttons */}
-                            <div className="col-span-2 flex justify-end gap-4 mt-6">
+                            <div className="col-span-2 flex justify-end gap-8 mt-6">
                                 <button
                                     type="button"
                                     className="text-gray-600 hover:text-black font-medium"
