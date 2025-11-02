@@ -55,7 +55,17 @@ const Cart: React.FC = () => {
                         </Button1>
                     </div>
 
-                 
+                    <div className='grid grid-cols-[auto_1fr] justify-between mt-20 gap-[173px]'>
+                    <div className='flex items-start gap-4'>
+                        <input type="text" className='py-4 px-6 w-[300px] font-poppins border border-black rounded-sm' placeholder='Coupon Code' />
+                        <Button2 className=''>
+                            Apply Coupon
+                        </Button2>
+                    </div>
+
+
+                    <CartTotalBox/>
+                    </div>
                 </div>
             </div>
         </section>
@@ -126,7 +136,43 @@ const CartItems: React.FC = () => {
 }
 
 
+// --- New Cart Total Box Component ---
+const CartTotalBox: React.FC = () => {
+    const subtotal = 1750; // Example total (650*1 + 550*2 = 1750)
+    const shipping = 50;   // Example shipping cost
+    const total = subtotal + shipping;
 
+    return (
+        <div className='flex justify-start font-poppins mb-20'>
+            <div className='border border-black p-8 rounded-sm w-full max-w-sm'>
+                <h3 className='text-xl font-medium mb-6'>Cart Total</h3>
+
+                {/* Subtotal Row */}
+                <div className='flex justify-between py-2 border-b border-gray-300'>
+                    <p>Subtotal:</p>
+                    <p>${subtotal}</p>
+                </div>
+
+                {/* Shipping Row */}
+                <div className='flex justify-between py-2 border-b border-gray-300'>
+                    <p>Shipping:</p>
+                    <p>${shipping}</p>
+                </div>
+
+                {/* Total Row */}
+                <div className='flex justify-between py-2 mb-6'>
+                    <p className='font-medium'>Total:</p>
+                    <p className='font-medium'>${total}</p>
+                </div>
+
+                {/* Process to Checkout Button (Red/Primary Color) */}
+               <Button2 className="w-full">
+                Proceed To Checkout
+               </Button2>
+            </div>
+        </div>
+    );
+}
 
 
 export default Cart
