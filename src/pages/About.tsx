@@ -171,7 +171,7 @@ const About: React.FC = () => {
             {
               info.map((item) => {
                 return (
-                  <div className="py-8 hover:shadow-info transition-all duration-300 hover:bg-[#DB4444] hover:cursor-pointer group px-8 flex flex-col w-full max-w-[270px]  border border-[rgba(0,0,0,0.31)] items-center justify-center" key={item.id}>
+                  <div className="py-8 hover:shadow-info transition-all duration-300 hover:bg-button2 hover:cursor-pointer group px-8 flex flex-col w-full max-w-[270px]  border border-[rgba(0,0,0,0.31)] items-center justify-center" key={item.id}>
                     <div className="rounded-full flex transition-all items-center group-hover:bg-[rgba(255,255,255,0.3)] justify-center bg-[rgba(47,46,48,0.31)] w-20 h-20 mb-6">
                       <div className="rounded-full flex transition-all items-center justify-center group-hover:bg-white group-hover:text-black bg-button w-[58px] h-[58px] text-white">
                         {item.icon}

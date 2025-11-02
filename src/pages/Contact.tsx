@@ -53,6 +53,7 @@ const Contact: React.FC = () => {
 
                         </div>
 
+                        {/* Form */}
                         <div className="py-10 px-8 max-w-[800px] shadow-contact">
                             <div className="grid grid-cols-12 gap-x-4 gap-y-8 mb-8">
                                 {/* Name */}
@@ -74,7 +75,7 @@ const Contact: React.FC = () => {
                                         className="w-full rounded-sm bg-secondary h-[50px] font-poppins text-[rgba(0,0,0,0.53)] py-3 px-4 pr-6"
                                         placeholder="Your Email"
                                     />
-                                   <span className="absolute left-28 top-2/5 -translate-y-1/2 text-button2 opacity-50 ">*</span>
+                                    <span className="absolute left-28 top-2/5 -translate-y-1/2 text-button2 opacity-50 ">*</span>
                                 </div>
 
                                 {/* Phone */}
@@ -96,7 +97,7 @@ const Contact: React.FC = () => {
                             </div>
 
                             <div className="flex items-center justify-end">
-                                <button className="bg-button2 py-4 px-12 rounded-sm font-poppins font-medium text-white">
+                                <button className="bg-button2 cursor-pointer py-4 px-12 rounded-sm font-poppins font-medium text-white">
                                     Send Message
                                 </button>
                             </div>
