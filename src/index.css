@@ -19,9 +19,11 @@
   /* Colors */
   --color-button: #000000;
   --color-text: #FAFAFA;
+  --color-secondery: #DB4444;
 
   /* Shadow */
   --shadow-info: 0 2px 10px 2px rgba(0, 0, 0, 0.212);
+  --shadow-contact: 0 1px 13px  rgba(0, 0, 0, 0.050);
 }
 
 .buttons::after{

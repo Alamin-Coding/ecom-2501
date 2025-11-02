@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
             <ul className="flex font-poppins items-center gap-12">
               <li className="relative buttons "><a href="#">Home</a></li>
               <li className="relative buttons "><Link to={"about"}>About</Link></li>
-              <li className="relative buttons "><a href="#">Contact</a></li>
+              <li className="relative buttons "><Link to={"contact"}>Contact</Link></li>
               <li className="relative buttons "><a href="#">Sign Up</a></li>
             </ul>
 

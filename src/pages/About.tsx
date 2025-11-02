@@ -220,7 +220,7 @@ const About: React.FC = () => {
 
 
             {/* About Services */}
-          <div className="grid grid-cols-3 items-center mt-[140px] mb-[140px] justify-center gap-22">
+          <div className="grid grid-cols-3 items-center mt-[140px]  justify-center gap-22">
               {
                 services.map((item)=>{
                   return(
