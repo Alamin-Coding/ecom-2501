@@ -2,6 +2,7 @@
 import { SlashIcon } from "lucide-react"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "../components/ui/breadcrumb"
 import { Icon } from "@iconify/react"
+import Button2 from "../components/Button2"
 const Contact: React.FC = () => {
     return (
         <section>
@@ -97,9 +98,7 @@ const Contact: React.FC = () => {
                             </div>
 
                             <div className="flex items-center justify-end">
-                                <button className="bg-button2 cursor-pointer py-4 px-12 rounded-sm font-poppins font-medium text-white">
-                                    Send Message
-                                </button>
+                            <Button2>Send Message</Button2>
                             </div>
                         </div>
 
