@@ -13,6 +13,8 @@
     "@reduxjs/toolkit": "^2.9.2",
     "@tailwindcss/vite": "^4.1.16",
     "axios": "^1.13.1",
+    "daisyui": "^5.4.2",
+    "lucide-react": "^0.552.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-redux": "^9.2.0",
