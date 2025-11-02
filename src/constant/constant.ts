@@ -5,7 +5,7 @@ import linkedin from "../assets/Icon-Linkedin.svg"
 import twitter from "../assets/Icon-Twitter.svg"
 
 
-// About Sections
+// About Page
 import about_image from "../assets/about-image.jpg"
 import employee_1 from "../assets/employee-1.png"
 import employee_2 from "../assets/employee-2.png"
@@ -13,6 +13,11 @@ import employee_3 from "../assets/employee-3.png"
 import delivery from "../assets/delivery.svg"
 import secure from "../assets/secure.svg"
 import customer_service from "../assets/customer-service.svg"
+
+
+// Cart Page
+import monitor from "../assets/monitor.png"
+import gamepad from "../assets/gamepad.png"
 
 
 export {facebook,
@@ -25,5 +30,7 @@ export {facebook,
         employee_3,
         delivery,
         secure,
-        customer_service
+        customer_service,
+        monitor,
+        gamepad
 }

@@ -44,9 +44,9 @@ const Navbar: React.FC = () => {
                   <img src="wishlist.svg" alt="icon" />
                 </div>
 
-                <div>
+                <Link to={"cart"}>
                   <img src="cart.svg" alt="icon" />
-                </div>
+                </Link>
 
                 <Link to={"account"}>
                   <img src="user.svg" alt="icon" />
