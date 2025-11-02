@@ -44,7 +44,16 @@ const Cart: React.FC = () => {
                     </div>
 
                     <CartItems />
-                  
+                    <div className='flex items-center justify-between'>
+
+
+                        <Button1>
+                            Return To Shop
+                        </Button1>
+                        <Button1>
+                            Update Cart
+                        </Button1>
+                    </div>
 
                  
                 </div>
