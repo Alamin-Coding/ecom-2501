@@ -98,7 +98,7 @@ const Contact: React.FC = () => {
                             </div>
 
                             <div className="flex items-center justify-end">
-                            <Button2>Send Message</Button2>
+                            <Button2 className="">Send Message</Button2>
                             </div>
                         </div>
 

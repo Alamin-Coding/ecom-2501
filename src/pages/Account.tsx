@@ -158,7 +158,7 @@ const Account: React.FC = () => {
                                 >
                                     Cancel
                                 </button>
-                                <Button2>Save Change</Button2>
+                                <Button2 className="">Save Change</Button2>
                             </div>
                         </form>
                     </div>

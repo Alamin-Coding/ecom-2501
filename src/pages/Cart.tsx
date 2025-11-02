@@ -9,6 +9,8 @@ import {
 import { SlashIcon } from 'lucide-react';
 import { gamepad, monitor } from '../constant/constant';
 import { nanoid } from 'nanoid';
+import Button1 from '../components/Button1';
+import Button2 from '../components/Button2';
 const Cart: React.FC = () => {
     return (
         <section>
@@ -34,13 +36,17 @@ const Cart: React.FC = () => {
                     </div>
 
 
-                    <div className='grid shadow-contact py-6 rounded-sm mb-10  px-10 grid-cols-[auto_auto_auto_auto] items-center justify-between font-poppins'>
+                    <div className='grid shadow-contact py-6 rounded-sm mb-10  px-10 grid-cols-4 gap-[284px] items-center justify-between font-poppins'>
                         <p>Product</p>
                         <p>Price</p>
                         <p>Quantity</p>
                         <p>Subtotal</p>
                     </div>
-                    <CartItems />
+
+                    
+                  
+
+                 
                 </div>
             </div>
         </section>
@@ -49,40 +55,8 @@ const Cart: React.FC = () => {
 
 
 
-const CartItems:React.FC = () => {
-
-const cartItems = [
-    {
-      id: nanoid(),
-      name: "LCD Monitor",
-      price: 650,
-      quantity: 1,
-      image: monitor,
-    },
-    {
-      id: nanoid(),
-      name: "H1 Gamepad",
-      price: 550,
-      quantity: 2,
-      image: gamepad,
-    },
-  ];
 
 
-    return (
 
-        cartItems.map((item)=>{
-            return(
-
-        <div key={item.id} className='grid shadow-contact py-6 rounded-sm mb-10  px-10 grid-cols-[auto_auto_auto_auto] items-center justify-between font-poppins'>
-            <span>
-                <img src={item.image} alt="image" />
-
-            </span>
-        </div>
-            )
-        })
-    )
-}
 
 export default Cart
