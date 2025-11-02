@@ -25,7 +25,7 @@ const NavBar: React.FC = () => {
       </ul>
     </div>
     <div>
-      <h1 className=' font- ' >Exclusive</h1>
+      <h1 className=' dark:text-amber-50 leading-[24px] font-inter text-[24px] font-bold ' >Exclusive</h1>
     </div>
   </div>
   <div className="navbar-center hidden lg:flex">
