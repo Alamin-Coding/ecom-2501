@@ -1,19 +1,22 @@
-import { ShoppingCart } from 'lucide-react'
-import React from 'react'
-import { Link } from 'react-router'
 
-const NavBar: React.FC = () => {
-  const themeToggle = () => {
-    document.querySelector('body')?.classList.toggle('dark'); 
-  }
-   
+import type React from "react"
+import { Link } from "react-router"
+
+const Navbar: React.FC = () => {
   return (
-    <nav className=' bg-white dark:bg-black border-b-[0.5px] border-[#000000] dark:border-b-gray-400' >
-      <div className="navbar container bg-base-100 ">
-  <div className="navbar-start  ">
-    <div className="dropdown">
-      <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+    <header className="border-b border-[rgba(0,0,0,0.29)]">
+      {/* Top Header Design  */}
+      <div className="py-[15px] bg-button text-text">
+        <div className="container">
+          <div className="flex items-center justify-between">
+            <div className="w-20"></div>
+            <p className="font-poppins text-[14px] ">Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <span><a className="underline underline-offset-1 font-poppins text-[14px] font-semibold" href="#">Shop Now</a></span></p>
+            <select className="font-grotesk self-end">
+              <option value="english">English</option>
+              <option value="bengali">Bengali</option>
+            </select>
+          </div>
+        </div>
       </div>
 
 
@@ -57,4 +60,4 @@ const NavBar: React.FC = () => {
   )
 }
 
-export default NavBar
+export default Navbar
