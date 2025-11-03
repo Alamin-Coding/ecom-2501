@@ -11,6 +11,7 @@ import { gamepad, monitor } from '../constant/constant';
 import { nanoid } from 'nanoid';
 import Button1 from '../components/Button1';
 import Button2 from '../components/Button2';
+import { Link } from 'react-router';
 
 // Types
 interface CartItem {
@@ -31,13 +32,17 @@ const Cart: React.FC = () => {
                         <Breadcrumb>
                             <BreadcrumbList>
                                 <BreadcrumbItem className="text-[14px]">
-                                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                                    <BreadcrumbLink >
+                                    <Link to={"/"}>Home</Link>
+                                    </BreadcrumbLink>
                                 </BreadcrumbItem>
                                 <BreadcrumbSeparator>
                                     <Slash className="w-3 h-3" />
                                 </BreadcrumbSeparator>
                                 <BreadcrumbItem>
-                                    <BreadcrumbLink href="/cart">Cart</BreadcrumbLink>
+                                    <BreadcrumbLink>
+                                    <Link to={"/cart"}>Cart</Link>
+                                    </BreadcrumbLink>
                                 </BreadcrumbItem>
                             </BreadcrumbList>
                         </Breadcrumb>

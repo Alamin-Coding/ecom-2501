@@ -3,6 +3,7 @@ import { SlashIcon } from "lucide-react"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "../components/ui/breadcrumb"
 import { Icon } from "@iconify/react"
 import Button2 from "../components/Button2"
+import { Link } from "react-router"
 const Contact: React.FC = () => {
     return (
         <section>
@@ -12,13 +13,17 @@ const Contact: React.FC = () => {
                         <Breadcrumb>
                             <BreadcrumbList>
                                 <BreadcrumbItem className="text-[14px] ">
-                                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                                    <BreadcrumbLink>
+                                    <Link to={"/"}>Home</Link>
+                                    </BreadcrumbLink>
                                 </BreadcrumbItem>
                                 <BreadcrumbSeparator>
                                     <SlashIcon />
                                 </BreadcrumbSeparator>
                                 <BreadcrumbItem>
-                                    <BreadcrumbLink href="/contact">Contact</BreadcrumbLink>
+                                    <BreadcrumbLink>
+                                    <Link to={"/contact"}>Contact</Link>
+                                    </BreadcrumbLink>
                                 </BreadcrumbItem>
                             </BreadcrumbList>
                         </Breadcrumb>

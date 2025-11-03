@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "../components/ui/breadcrumb"
 import { about_image, customer_service, delivery, employee_1, employee_2, employee_3, secure } from "../constant/constant"
 import { nanoid } from 'nanoid';
+import { Link } from "react-router";
 
 const About: React.FC = () => {
 
@@ -135,13 +136,17 @@ const About: React.FC = () => {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="text-[14px] ">
-                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                  <BreadcrumbLink >
+                  <Link to={"/"}>Home</Link>
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator>
                   <SlashIcon />
                 </BreadcrumbSeparator>
                 <BreadcrumbItem>
-                  <BreadcrumbLink href="/about">About</BreadcrumbLink>
+                  <BreadcrumbLink >
+                  <Link to={"/about"}>About</Link>
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
