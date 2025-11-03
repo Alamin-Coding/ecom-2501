@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
         <div className="container">
           <div className="flex items-center justify-between">
             <div className="w-20"></div>
-            <p className="font-poppins text-[14px] ">Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <span><a className="underline underline-offset-1 font-poppins text-[14px] font-semibold" href="#">Shop Now</a></span></p>
+            <p className="font-poppins text-[14px] ">Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <span><Link className="underline underline-offset-1 font-poppins text-[14px] font-semibold" to="/shop">Shop Now</Link></span></p>
             <select className="font-grotesk self-end">
               <option value="english">English</option>
               <option value="bengali">Bengali</option>
