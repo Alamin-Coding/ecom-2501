@@ -2,10 +2,10 @@ import { nanoid } from "nanoid"
 import { customer_service, delivery, secure } from "../constant/constant"
 
 
-type Service = {
-    id: string;
-    title: string;
-    icon: string;
+interface Service  {
+    id: string
+    title: string
+    icon: string
     description: string
 }
 
