@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
   const year= new Date().getFullYear()
 
   return (
-    <footer className="bg-black text-text pt-20 pb-10">
+    <footer className="bg-black text-text pt-20 pb-10 mt-[140px]">
       <div className="container mx-auto px-4">
         
         {/* --- Main Grid Layout for 5 Columns --- */}
