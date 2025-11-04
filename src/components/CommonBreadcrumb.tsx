@@ -1,19 +1,21 @@
 
 import { SlashIcon } from "lucide-react"
-
+type Breadecrumb = {
+    props?: string;
+    className?:string
+}
 import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbList,
-    BreadcrumbPage,
     BreadcrumbSeparator,
 } from "../components/ui/breadcrumb"
 import { Link } from "react-router"
 
-export function CommonBreadcrumb() {
+export function CommonBreadcrumb({className=""}:Breadecrumb) {
     return (
-        <Breadcrumb>
+        <Breadcrumb className={`${className}`}>
             <BreadcrumbList>
                 <BreadcrumbItem>
                     <BreadcrumbLink asChild>

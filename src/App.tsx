@@ -8,6 +8,9 @@ import Contact from './pages/Contact';
 import Account from './pages/Account';
 import Cart from './pages/Cart';
 import Shop from './pages/Shop';
+import Signup from './pages/Signup';
+import LoginPages from './pages/Login';
+import ErrorPages from './pages/Error';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +23,9 @@ const router = createBrowserRouter([
       { path: "account", Component: Account },
       { path: "cart", Component: Cart },
       { path: "shop", Component: Shop },
+      { path: "signup", Component: Signup },
+      { path: "login", Component: LoginPages },
+      {path: "*", Component: ErrorPages}
     ],
   },
 ]);;

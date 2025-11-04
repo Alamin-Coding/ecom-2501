@@ -20,6 +20,11 @@ import monitor from "../assets/monitor.png"
 import gamepad from "../assets/gamepad.png"
 
 
+// Sign Up page
+import google from "../assets/Icon-Google.svg"
+import signup from "../assets/signup.jpg"
+
+
 export {facebook,
         instagram,
         linkedin,
@@ -32,5 +37,7 @@ export {facebook,
         secure,
         customer_service,
         monitor,
-        gamepad
+        gamepad,
+        google,
+        signup
 }

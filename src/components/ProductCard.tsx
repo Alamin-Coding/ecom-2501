@@ -8,71 +8,64 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className=" bg-white rounded-lg shadow-md overflow-hidden">
-      {/* Product Image Section */}
-      <div className="relative bg-gray-100 p-6">
-        {/* Discount Badge */}
-        <div className="absolute top-4 left-4 bg-red-500 text-white text-sm font-semibold px-3 py-1 rounded">
-          {product.discountPercentage}%
-        </div>
-        
-        {/* Action Icons */}
-        <div className="absolute top-4 right-4 flex flex-col gap-2">
-          <button className="bg-white p-2 rounded-full shadow hover:bg-gray-50 transition">
-            <Heart className="w-5 h-5" />
-          </button>
-          <button className="bg-white p-2 rounded-full shadow hover:bg-gray-50 transition">
-            <Eye className="w-5 h-5" />
-          </button>
-        </div>
-        
-        {/* Product Image */}
-        <img 
-          src={product.thumbnail}
-          alt="AK-900 Wired Keyboard" 
-          className="w-full h-48 object-contain"
-        />
-      </div>
+
+
+
+
+    <div className='relative group max-w-[270px] font-poppins'>
+
       
-      {/* Add To Cart Button */}
-      <button className="w-full bg-black text-white py-3 font-medium hover:bg-gray-800 transition">
+
+      {/* Discount */}
+      <span className="absolute top-3 left-3 bg-button2 text-white text-xs font-poppins  font-semibold px-3 py-1 rounded-sm">
+        -{product.discountPercentage}%
+      </span>
+
+        <button className='w-full text-center absolute bg-button p-2 text-white font-poppins transition-all duration-500 cursor-pointer rounded-b-sm opacity-0 group-hover:opacity-100 bottom-[108px]'>
+
         Add To Cart
       </button>
+      {/* Wishlist and view icon */}
+
+      <div className="absolute top-3 right-3 flex flex-col gap-2">
+        <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition">
+          <Heart className="w-5 h-5 text-gray-600" />
+        </button>
+        <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition">
+          <Eye className="w-5 h-5 text-gray-600" />
+        </button>
+      </div>
+
+
+        <div className='  bg-secondary  cursor-pointer rounded-sm h-[250px] mb-4   overflow-hidden flex items-center justify-center py-9 px-10'>
+          {/* Image */}
+          <img src={product.thumbnail} alt="image" />
+        </div>
+
       
-      {/* Product Details */}
-      <div className="p-4">
-        <h3 className="text-lg font-medium text-gray-900 mb-2">
-          {product.description}
-        </h3>
-        
-        {/* Pricing */}
-        <div className="flex items-center gap-3 mb-2">
-          <span className="text-2xl font-bold text-red-500">${product.price}</span>
-          <span className="text-lg text-gray-400 line-through">${product.price}</span>
+      {/* title */}
+      <h2 className='font-medium mb-2'>
+        {product.title}
+      </h2>
+
+      {/* Price */}
+      <div className="flex items-center gap-2 mb-2">
+        <span className="text-button2 font-medium ">${product.price}</span>
+        <span className="text-gray-400 line-through text-sm">
+          ${ (product.price / (1 - product.discountPercentage / 100)).toFixed(2) }
+        </span>
+      </div>
+
+      {/* Ratings */}
+      <div className="flex items-center">
+        <div className="flex text-yellow-400 text-lg">
+          {Array.from({  length:Math.round(product.rating) }).map((_, i) => (
+            <span key={i}>★</span>
+          ))}
         </div>
-        
-        {/* Rating */}
-        <div className="flex items-center gap-2">
-          <div className="flex">
-            {Array.from({length:Math.round(product.rating)}).map((_, i) => (
-              <svg
-                key={i}
-                className="w-5 h-5 fill-yellow-400"
-                viewBox="0 0 20 20"
-              >
-                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-              </svg>
-            ))}
-            <svg
-              className="w-5 h-5 fill-gray-300"
-              viewBox="0 0 20 20"
-            >
-              <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-            </svg>
-          </div>
-          <span className="text-gray-500 text-sm">({product.rating})</span>
-        </div>
+        <span className="text-gray-600 text-sm ml-2">{product.rating}</span>
       </div>
     </div>
+    
   );
 }

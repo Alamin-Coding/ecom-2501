@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
               <li className="relative buttons "><Link to={"/"}>Home</Link></li>
               <li className="relative buttons "><Link to={"about"}>About</Link></li>
               <li className="relative buttons "><Link to={"contact"}>Contact</Link></li>
-              <li className="relative buttons "><a href="#">Sign Up</a></li>
+              <li className="relative buttons "><Link to="/signup">Sign Up</Link></li>
             </ul>
 
             <div className="flex items-center  gap-6">

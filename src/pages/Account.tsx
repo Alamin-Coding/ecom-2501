@@ -8,6 +8,7 @@ import {
 } from "../components/ui/breadcrumb";
 import { SlashIcon } from "lucide-react";
 import Button2 from "../components/Button2";
+import { Link } from "react-router";
 
 const Account: React.FC = () => {
     return (
@@ -18,13 +19,17 @@ const Account: React.FC = () => {
                     <Breadcrumb>
                         <BreadcrumbList>
                             <BreadcrumbItem className="text-[14px]">
-                                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                                <BreadcrumbLink>
+                                <Link to={"/"}>Home</Link>
+                                </BreadcrumbLink>
                             </BreadcrumbItem>
                             <BreadcrumbSeparator>
                                 <SlashIcon className="w-3 h-3" />
                             </BreadcrumbSeparator>
                             <BreadcrumbItem>
-                                <BreadcrumbLink href="/account">My Account</BreadcrumbLink>
+                                <BreadcrumbLink >
+                                <Link to={"/account"}>My Account</Link>
+                                </BreadcrumbLink>
                             </BreadcrumbItem>
                         </BreadcrumbList>
                     </Breadcrumb>
