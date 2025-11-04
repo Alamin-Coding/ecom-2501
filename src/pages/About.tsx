@@ -1,7 +1,7 @@
 import {   SlashIcon  } from "lucide-react"
 import { Icon } from "@iconify/react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "../components/ui/breadcrumb"
-import { about_image, customer_service, delivery, employee_1, employee_2, employee_3, secure } from "../constant/constant"
+import { about_image,  employee_1, employee_2, employee_3, } from "../constant/constant"
 import { nanoid } from 'nanoid';
 import { Link } from "react-router";
 import type { JSX } from "react";
