@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { LoginImages } from '../ImportImages/ImportImages'
-import { Eye, EyeOff, Icon } from 'lucide-react';
+import { Eye, EyeOff} from 'lucide-react';
 import { signup } from '../constant/constant';
 import Button2 from '../components/Button2';
 

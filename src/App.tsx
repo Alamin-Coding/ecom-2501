@@ -25,9 +25,9 @@ const router = createBrowserRouter([
       { path: "shop", Component: Shop },
       { path: "signup", Component: Signup },
       { path: "login", Component: LoginPages },
+      {path: "*", Component: ErrorPages}
     ],
   },
-  {path: "*", Component: ErrorPages}
 ]);;
 
 const App:React.FC = () => {
