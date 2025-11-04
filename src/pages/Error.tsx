@@ -21,11 +21,14 @@ const ErrorPages: React.FC = () => {
                 <BreadcrumbItem>
                   <BreadcrumbLink >
                   <Link to={"*"}>404 Error</Link>
+                  
                   </BreadcrumbLink>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
         </div>
+
+        
      
 
       <div className=' flex flex-col items-center justify-center ' >

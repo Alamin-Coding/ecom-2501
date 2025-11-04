@@ -37,7 +37,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       </div>
 
 
-        <div className='  bg-secondary group cursor-pointer rounded-sm h-[250px] mb-4   overflow-hidden flex items-center justify-center py-9 px-10'>
+        <div className='  bg-secondary  cursor-pointer rounded-sm h-[250px] mb-4   overflow-hidden flex items-center justify-center py-9 px-10'>
           {/* Image */}
           <img src={product.thumbnail} alt="image" />
         </div>

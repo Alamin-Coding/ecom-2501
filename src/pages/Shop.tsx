@@ -11,7 +11,7 @@ const Shop: React.FC = () => {
       <div className="container min-h-screen">
         <CommonBreadcrumb className="mt-20 mb-12.5" />
 
-        <div className="grid gap-20 grid-cols-[auto_1fr]">
+        <div className="grid gap-20 justify-between grid-cols-[auto_1fr]">
           <div>
             <ul className="font-poppins space-y-4">
               <p className=" font-bold text-xl">Shop by Category</p>
@@ -42,7 +42,7 @@ const Shop: React.FC = () => {
             {isLoading && <div className="flex items-center text-center justify-center gap-4 text-3xl max-w-[300px]"><Spinner className="size-8" /> Loading....</div>}
 
 
-            <div className="items grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-6">
+            <div className="items grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-7.5 justify-between">
               {data?.products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

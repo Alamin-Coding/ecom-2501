@@ -9,8 +9,8 @@ import Account from './pages/Account';
 import Cart from './pages/Cart';
 import Shop from './pages/Shop';
 import Signup from './pages/Signup';
-import LoginPages from './pages/LoginPages';
-import ErrorPages from './pages/ErrorPages';
+import LoginPages from './pages/Login';
+import ErrorPages from './pages/Error';
 
 const router = createBrowserRouter([
   {

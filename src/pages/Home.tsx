@@ -1,9 +1,12 @@
-import Card from "../components/Card"
+import HeadingHomePage from "../components/HeadingHomePage"
+import Services from "../components/Services"
 
 const Home: React.FC = () => {
   return (
-    <div className="sm:text-red-500 md:text-black">Home Page
-    <Card/>
+    <div className="container">
+      <HeadingHomePage subHeading="Featured" heading="New Arrival"  />
+      <Services/>
+    
     </div>
   )
 }
