@@ -1,5 +1,6 @@
 import React from 'react';
 import {facebook, instagram, twitter, linkedin} from "../constant/constant.ts"
+import { Link } from 'react-router';
 // Tailwind CSS classes are used directly within the className attribute
 
 const Footer: React.FC = () => {
@@ -48,11 +49,11 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-2xl font-inter font-bold mb-6">Account</h3>
             <ul className="space-y-4  ">
-              <li><a href="#" >My Account</a></li>
-              <li><a href="#" >Login / Register</a></li>
-              <li><a href="#" >Cart</a></li>
-              <li><a href="#" >Wishlist</a></li>
-              <li><a href="#" >Shop</a></li>
+              <li><Link to="/account" >My Account</Link></li>
+              <li><Link to="/signup" >Login / Register</Link></li>
+              <li><Link to="/cart" >Cart</Link></li>
+              <li><Link to="/wishlist" >Wishlist</Link></li>
+              <li><Link to="/shop" >Shop</Link></li>
             </ul>
           </div>
 
@@ -63,7 +64,7 @@ const Footer: React.FC = () => {
               <li><a href="#" >Privacy Policy</a></li>
               <li><a href="#" >Terms Of Use</a></li>
               <li><a href="#" >FAQ</a></li>
-              <li><a href="#" >Contact</a></li>
+              <li><Link to="contact" >Contact</Link></li>
             </ul>
           </div>
 

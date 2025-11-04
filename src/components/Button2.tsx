@@ -2,7 +2,7 @@ import React from "react";
 
 interface Button2Props {
   children: React.ReactNode;
-  className: string
+  className?: string
 }
 
 const Button2: React.FC<Button2Props> = ({ children, className="",}) => {

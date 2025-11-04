@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { LoginImages } from '../ImportImages/ImportImages'
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, Icon } from 'lucide-react';
+import { signup } from '../constant/constant';
+import Button2 from '../components/Button2';
 
 const LoginPages: React.FC = () => {
      const [password, setPassword] = useState('');
@@ -13,35 +15,22 @@ const LoginPages: React.FC = () => {
      return (
           <div className=' flex items-center  ' >
                <div>
-                    <img className=' h-[750px] mt-[60px] ' src={LoginImages} alt="loginimages" />
+                    <img className=' h-[750px] mt-[60px] ' src={signup} alt="loginimages" />
                </div>
 
                <div className=' ml-[130px] ' >
                     <div>
-                         <h2 className=' dark:text-amber-50 leading-[30px] text-[40px] font-semibold ' >Log in to Exclusive</h2>
-                         <p className='dark:text-amber-50 mt-[24px] text-[16px] leading-[24px] ' >Enter your details below</p>
+                         <h2 className='  leading-[30px] text-[36px] font-semibold tracking-wide font-inter' >Log in to Exclusive</h2>
+                         <p className='mt-6 text-[16px] leading-6 ' >Enter your details below</p>
                     </div>
 
-                    <div className=' mt-[48px] ' >
-                         <label className="input outline-none border-t-transparent border-x-transparent border-b-[1px] border-[#000000] shadow-none ">
-                              <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                   <g
-                                        strokeLinejoin="round"
-                                        strokeLinecap="round"
-                                        strokeWidth="2.5"
-                                        fill="none"
-                                        stroke="currentColor"
-                                   >
-                                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                                   </g>
-                              </svg>
-                              <input type="email" placeholder="Email or Phone Number" />
-                         </label>
+                    <div className=' mt-12 ' >
+                        <input type="text" placeholder='Email or Phone Number' className='w-full text-gray-500 focus:outline-none font-poppins border-b border-button pb-2' />
+     
                          <div className="validator-hint hidden">Enter valid email address</div>
                     </div>
 
-                    <div className=" pr-4 mt-[40px] w-[340px]">
+                    <div className=" pr-4 mt-10 w-[340px]">
                          <div className="mb-4">
                               <div className="relative">
                                    <button
@@ -62,16 +51,16 @@ const LoginPages: React.FC = () => {
                                         id="password"
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
-                                        placeholder="Enter your password"
-                                        className="w-full px-4 py-3 pr-12 border-[1px] focus:outline-none border-x-transparent border-t-transparent transition-all"
+                                        placeholder="Password"
+                                        className="w-full  py-3 text-gray-500 border-b border-button focus:outline-none "
                                    />
                               </div>
                          </div>
                     </div>
 
-               <div className=' pt-[40px] ' >
-               <button className=' py-[16px] cursor-pointer px-[48px] text-amber-50 text-[16px] font-[500] bg-[#DB4444] rounded-[4px] ' >Log In</button>
-               <button className=' ml-15 cursor-pointer text-[16px] leading-[24px] text-[#DB4444] ' >Forget Password?</button>
+               <div className=' pt-10 ' >
+               <Button2>Log In</Button2>
+               <button className=' ml-15 cursor-pointer text-[16px] leading-6 text-button2 ' >Forget Password?</button>
                </div>
 
                </div>
