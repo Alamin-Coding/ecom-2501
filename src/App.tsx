@@ -3,6 +3,14 @@ import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import Home from './pages/Home';
 import MainLayout from './layout/MainLayout';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Account from './pages/Account';
+import Cart from './pages/Cart';
+import Shop from './pages/Shop';
+import Signup from './pages/Signup';
+import LoginPages from './pages/Login';
+import ErrorPages from './pages/Error';
 import ErrorPages from './components/ErrorPages';
 
 const router = createBrowserRouter([
@@ -11,6 +19,14 @@ const router = createBrowserRouter([
     Component: MainLayout,
     children: [
       { index: true, Component: Home },
+      { path: "about", Component: About },
+      { path: "contact", Component: Contact },
+      { path: "account", Component: Account },
+      { path: "cart", Component: Cart },
+      { path: "shop", Component: Shop },
+      { path: "signup", Component: Signup },
+      { path: "login", Component: LoginPages },
+      {path: "*", Component: ErrorPages}
       { path: "*", Component: ErrorPages },
     ],
   },
