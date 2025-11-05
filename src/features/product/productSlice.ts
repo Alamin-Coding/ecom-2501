@@ -31,6 +31,6 @@ export const productSlice = createSlice({
 export const { getProduct} = productSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.product
+export const selectCount = (state: RootState) => state.products
 
 export default productSlice.reducer
