@@ -1,97 +1,264 @@
-import { ShoppingCart } from 'lucide-react'
-import React from 'react'
-import { Link } from 'react-router'
+import React, { useEffect, useState } from 'react';
+import { Heart, Menu, Search, ShoppingCart, X } from 'lucide-react';
+import { Link } from 'react-router';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
+import { Button } from './ui/button';
 
-const NavBar: React.FC = () => {
-  const themeToggle = () => {
-    document.querySelector('body')?.classList.toggle('dark'); 
+export default function NavBar() {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [position, setPosition] = React.useState("bottom")
+
+  const [dark, setDark] = useState("light")
+
+  const handleChange = ()=> {
+    setDark((theme)=> theme==="light" ? "dark" : "light")
+    console.log(dark);
+
+    document.querySelector("html")?.classList.toggle("dark")
   }
-   
+
+
+
+  const handleTheme = (mode:string)=> {
+    setDark(mode)
+  }
+  
+  useEffect(()=> {
+     document.querySelector("html")?.classList.remove("light")
+     document.querySelector("html")?.classList.remove("dark")
+     document.querySelector("html")?.classList.remove("device")
+     document.querySelector("html")?.classList.add(dark)
+  }, [dark])
+
+  const navLinks = [
+    { to: '/', label: 'Home' },
+    { to: '/about', label: 'Contact' },
+    { to: '/services', label: 'About' },
+    { to: '/portfolio', label: 'Sign Up' },
+  ];
+
   return (
-    <nav className=' bg-white dark:bg-black border-b-[0.5px] border-[#000000] dark:border-b-gray-400' >
-      <div className="navbar container bg-base-100 ">
-  <div className="navbar-start  ">
-    <div className="dropdown">
-      <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+
+    <>
+      {/* Top Header Design  */}
+      <div className="py-[15px]  bg-black max-w-full text-text relative">
+        <div className="container">
+          <div className="flex items-center justify-between">
+            <div className="w-20"></div>
+            <p className="font-poppins sm:text-start md:text-center text-amber-50 text-[14px] ">Summer Sale Free Delivery - OFF 50%! <span><Link className="underline underline-offset-1 font-poppins text-[14px] font-semibold" to="/shop">Shop Now</Link></span></p>
+            <select className="font-grotesk text-amber-50 self-end">
+              <option className=' bg-black text-amber-50 ' value="english">English</option>
+              <option className=' bg-black text-amber-50 ' value="bengali">Bengali</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <ul
-        tabIndex={-1}
-        className="menu menu-sm dropdown-content bg-base-100 dark:bg-black dark:text-amber-50 rounded-box z-1 mt-3 w-52 p-2 shadow">
-       <Link to={""} className=' font-bold text-[16px] dark:font-semibold dark:text-amber-50 dark:text-[16px] ' > Home </Link>
-       <Link to={""} className=' font-bold text-[16px] dark:font-semibold dark:text-amber-50 dark:text-[16px] ' > Contact </Link>
-       <Link to={""} className=' font-bold text-[16px] dark:font-semibold dark:text-amber-50 dark:text-[16px] ' > About </Link>
-       <Link to={""} className=' font-bold text-[16px] dark:font-semibold dark:text-amber-50 dark:text-[16px] ' > Sign Up </Link>
-      </ul>
-    </div>
-    <div>
-      <h1 className=' dark:text-amber-50 leading-[24px] font-inter text-[24px] font-bold ' >Exclusive</h1>
-    </div>
-  </div>
-  <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal gap-8 px-1">
-      <Link to={""} className=' font-bold text-[16px] dark:font-semibold dark:text-amber-50 dark:text-[16px] ' > Home </Link>
-       <Link to={""} className=' font-bold text-[16px] dark:font-semibold dark:text-amber-50 dark:text-[16px] ' > Contact </Link>
-       <Link to={""} className=' font-bold text-[16px] dark:font-semibold dark:text-amber-50 dark:text-[16px] ' > About </Link>
-       <Link to={""} className=' font-bold text-[16px] dark:font-semibold dark:text-amber-50 dark:text-[16px] ' > Sign Up </Link>
-    </ul>
-  </div>
-  <div className="navbar-end gap-5">
-    <button className=' cursor-pointer ' >
-      <label className="input outline-transparent focus:outline-none ">
-        <input type="search" required placeholder="What are you looking for?" />
-  <svg className="h-[20px] cursor-pointer opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <g
-      strokeLinejoin="round"
-      strokeLinecap="round"
-      strokeWidth="2.5"
-      fill="none"
-      stroke="currentColor"
-    >
-      <circle cx="11" cy="11" r="8"></circle>
-      <path d="m21 21-4.3-4.3"></path>
-    </g>
-  </svg>
-</label>
-    </button>
 
-    <button className="">
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="size-[25px]"><path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
-</button>
+      <nav className="bg-white container max-w-full dark:bg-black border-b border-gray-200 dark:border-gray-700">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between  ">
+            {/* Left: Mobile Menu Button */}
+            <div className="flex items-center justify-center pt-5 pb-5 lg:hidden">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-6 w-6 dark:text-amber-50" />
+                ) : (
+                  <Menu className="h-6 w-6 dark:text-amber-50" />
+                )}
+              </button>
+            </div>
 
-<div>
-<ShoppingCart />
-</div>
+            {/* Center: Logo mobile */}
+            <div className="absolute lg:hidden left-1/2 transform -translate-x-1/2">
+              <a href="/" className="flex items-center">
+                <div className="w-[140px] h-[50px] md:w-[180px] md:h-[70px]  rounded-lg flex items-center justify-center">
+                  <span className="text-black dark:text-amber-50 font-[700] text-xl md:text-2xl">Exclusive</span>
+                </div>
+              </a>
+            </div>
 
-<button onClick={themeToggle}>
-<label className="swap swap-rotate">
-  {/* this hidden checkbox controls the state */}
-  <input type="checkbox" className="theme-controller" value="synthwave" />
+            {/* Right: Action Icons */}
+            <div className="flex items-center gap-2 md:gap-3 lg:hidden  ">
+              <button
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                aria-label="Toggle search"
+              >
+                {isSearchOpen ? (
+                  <X className="h-6 w-6 dark:text-amber-50" />
+                ) : (
+                  <Search className="h-6 w-6 dark:text-amber-50" />
+                )}
+              </button>
 
-  {/* sun icon */}
-  <svg
-    className="swap-off h-[30px] w-[30px] fill-current"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24">
-    <path
-      d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
-  </svg>
+              <button
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-red-500 rounded-lg transition-colors md:block"
+                aria-label="Wishlist"
+              >
+                <Heart className="h-6 w-6 dark:text-amber-50" />
+              </button>
 
-  {/* moon icon */}
-  <svg
-    className="swap-on h-[30px] w-[30px] fill-current"
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24">
-    <path
-      d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
-  </svg>
-</label>
-</button>
+              <button
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors relative"
+                aria-label="Shopping cart"
+              >
+                <ShoppingCart className="h-6 w-6 dark:text-amber-50" />
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  0
+                </span>
+              </button>
+            </div>
+          </div>
 
-  </div>
-</div>
-    </nav>
-  )
+          {/* Desktop Navigation */}
+
+          <div className="hidden pt-6 pb-6 lg:flex items-center gap-12 justify-between  ">
+
+            <div >
+              <h1 className=' text-[24px] font-[700] leading-[24px] font-inter ' > Exclusive </h1>
+            </div>
+
+            <div className='lg:flex items-center gap-12 justify-center ' >
+              {navLinks.map((link) => (
+                <a
+                  key={link.to}
+                  href={link.to}
+                  className="font-bold font-[16px] text-base dark:text-amber-50 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            <div>
+              <div className="flex items-center  gap-6">
+                <div className="flex items-center w-[243px] h-[38px] justify-between py-[7px] px-3 bg-[#F5F5F5] ">
+                  <input className="font-poppins text-[12px] focus:outline-none w-full" type="text" placeholder="What are you looking for?" />
+                  <button><Search /></button>
+                </div>
+
+                <div className="flex items-center gap-4" >
+                  <Link to={""}>
+                    <Heart size={30} color="#000000" strokeWidth={2} absoluteStrokeWidth />
+                  </Link>
+
+                  <Link to={"cart"}>
+                    <button
+                      className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors relative"
+                      aria-label="Shopping cart"
+                    >
+                      <ShoppingCart size={30} color="#000000" strokeWidth={2} />
+                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                        0
+                      </span>
+                    </button>
+                  </Link>
+
+                  {/* <Link to={"account"}>
+                  <img src="user.svg" alt="icon" />
+                </Link> */}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Toggle Button */}
+          <label htmlFor="toggleB" className="flex items-center cursor-pointer absolute top-2 right-5">
+            {/* toggle */}
+            <div className="relative">
+              {/* input */}
+              <input onChange={handleChange} type="checkbox" id="toggleB" className="sr-only" />
+              {/* line */}
+              <div className="block bg-gray-600 w-14 h-8 rounded-full" />
+              {/* dot */}
+              <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition" />
+            </div>
+            {/* label */}
+          </label>
+
+
+
+        {/* Mobile Menu Dropdown */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+            <div className="container mx-auto px-4 py-4">
+              <ul className="space-y-2">
+                {navLinks.map((link) => (
+                  <li key={link.to}>
+                    <a
+                      href={link.to}
+                      className="block px-4 py-3 font-semibold text-base dark:text-amber-50 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+                <div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button className=' w-full ' variant="outline">Mood</Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-56">
+                      <DropdownMenuSeparator />
+                      <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+                        <DropdownMenuRadioItem onClick={()=> handleTheme("device")} value="top"> Device </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem onClick={()=> handleTheme("light")} value="bottom"> Light </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem onClick={()=> handleTheme("dark")} value="right"> Dark </DropdownMenuRadioItem>
+                      </DropdownMenuRadioGroup>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {/* Search Dropdown */}
+        {isSearchOpen && (
+          <div className="bg-white lg:hidden dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-lg">
+            <div className="container mx-auto px-4 py-6">
+              <div className="max-w-2xl mx-auto">
+                <div className="relative">
+                  <input
+                    type="search"
+                    placeholder="What are you looking for?"
+                    className="w-full px-6 py-4 pr-12 text-lg border-2 border-gray-300 dark:border-gray-600 rounded-full focus:outline-none focus:border-blue-500 dark:bg-gray-800 dark:text-amber-50 dark:placeholder-gray-400"
+                    autoFocus
+                  />
+                  <button
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
+                    aria-label="Search"
+                  >
+                    <Search className="h-6 w-6 text-gray-500 dark:text-gray-400" />
+                  </button>
+                </div>
+
+                <div className="mt-4">
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">Popular Searches</p>
+                  <div className="flex flex-wrap gap-2">
+                    {['Electronics', 'Fashion', 'Home & Garden', 'Sports'].map((term) => (
+                      <button
+                        key={term}
+                        className="px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-sm dark:text-amber-50 transition-colors"
+                      >
+                        {term}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </nav>
+    </>
+  );
 }
-
-export default NavBar

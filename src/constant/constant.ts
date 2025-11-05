@@ -40,4 +40,7 @@ export {facebook,
         gamepad,
         google,
         signup
+        // noyon
+        
 }
+

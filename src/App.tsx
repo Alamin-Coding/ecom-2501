@@ -11,7 +11,6 @@ import Shop from './pages/Shop';
 import Signup from './pages/Signup';
 import LoginPages from './pages/Login';
 import ErrorPages from './pages/Error';
-import ErrorPages from './components/ErrorPages';
 
 const router = createBrowserRouter([
   {
@@ -27,7 +26,6 @@ const router = createBrowserRouter([
       { path: "signup", Component: Signup },
       { path: "login", Component: LoginPages },
       {path: "*", Component: ErrorPages}
-      { path: "*", Component: ErrorPages },
     ],
   },
 ]);;

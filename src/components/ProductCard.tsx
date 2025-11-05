@@ -53,9 +53,12 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Ratings */}
       <div className="flex items-center">
-        <div className="flex text-yellow-400 text-lg">
+        <div className="flex  text-lg">
           {Array.from({ length: Math.round(product.rating) }).map((_, i) => (
-            <span key={i}>★</span>
+            <span className='text-yellow-400' key={i}>★</span>
+          ))}
+          {Array.from({ length: 5 - Math.round(product.rating) }).map((_, i) => (
+            <span className='text-gray-400' key={i}>★</span>
           ))}
         </div>
         <span className="text-gray-600 text-sm ml-2">{product.rating}</span>
