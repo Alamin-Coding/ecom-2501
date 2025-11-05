@@ -12,7 +12,7 @@ const ErrorPages: React.FC = () => {
      <p className=' font-poppins font-normal text-[16px] mt-[40px] leading-[24px] dark:text-amber-50 ' > Your visited page not found. You may go home page. </p>
      
      <Link to={"/"} >
-     <button className='dark:text-amber-50 text-[16px] mt-[80px] mb-[140px] py-[16px] px-[48px] cursor-pointer bg-[#DB4444] text-[#FAFAFA] rounded-[4px] ' > Back to home page </button>
+     <button className='dark:text-amber-50 cursor-pointer text-[16px] mt-[80px] mb-[140px] py-[16px] px-[48px] bg-[#DB4444] text-[#FAFAFA] rounded-[4px] ' > Back to home page </button>
      </Link>
       </div>
       

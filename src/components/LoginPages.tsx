@@ -18,12 +18,12 @@ const LoginPages: React.FC = () => {
 
                <div className=' ml-[130px] ' >
                     <div>
-                         <h2 className=' dark:text-amber-50 leading-[30px] text-[40px] font-semibold ' >Log in to Exclusive</h2>
-                         <p className='dark:text-amber-50 mt-[24px] text-[16px] leading-[24px] ' >Enter your details below</p>
+                         <h2 className=' dark:text-amber-50 leading-[30px] text-[40px] font-semibold font-inter ' >Log in to Exclusive</h2>
+                         <p className='dark:text-amber-50 mt-[24px] text-[16px] leading-[24px] font-poppins ' >Enter your details below</p>
                     </div>
 
                     <div className=' mt-[48px] ' >
-                         <label className="input outline-none border-t-transparent border-x-transparent border-b-[1px] border-[#000000] shadow-none ">
+                         <label className="input flex items-center gap-3 w-[322px] outline-none border-t-transparent border-x-transparent border-b-[1px]  shadow-none ">
                               <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                    <g
                                         strokeLinejoin="round"
@@ -36,7 +36,7 @@ const LoginPages: React.FC = () => {
                                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                                    </g>
                               </svg>
-                              <input type="email" placeholder="Email or Phone Number" />
+                              <input className='w-full px-4 py-3 pr-12 focus:outline-none border-x-transparent border-t-transparent transition-all' type="email" placeholder="Email or Phone Number" />
                          </label>
                          <div className="validator-hint hidden">Enter valid email address</div>
                     </div>
