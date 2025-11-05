@@ -19,11 +19,35 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="absolute top-3 right-3 flex flex-col gap-2">
           <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition">
             <Heart className="w-5 h-5 text-gray-600" />
+
+
+
+
+    <div className='max-w-[270px] font-poppins'>
+      <div className='group relative  bg-secondary  cursor-pointer rounded-sm h-[250px] mb-4   overflow-hidden flex items-center justify-center py-9 px-10'>
+        {/* Image */}
+        {/* Wishlist and view icon */}
+        <div className="absolute top-3 right-3 flex flex-col gap-2">
+          <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition">
+            <Heart className="w-5 h-5 text-gray-600" />
           </button>
+          <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition">
+            <Eye className="w-5 h-5 text-gray-600" />
           <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition">
             <Eye className="w-5 h-5 text-gray-600" />
           </button>
         </div>
+
+        {/* Discount */}
+        <span className="absolute top-3 left-3 bg-button2 text-white text-xs font-poppins  font-semibold px-3 py-1 rounded-sm">
+          -{product.discountPercentage}%
+        </span>
+
+        <img className='h-full' src={product.thumbnail} alt="image" />
+
+        <button className='w-full text-center absolute bg-button p-2 text-white font-poppins transition-all duration-500 cursor-pointer rounded-b-sm opacity-0 group-hover:opacity-100 bottom-0'>
+          Add To Cart
+        </button>
 
         {/* Discount */}
         <span className="absolute top-3 left-3 bg-button2 text-white text-xs font-poppins  font-semibold px-3 py-1 rounded-sm">
@@ -62,8 +86,10 @@ export default function ProductCard({ product }: ProductCardProps) {
           ))}
         </div>
         <span className="text-gray-600 text-sm ml-2">{product.rating}</span>
+        <span className="text-gray-600 text-sm ml-2">{product.rating}</span>
       </div>
     </div>
+
 
   );
 }
