@@ -15,6 +15,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8  pb-12">
           
           {/* 1. Exclusive (Subscribe Column) */}
+          
           <div>
             <h3 className="text-2xl font-bold font-inter mb-6">Exclusive</h3>
             <h4 className="text-xl font-poppins font-medium mb-4">Subscribe</h4>

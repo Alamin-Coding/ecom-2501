@@ -43,7 +43,7 @@ const Shop: React.FC = () => {
 
 
             <div className="items grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-7.5 justify-between">
-              {data?.products.map((product) => (
+              {data?.products?.slice(0,6).map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>

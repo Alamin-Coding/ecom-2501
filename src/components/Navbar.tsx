@@ -1,63 +1,264 @@
+import React, { useEffect, useState } from 'react';
+import { Heart, Menu, Search, ShoppingCart, X } from 'lucide-react';
+import { Link } from 'react-router';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
+import { Button } from './ui/button';
 
-import type React from "react"
-import { Link } from "react-router"
+export default function NavBar() {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [position, setPosition] = React.useState("bottom")
 
-const Navbar: React.FC = () => {
+  const [dark, setDark] = useState("light")
+
+  const handleChange = ()=> {
+    setDark((theme)=> theme==="light" ? "dark" : "light")
+    console.log(dark);
+
+    document.querySelector("html")?.classList.toggle("dark")
+  }
+
+
+
+  const handleTheme = (mode:string)=> {
+    setDark(mode)
+  }
+  
+  useEffect(()=> {
+     document.querySelector("html")?.classList.remove("light")
+     document.querySelector("html")?.classList.remove("dark")
+     document.querySelector("html")?.classList.remove("device")
+     document.querySelector("html")?.classList.add(dark)
+  }, [dark])
+
+  const navLinks = [
+    { to: '/', label: 'Home' },
+    { to: '/about', label: 'Contact' },
+    { to: '/services', label: 'About' },
+    { to: '/portfolio', label: 'Sign Up' },
+  ];
+
   return (
-    <header className="border-b border-[rgba(0,0,0,0.29)]">
+
+    <>
       {/* Top Header Design  */}
-      <div className="py-[15px] bg-button text-text">
+      <div className="py-[15px]  bg-black max-w-full text-text relative">
         <div className="container">
           <div className="flex items-center justify-between">
             <div className="w-20"></div>
-            <p className="font-poppins text-[14px] ">Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! <span><Link className="underline underline-offset-1 font-poppins text-[14px] font-semibold" to="/shop">Shop Now</Link></span></p>
-            <select className="font-grotesk self-end">
-              <option value="english">English</option>
-              <option value="bengali">Bengali</option>
+            <p className="font-poppins sm:text-start md:text-center text-amber-50 text-[14px] ">Summer Sale Free Delivery - OFF 50%! <span><Link className="underline underline-offset-1 font-poppins text-[14px] font-semibold" to="/shop">Shop Now</Link></span></p>
+            <select className="font-grotesk text-amber-50 self-end">
+              <option className=' bg-black text-amber-50 ' value="english">English</option>
+              <option className=' bg-black text-amber-50 ' value="bengali">Bengali</option>
             </select>
           </div>
         </div>
       </div>
 
+      <nav className="bg-white container max-w-full dark:bg-black border-b border-gray-200 dark:border-gray-700">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between  ">
+            {/* Left: Mobile Menu Button */}
+            <div className="flex items-center justify-center pt-5 pb-5 lg:hidden">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-6 w-6 dark:text-amber-50" />
+                ) : (
+                  <Menu className="h-6 w-6 dark:text-amber-50" />
+                )}
+              </button>
+            </div>
 
-      {/* Navbar Starts */}
-      <nav className="mt-10 mb-[23px]">
-        <div className="container">
-          <div className="nav_container flex items-center justify-between text-button">
-            <Link to={"/"} className="font-inter font-bold text-2xl">Exclusive</Link>
+            {/* Center: Logo mobile */}
+            <div className="absolute lg:hidden left-1/2 transform -translate-x-1/2">
+              <a href="/" className="flex items-center">
+                <div className="w-[140px] h-[50px] md:w-[180px] md:h-[70px]  rounded-lg flex items-center justify-center">
+                  <span className="text-black dark:text-amber-50 font-[700] text-xl md:text-2xl">Exclusive</span>
+                </div>
+              </a>
+            </div>
 
-            <ul className="flex font-poppins items-center gap-12">
-              <li className="relative buttons "><Link to={"/"}>Home</Link></li>
-              <li className="relative buttons "><Link to={"about"}>About</Link></li>
-              <li className="relative buttons "><Link to={"contact"}>Contact</Link></li>
-              <li className="relative buttons "><Link to="/signup">Sign Up</Link></li>
-            </ul>
+            {/* Right: Action Icons */}
+            <div className="flex items-center gap-2 md:gap-3 lg:hidden  ">
+              <button
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                aria-label="Toggle search"
+              >
+                {isSearchOpen ? (
+                  <X className="h-6 w-6 dark:text-amber-50" />
+                ) : (
+                  <Search className="h-6 w-6 dark:text-amber-50" />
+                )}
+              </button>
 
-            <div className="flex items-center  gap-6">
-              <div className="flex items-center w-[243px] h-[38px] justify-between py-[7px] px-3 bg-[#F5F5F5] ">
-                <input className="font-poppins text-[12px] focus:outline-none w-full" type="text" placeholder="What are you looking for?" />
-                <img src="search.svg" alt="icon" />
-              </div>
+              <button
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-red-500 rounded-lg transition-colors md:block"
+                aria-label="Wishlist"
+              >
+                <Heart className="h-6 w-6 dark:text-amber-50" />
+              </button>
 
-              <div className="flex items-center gap-4" >
-                <div>
-                  <img src="wishlist.svg" alt="icon" />
+              <button
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors relative"
+                aria-label="Shopping cart"
+              >
+                <ShoppingCart className="h-6 w-6 dark:text-amber-50" />
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  0
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {/* Desktop Navigation */}
+
+          <div className="hidden pt-6 pb-6 lg:flex items-center gap-12 justify-between  ">
+
+            <div >
+              <h1 className=' text-[24px] font-[700] leading-[24px] font-inter ' > Exclusive </h1>
+            </div>
+
+            <div className='lg:flex items-center gap-12 justify-center ' >
+              {navLinks.map((link) => (
+                <a
+                  key={link.to}
+                  href={link.to}
+                  className="font-bold font-[16px] text-base dark:text-amber-50 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+
+            <div>
+              <div className="flex items-center  gap-6">
+                <div className="flex items-center w-[243px] h-[38px] justify-between py-[7px] px-3 bg-[#F5F5F5] ">
+                  <input className="font-poppins text-[12px] focus:outline-none w-full" type="text" placeholder="What are you looking for?" />
+                  <button><Search /></button>
                 </div>
 
-                <Link to={"cart"}>
-                  <img src="cart.svg" alt="icon" />
-                </Link>
+                <div className="flex items-center gap-4" >
+                  <Link to={""}>
+                    <Heart size={30} color="#000000" strokeWidth={2} absoluteStrokeWidth />
+                  </Link>
 
-                <Link to={"account"}>
+                  <Link to={"cart"}>
+                    <button
+                      className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors relative"
+                      aria-label="Shopping cart"
+                    >
+                      <ShoppingCart size={30} color="#000000" strokeWidth={2} />
+                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                        0
+                      </span>
+                    </button>
+                  </Link>
+
+                  {/* <Link to={"account"}>
                   <img src="user.svg" alt="icon" />
-                </Link>
+                </Link> */}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Toggle Button */}
+          <label htmlFor="toggleB" className="flex items-center cursor-pointer absolute top-2 right-5">
+            {/* toggle */}
+            <div className="relative">
+              {/* input */}
+              <input onChange={handleChange} type="checkbox" id="toggleB" className="sr-only" />
+              {/* line */}
+              <div className="block bg-gray-600 w-14 h-8 rounded-full" />
+              {/* dot */}
+              <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition" />
+            </div>
+            {/* label */}
+          </label>
+
+
+
+        {/* Mobile Menu Dropdown */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+            <div className="container mx-auto px-4 py-4">
+              <ul className="space-y-2">
+                {navLinks.map((link) => (
+                  <li key={link.to}>
+                    <a
+                      href={link.to}
+                      className="block px-4 py-3 font-semibold text-base dark:text-amber-50 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+                <div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button className=' w-full ' variant="outline">Mood</Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-56">
+                      <DropdownMenuSeparator />
+                      <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+                        <DropdownMenuRadioItem onClick={()=> handleTheme("device")} value="top"> Device </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem onClick={()=> handleTheme("light")} value="bottom"> Light </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem onClick={()=> handleTheme("dark")} value="right"> Dark </DropdownMenuRadioItem>
+                      </DropdownMenuRadioGroup>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {/* Search Dropdown */}
+        {isSearchOpen && (
+          <div className="bg-white lg:hidden dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-lg">
+            <div className="container mx-auto px-4 py-6">
+              <div className="max-w-2xl mx-auto">
+                <div className="relative">
+                  <input
+                    type="search"
+                    placeholder="What are you looking for?"
+                    className="w-full px-6 py-4 pr-12 text-lg border-2 border-gray-300 dark:border-gray-600 rounded-full focus:outline-none focus:border-blue-500 dark:bg-gray-800 dark:text-amber-50 dark:placeholder-gray-400"
+                    autoFocus
+                  />
+                  <button
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
+                    aria-label="Search"
+                  >
+                    <Search className="h-6 w-6 text-gray-500 dark:text-gray-400" />
+                  </button>
+                </div>
+
+                <div className="mt-4">
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">Popular Searches</p>
+                  <div className="flex flex-wrap gap-2">
+                    {['Electronics', 'Fashion', 'Home & Garden', 'Sports'].map((term) => (
+                      <button
+                        key={term}
+                        className="px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full text-sm dark:text-amber-50 transition-colors"
+                      >
+                        {term}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
       </nav>
-    </header>
-  )
+    </>
+  );
 }
-
-export default Navbar
