@@ -1,12 +1,7 @@
 import React, { useState } from 'react'
-<<<<<<<< HEAD:src/pages/Login.tsx
 import { Eye, EyeOff} from 'lucide-react';
 import { signup } from '../constant/constant';
 import Button2 from '../components/Button2';
-========
-import { Eye, EyeOff } from 'lucide-react';
-import { LoginImages } from '../ImportImages/ImportImages';
->>>>>>>> 28993e90fd66ddbeb90f7c9d02725cf92399ec08:src/components/LoginPages.tsx
 
 const LoginPages: React.FC = () => {
      const [password, setPassword] = useState('');

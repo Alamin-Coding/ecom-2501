@@ -25,11 +25,6 @@ import google from "../assets/Icon-Google.svg"
 import signup from "../assets/signup.jpg"
 
 
-// Sign Up page
-import google from "../assets/Icon-Google.svg"
-import signup from "../assets/signup.jpg"
-
-
 export {facebook,
         instagram,
         linkedin,

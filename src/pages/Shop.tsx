@@ -2,11 +2,8 @@ import { useGetProductsQuery } from "../api/productApi"
 import { CommonBreadcrumb } from "../components/CommonBreadcrumb"
 import ProductCard from "../components/ProductCard"
 import { Spinner } from "../components/ui/spinner";
-import { Spinner } from "../components/ui/spinner";
 
 const Shop: React.FC = () => {
-  const { isLoading, data } = useGetProductsQuery('');
-
   const { isLoading, data } = useGetProductsQuery('');
 
   return (
@@ -50,15 +47,6 @@ const Shop: React.FC = () => {
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
-          </div>
-
-
-
-
-        </div>
-
-
-
           </div>
 
 
