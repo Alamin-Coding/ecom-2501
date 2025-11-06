@@ -29,6 +29,7 @@ import signup from "../assets/signup.jpg"
 import arrival_1 from "../assets/arrival-1.png"
 import arrival_2 from "../assets/arrival-2.png"
 import arrival_4 from "../assets/arrival-4.png"
+import bg_countedown from "../assets/bg-home-counter.jpg"
 
 
 
@@ -49,7 +50,8 @@ export {facebook,
         signup,
         arrival_1,
         arrival_2,
-        arrival_4
+        arrival_4,
+        bg_countedown
         // noyon
         
 }

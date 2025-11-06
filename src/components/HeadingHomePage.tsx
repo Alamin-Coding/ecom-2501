@@ -20,7 +20,7 @@ const HeadingHomePage: React.FC<HeadingProps> = ({
             </div>
 
             {/* Main heading */}
-            <h2 className="text-[36px] font-semibold font-inter text-button leading-12 tracking-wide">
+            <h2 className="text-[36px] font-semibold font-inter dark:text-white text-button leading-12 tracking-wide">
                 {heading}
             </h2>
         </div>

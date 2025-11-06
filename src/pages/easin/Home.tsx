@@ -1,19 +1,19 @@
-import { Link } from "react-router"
-import { useGetProductsQuery } from "../../api/productApi"
+
 
 import Services from "../../components/Services"
 import Arrival from "../../components/sections/easin/Arrival";
+import BgCount from "../../components/sections/easin/BgCount";
 import ExploreProducts from "../../components/sections/easin/ExploreProducts";
 
 
 
 const Home: React.FC = () => {
-    const { data } = useGetProductsQuery('');
 
 
     return (
         <div className="container">
-
+            {/* Counter  */}
+            <BgCount/>
 
             {/* Products */}
             <ExploreProducts/>
