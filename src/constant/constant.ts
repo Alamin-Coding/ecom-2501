@@ -25,6 +25,13 @@ import google from "../assets/Icon-Google.svg"
 import signup from "../assets/signup.jpg"
 
 
+// Home Page
+import arrival_1 from "../assets/arrival-1.png"
+import arrival_2 from "../assets/arrival-2.png"
+import arrival_4 from "../assets/arrival-4.png"
+
+
+
 export {facebook,
         instagram,
         linkedin,
@@ -39,7 +46,10 @@ export {facebook,
         monitor,
         gamepad,
         google,
-        signup
+        signup,
+        arrival_1,
+        arrival_2,
+        arrival_4
         // noyon
         
 }

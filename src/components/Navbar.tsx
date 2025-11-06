@@ -120,7 +120,7 @@ export default function NavBar() {
           <div className="hidden pt-6 pb-6 lg:flex items-center gap-12 justify-between  ">
 
             <div >
-              <h1 className=' text-[24px] font-bold leading-6 font-inter ' > Exclusive </h1>
+              <Link to={"/"} className=' text-[24px] font-bold leading-6 font-inter ' > Exclusive </Link>
             </div>
 
             <div className='lg:flex items-center gap-12 justify-center ' >
