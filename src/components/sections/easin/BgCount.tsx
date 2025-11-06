@@ -2,7 +2,7 @@
 import { useGetProductsQuery } from '../../../api/productApi';
 import bg_countedown from '../../../assets/bg-home-counter.jpg'
 import Button2 from '../../Button2';
-import Countdown from '../../countDown';
+import Countdown from '../../CountDown';
 
 
 const BgCount: React.FC = () => {

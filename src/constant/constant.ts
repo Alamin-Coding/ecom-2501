@@ -30,6 +30,13 @@ import arrival_1 from "../assets/arrival-1.png"
 import arrival_2 from "../assets/arrival-2.png"
 import arrival_4 from "../assets/arrival-4.png"
 import bg_countedown from "../assets/bg-home-counter.jpg"
+import camera from "../assets/Category-Camera.svg"
+import phone from "../assets/Category-CellPhone.svg"
+import computer from "../assets/Category-Computer.svg"
+import watch from "../assets/Category-SmartWatch.svg"
+import gameconsole from "../assets/Category-Gamepad.svg"
+import headphone from "../assets/Category-Headphone.svg"
+
 
 
 
@@ -51,7 +58,13 @@ export {facebook,
         arrival_1,
         arrival_2,
         arrival_4,
-        bg_countedown
+        bg_countedown,
+        camera,
+        computer,
+        phone,
+        gameconsole,
+        headphone,
+        watch
         // noyon
         
 }
