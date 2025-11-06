@@ -10,7 +10,7 @@ const HeadingHomePage: React.FC<HeadingProps> = ({
     headingAlign,
 }) => {
     return (
-        <div className={`${headingAlign === "left" ? "text-left" : "mx-auto"} max-w-[216px] mb-15 space-y-2`}>
+        <div className={`${headingAlign === "left" ? "text-left" : "mx-auto"} max-w-max mb-15 space-y-2`}>
             {/* Subheading with red rectangle */}
             <div className={`flex items-center gap-2.5 justify-start`}>
                 <span className="w-5 h-10 bg-button2 rounded-sm"></span>

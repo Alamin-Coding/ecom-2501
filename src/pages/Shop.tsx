@@ -39,7 +39,7 @@ const Shop: React.FC = () => {
               <input type="text" className="border border-gray-500 px-10  max-w-24 rounded-sm"  />
             </div>
 
-            {isLoading && <div className="flex items-center text-center justify-center gap-4 text-3xl max-w-[300px]"><Spinner className="size-8" /> Loading....</div>}
+            {isLoading && <div className="flex items-center text-gray-400 text-center justify-center gap-4 text-3xl max-w-[300px]"><Spinner className="size-8" /> Loading....</div>}
 
 
             <div className="items grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-7.5 justify-between">
