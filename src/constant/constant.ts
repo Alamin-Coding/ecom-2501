@@ -36,6 +36,7 @@ import computer from "../assets/Category-Computer.svg"
 import watch from "../assets/Category-SmartWatch.svg"
 import gameconsole from "../assets/Category-Gamepad.svg"
 import headphone from "../assets/Category-Headphone.svg"
+import banner from "../assets/Banner.jpg"
 
 
 
@@ -64,8 +65,10 @@ export {facebook,
         phone,
         gameconsole,
         headphone,
-        watch
-        // noyon
+        watch,
+        banner
+
+       
         
 }
 

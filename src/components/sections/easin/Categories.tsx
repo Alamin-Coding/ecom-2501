@@ -52,7 +52,7 @@ const Categories:React.FC = () => {
     ]
 
   return (
-    <section className=" pt-20 pb-17.5  mb-17.5 border-y">
+    <section className=" pt-20 pb-17.5  mb-17.5 border-y-2">
         <div className="container">
             <div className="flex items-center justify-between">
                 <HeadingHomePage subHeading="Categories" heading="Browse by Category" headingAlign="left"/>
