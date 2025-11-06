@@ -33,9 +33,9 @@ export default function NavBar() {
 
   const navLinks = [
     { to: '/', label: 'Home' },
-    { to: '/about', label: 'Contact' },
-    { to: '/services', label: 'About' },
-    { to: '/portfolio', label: 'Sign Up' },
+    { to: '/contact', label: 'Contact' },
+    { to: '/about', label: 'About' },
+    { to: '/signup', label: 'Sign Up' },
   ];
 
   return (
@@ -77,7 +77,7 @@ export default function NavBar() {
             <div className="absolute lg:hidden left-1/2 transform -translate-x-1/2">
               <a href="/" className="flex items-center">
                 <div className="w-[140px] h-[50px] md:w-[180px] md:h-[70px]  rounded-lg flex items-center justify-center">
-                  <span className="text-black dark:text-amber-50 font-[700] text-xl md:text-2xl">Exclusive</span>
+                  <span className="text-black dark:text-amber-50 font-bold font-inter text-xl md:text-2xl">Exclusive</span>
                 </div>
               </a>
             </div>
@@ -120,7 +120,7 @@ export default function NavBar() {
           <div className="hidden pt-6 pb-6 lg:flex items-center gap-12 justify-between  ">
 
             <div >
-              <h1 className=' text-[24px] font-[700] leading-[24px] font-inter ' > Exclusive </h1>
+              <h1 className=' text-[24px] font-bold leading-6 font-inter ' > Exclusive </h1>
             </div>
 
             <div className='lg:flex items-center gap-12 justify-center ' >
@@ -128,7 +128,7 @@ export default function NavBar() {
                 <a
                   key={link.to}
                   href={link.to}
-                  className="font-bold font-[16px] text-base dark:text-amber-50 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  className=" font-poppins buttons relative text-base dark:text-amber-50  dark:hover:text-blue-400 transition-colors"
                 >
                   {link.label}
                 </a>
