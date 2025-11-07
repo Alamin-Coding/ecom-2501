@@ -1,6 +1,6 @@
 type HeadingProps = {
-    heading: string;
-    subHeading: string;
+    heading?: string;
+    subHeading?: string;
     headingAlign?: "left" | "center";
 };
 

@@ -11,6 +11,7 @@ import Shop from './pages/Shop';
 import Signup from './pages/Signup';
 import LoginPages from './pages/Login';
 import ErrorPages from './pages/Error';
+import ProductDetails from './pages/easin/ProductDetails';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
       { path: "shop", Component: Shop },
       { path: "signup", Component: Signup },
       { path: "login", Component: LoginPages },
+      { path: "details", Component: ProductDetails },
       {path: "*", Component: ErrorPages}
     ],
   },

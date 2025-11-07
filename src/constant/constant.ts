@@ -38,6 +38,14 @@ import gameconsole from "../assets/Category-Gamepad.svg"
 import headphone from "../assets/Category-Headphone.svg"
 import banner from "../assets/Banner.jpg"
 
+// Product Detailes Page
+import detailedPic from "../assets/detailedPic.png"
+import detailed_1 from "../assets/detailed-1.png"
+import detailed_2 from "../assets/detailed-2.png"
+import detailed_3 from "../assets/detailed-3.png"
+import detailed_4 from "../assets/detailed-4.png"
+
+
 
 
 
@@ -66,7 +74,12 @@ export {facebook,
         gameconsole,
         headphone,
         watch,
-        banner
+        banner,
+        detailedPic,
+        detailed_1,
+        detailed_2,
+        detailed_3,
+        detailed_4
 
        
         
