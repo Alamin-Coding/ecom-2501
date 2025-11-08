@@ -53,7 +53,7 @@ const FlashSale:React.FC = () => {
             }
             </div>
 
-            <div className="flex items-center justify-center">
+            <div className="flex items-center mt-15 justify-center">
 
             <Button2 >View All Products</Button2>
             </div>
