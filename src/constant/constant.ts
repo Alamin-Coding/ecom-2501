@@ -25,6 +25,30 @@ import google from "../assets/Icon-Google.svg"
 import signup from "../assets/signup.jpg"
 
 
+// Home Page
+import arrival_1 from "../assets/arrival-1.png"
+import arrival_2 from "../assets/arrival-2.png"
+import arrival_4 from "../assets/arrival-4.png"
+import bg_countedown from "../assets/bg-home-counter.jpg"
+import camera from "../assets/Category-Camera.svg"
+import phone from "../assets/Category-CellPhone.svg"
+import computer from "../assets/Category-Computer.svg"
+import watch from "../assets/Category-SmartWatch.svg"
+import gameconsole from "../assets/Category-Gamepad.svg"
+import headphone from "../assets/Category-Headphone.svg"
+import banner from "../assets/Banner.jpg"
+
+// Product Detailes Page
+import detailedPic from "../assets/detailedPic.png"
+import detailed_1 from "../assets/detailed-1.png"
+import detailed_2 from "../assets/detailed-2.png"
+import detailed_3 from "../assets/detailed-3.png"
+import detailed_4 from "../assets/detailed-4.png"
+
+
+
+
+
 export {facebook,
         instagram,
         linkedin,
@@ -39,8 +63,25 @@ export {facebook,
         monitor,
         gamepad,
         google,
-        signup
-        // noyon
+        signup,
+        arrival_1,
+        arrival_2,
+        arrival_4,
+        bg_countedown,
+        camera,
+        computer,
+        phone,
+        gameconsole,
+        headphone,
+        watch,
+        banner,
+        detailedPic,
+        detailed_1,
+        detailed_2,
+        detailed_3,
+        detailed_4
+
+       
         
 }
 

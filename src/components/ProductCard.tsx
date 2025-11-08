@@ -13,7 +13,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
 
     <div className='max-w-[270px] font-poppins'>
-      <div className='group relative  bg-secondary  cursor-pointer rounded-sm h-[250px] mb-4   overflow-hidden flex items-center justify-center py-9 px-10'>
+      <div className='group relative  bg-secondary dark:bg-slate-400  cursor-pointer rounded-sm h-[250px] mb-4   overflow-hidden flex items-center justify-center py-9 px-10'>
         {/* Image */}
         {/* Wishlist and view icon */}
         <div className="absolute top-3 right-3 flex flex-col gap-2">

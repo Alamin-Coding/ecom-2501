@@ -1,5 +1,6 @@
 import { useGetProductsQuery } from "../api/productApi"
 import { CommonBreadcrumb } from "../components/CommonBreadcrumb"
+import Loading from "../components/Loading";
 import ProductCard from "../components/ProductCard"
 import { Spinner } from "../components/ui/spinner";
 
@@ -39,7 +40,7 @@ const Shop: React.FC = () => {
               <input type="text" className="border border-gray-500 px-10  max-w-24 rounded-sm"  />
             </div>
 
-            {isLoading && <div className="flex items-center text-center justify-center gap-4 text-3xl max-w-[300px]"><Spinner className="size-8" /> Loading....</div>}
+            {isLoading && <Loading/>}
 
 
             <div className="items grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-7.5 justify-between">
