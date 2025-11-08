@@ -3,7 +3,6 @@ import { useGetProductsQuery } from "../../api/productApi"
 import Button1 from "../../components/Button1"
 import HeadingHomePage from "../../components/HeadingHomePage"
 import Loading from "../../components/Loading"
-import ProductCard from "../../components/ProductCard"
 import type { Product } from '../../types/index';
 import { Eye } from "lucide-react"
 
@@ -15,7 +14,15 @@ const Wishlist: React.FC = () => {
             <div className="container">
                 <div>
                     <div className="flex items-center justify-between mb-15 mt-20">
-                        <h2>Wishlist</h2>
+                        <h2 className="text-xl font-poppins ">Wishlist 
+                           <span className="ml-2">
+                            (
+                          {4 
+                            // here will be dynamic value
+                            }
+                            )
+                          </span> 
+                        </h2>
                         <Button1>Move All To Bag</Button1>
                     </div>
                     <div>
