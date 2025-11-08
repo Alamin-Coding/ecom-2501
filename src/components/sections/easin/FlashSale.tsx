@@ -5,6 +5,7 @@ import ProductCard from "../../ProductCard"
 import { Spinner } from "../../ui/spinner"
 import Button2 from "../../Button2"
 import { useEffect, useState } from "react"
+import Loading from "../../Loading"
 
 
 const FlashSale:React.FC = () => {
@@ -38,7 +39,7 @@ const FlashSale:React.FC = () => {
             {/* Grid Layout */}
             <div>
                 
-                    {isLoading && <div className="flex items-center mx-auto text-gray-400 text-center justify-center gap-4 text-3xl max-w-[300px]"><Spinner className="size-8" /> Loading....</div>}
+                    {isLoading && <Loading/>}
                 
             </div>
 

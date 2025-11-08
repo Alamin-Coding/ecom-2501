@@ -13,6 +13,7 @@ import LoginPages from './pages/Login';
 import ErrorPages from './pages/Error';
 import ProductDetails from './pages/easin/ProductDetails';
 import CheckOut from './pages/easin/CheckOut';
+import Wishlist from './pages/easin/Wishlist';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       { path: "login", Component: LoginPages },
       { path: "details", Component: ProductDetails },
       { path: "checkout", Component: CheckOut },
+      { path: "wishlist", Component: Wishlist },
       {path: "*", Component: ErrorPages}
     ],
   },

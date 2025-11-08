@@ -1,6 +1,7 @@
 import { useGetProductsQuery } from "../../../api/productApi"
 import Button2 from "../../Button2"
 import HeadingHomePage from "../../HeadingHomePage"
+import Loading from "../../Loading"
 import ProductCard from "../../ProductCard"
 import { Spinner } from "../../ui/spinner"
 
@@ -18,7 +19,7 @@ const BestSellProducts:React.FC = () => {
 
             <div>
                 
-                    {isLoading && <div className="flex items-center mx-auto text-gray-400 text-center justify-center gap-4 text-3xl max-w-[300px]"><Spinner className="size-8" /> Loading....</div>}
+                    {isLoading && <Loading/>}
                 
             </div>
 
