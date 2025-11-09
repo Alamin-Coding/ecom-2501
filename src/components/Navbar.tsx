@@ -145,7 +145,7 @@ export default function NavBar() {
                 </div>
 
                 <div className="flex items-center gap-4" >
-                  <Link to={""}>
+                  <Link to={"/wishlist"}>
                     <Heart size={30} color="#000000" strokeWidth={2} absoluteStrokeWidth />
                   </Link>
 

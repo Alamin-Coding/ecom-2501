@@ -1,5 +1,6 @@
 import { ChevronRight } from "lucide-react"
 import { banner } from "../../../constant/constant"
+import Slider from "../../Slider/Slider"
 
 
 const Hero:React.FC = () => {
@@ -27,7 +28,8 @@ const Hero:React.FC = () => {
 
                     <div >
                     {/* Here will be slider */}
-                    <img  src={banner} className="w-[892px] h-[344px]" alt="image" />
+                    {/* <img  src={banner} className="w-[892px] h-[344px]" alt="image" /> */}
+                    <Slider/>
                     </div>
                 </div>
 
