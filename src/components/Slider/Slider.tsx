@@ -5,6 +5,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import styles from './slider.module.css';
 import { banner } from '../../constant/constant';
+import { nanoid } from 'nanoid';
 
 interface SliderProps {
   autoplayDelay?: number;
@@ -12,16 +13,16 @@ interface SliderProps {
 }
 
 interface SlideItem {
-  id: number;
+  id: string;
   image: string;
   title: string;
 }
 
 const slides: SlideItem[] = [
-  { id: 1, image: banner, title: "Special Offer Banner" },
-  { id: 2, image: banner, title: "Featured Products Banner" },
-  { id: 3, image: banner, title: "New Arrivals Banner" },
-  { id: 4, image: banner, title: "Seasonal Collection Banner" }
+  { id: nanoid(), image: banner, title: "Special Offer Banner" },
+  { id: nanoid(), image: banner, title: "Featured Products Banner" },
+  { id: nanoid(), image: banner, title: "New Arrivals Banner" },
+  { id: nanoid(), image: banner, title: "Seasonal Collection Banner" }
 ];
 
 const Slider: React.FC<SliderProps> = ({
