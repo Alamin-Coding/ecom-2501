@@ -14,6 +14,7 @@
     "@radix-ui/react-slot": "^1.2.4",
     "@reduxjs/toolkit": "^2.9.2",
     "@tailwindcss/vite": "^4.1.16",
+    "@types/swiper": "^5.4.3",
     "axios": "^1.13.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -23,6 +24,7 @@
     "react-dom": "^19.1.1",
     "react-redux": "^9.2.0",
     "react-router": "^7.9.4",
+    "swiper": "^12.0.3",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.16"
   },
