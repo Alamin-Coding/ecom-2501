@@ -48,3 +48,9 @@ export interface ProductsResponse {
     skip: number;
     limit: number;
 }
+
+export type Categories = {
+    slug: string;
+    name: string;
+    url: string;
+}

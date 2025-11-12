@@ -1,26 +1,30 @@
 import { ChevronRight } from "lucide-react"
 import { banner } from "../../../constant/constant"
 import Slider from "../../Slider/Slider"
+import { useGetCategoriesQuery } from "../../../api/categoriesApi"
+
 
 
 const Hero:React.FC = () => {
+    const {data, isLoading} = useGetCategoriesQuery("")
+
+    if (isLoading) return 
+
+
+    
   return (
     <section className="mb-[165px] ">
         <div className="container">
-            <div className="grid grid-cols-[auto_1fr] gap-11 items-center justify-between">
+            <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-3 lg:gap-11 items-center justify-between">
                 {/* Left side */}
-                <div className="pr-4 border-r-2 pt-10 max-w-[250px]">
-                    <ul className="space-y-4 font-poppins">
-                        <li className="flex items-center justify-between gap-12.5">Woman's Fashion <span> <ChevronRight/> </span></li>
-                        <li className="flex items-center justify-between gap-12.5">Men's Fashion <span> <ChevronRight/> </span></li>
-                        <li>Electronics</li>
-                        <li>Home & Lifestyle</li>
-                        <li>Medicine</li>
-                        <li>Sports & Outdoor</li>
-                        <li>Baby’s & Toys</li>
-                        <li>Groceries</li>
-                        <li>Health & Beauty</li>
+                <div className="hidden lg:block pr-4 border-r-2 pt-10 max-w-[250px]">
+                    <ul className="space-y-4 font-poppins max-h-[344px] overflow-y-scroll">
+                        {data?.map((category)=> <li key={category.slug}>{category.name}</li>)}
                     </ul>
+                </div>
+
+                <div className="lg:hidden">
+                    Category
                 </div>
 
                 {/* Right Slider */}
