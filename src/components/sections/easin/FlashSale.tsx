@@ -29,8 +29,8 @@ const FlashSale: React.FC = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />
   };
 
 
@@ -48,17 +48,7 @@ const FlashSale: React.FC = () => {
 
           {/* Right Buttons */}
           <div className="flex items-center gap-2">
-            {/* <div className="bg-secondary rounded-full flex items-center justify-center w-11.5 h-11.5"
-              
-            >
-              <ArrowLeft  />
-            </div> */}
-            {/* <SamplePrevArrow  />
-            <SampleNextArrow  /> */}
-            <div className="bg-secondary rounded-full flex items-center justify-center w-11.5 h-11.5">
-              <ArrowRight />
 
-            </div>
           </div>
         </div>
 
@@ -168,17 +158,23 @@ const Countdown: React.FC<{ targetDate: string }> = ({ targetDate }) => {
 
 
 
-function SampleNextArrow(props) {
-  const {onClick } = props;
+function PrevArrow(props) {
+  const { onClick } = props;
   return (
-    <button onClick={onClick}>Prev</button>
+    <div onClick={onClick} className="bg-secondary rounded-full flex items-center justify-center w-11.5 h-11.5 absolute -top-[100px] right-[100px] z-50 cursor-pointer transition-all hover:bg-button2 hover:text-white"
+
+    >
+      <ArrowLeft />
+    </div>
   );
 }
 
-function SamplePrevArrow(props) {
+function NextArrow(props) {
   const { onClick } = props;
   return (
-    <button onClick={onClick}>Next</button>
+    <div onClick={onClick} className="bg-secondary rounded-full flex items-center justify-center w-11.5 h-11.5 absolute -top-[100px] right-5 z-50 cursor-pointer transition-all hover:bg-button2 hover:text-white">
+      <ArrowRight />
+    </div>
   );
 }
 
