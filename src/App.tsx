@@ -1,7 +1,7 @@
 import React from 'react'
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import Home from './pages/Home';
+import Home from './pages/easin/Home';
 import MainLayout from './layout/MainLayout';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -11,6 +11,9 @@ import Shop from './pages/Shop';
 import Signup from './pages/Signup';
 import LoginPages from './pages/Login';
 import ErrorPages from './pages/Error';
+import ProductDetails from './pages/easin/ProductDetails';
+import CheckOut from './pages/easin/CheckOut';
+import Wishlist from './pages/easin/Wishlist';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +28,9 @@ const router = createBrowserRouter([
       { path: "shop", Component: Shop },
       { path: "signup", Component: Signup },
       { path: "login", Component: LoginPages },
+      { path: "details", Component: ProductDetails },
+      { path: "checkout", Component: CheckOut },
+      { path: "wishlist", Component: Wishlist },
       {path: "*", Component: ErrorPages}
     ],
   },

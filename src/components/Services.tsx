@@ -37,8 +37,8 @@ const Services:React.FC = () => {
                 services.map((item)=>{
                   return(
                     <div className=" flex flex-col w-full    items-center justify-center" key={item.id}>
-                    <div className="rounded-full flex  items-center  justify-center bg-[rgba(47,46,48,0.31)] w-20 h-20 mb-6">
-                      <div className="rounded-full flex  items-center justify-center  bg-button w-[58px] h-[58px] text-white">
+                    <div className="rounded-full flex  items-center  justify-center dark:bg-gray-300 bg-[rgba(47,46,48,0.31)] w-20 h-20 mb-6">
+                      <div className="rounded-full flex  items-center justify-center dark:bg-gray-700 bg-button w-[58px] h-[58px] text-white">
                         <img src={item.icon} alt="icon" />
                       </div>
                     </div>

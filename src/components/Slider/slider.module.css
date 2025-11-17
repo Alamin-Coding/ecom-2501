@@ -1,0 +1,25 @@
+.mySwiper {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.swiperSlide {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+}
+
+
+
+:global(.swiper-pagination-bullet) {
+    background: white;
+    padding: 5px;
+}
+
+:global(.swiper-pagination-bullet-active) {
+    background: red;
+    border: 3px solid white;
+}

@@ -3,6 +3,8 @@ import { Heart, Menu, Search, ShoppingCart, X } from 'lucide-react';
 import { Link } from 'react-router';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { Button } from './ui/button';
+import { Icon } from '@iconify/react';
+import { DropdownMenuItem, DropdownMenuLabel } from '@radix-ui/react-dropdown-menu';
 
 export default function NavBar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -11,8 +13,8 @@ export default function NavBar() {
 
   const [dark, setDark] = useState("light")
 
-  const handleChange = ()=> {
-    setDark((theme)=> theme==="light" ? "dark" : "light")
+  const handleChange = () => {
+    setDark((theme) => theme === "light" ? "dark" : "light")
     console.log(dark);
 
     document.querySelector("html")?.classList.toggle("dark")
@@ -20,22 +22,22 @@ export default function NavBar() {
 
 
 
-  const handleTheme = (mode:string)=> {
+  const handleTheme = (mode: string) => {
     setDark(mode)
   }
-  
-  useEffect(()=> {
-     document.querySelector("html")?.classList.remove("light")
-     document.querySelector("html")?.classList.remove("dark")
-     document.querySelector("html")?.classList.remove("device")
-     document.querySelector("html")?.classList.add(dark)
+
+  useEffect(() => {
+    document.querySelector("html")?.classList.remove("light")
+    document.querySelector("html")?.classList.remove("dark")
+    document.querySelector("html")?.classList.remove("device")
+    document.querySelector("html")?.classList.add(dark)
   }, [dark])
 
   const navLinks = [
     { to: '/', label: 'Home' },
-    { to: '/about', label: 'Contact' },
-    { to: '/services', label: 'About' },
-    { to: '/portfolio', label: 'Sign Up' },
+    { to: '/contact', label: 'Contact' },
+    { to: '/about', label: 'About' },
+    { to: '/signup', label: 'Sign Up' },
   ];
 
   return (
@@ -77,7 +79,7 @@ export default function NavBar() {
             <div className="absolute lg:hidden left-1/2 transform -translate-x-1/2">
               <a href="/" className="flex items-center">
                 <div className="w-[140px] h-[50px] md:w-[180px] md:h-[70px]  rounded-lg flex items-center justify-center">
-                  <span className="text-black dark:text-amber-50 font-[700] text-xl md:text-2xl">Exclusive</span>
+                  <span className="text-black dark:text-amber-50 font-bold font-inter text-xl md:text-2xl">Exclusive</span>
                 </div>
               </a>
             </div>
@@ -120,7 +122,7 @@ export default function NavBar() {
           <div className="hidden pt-6 pb-6 lg:flex items-center gap-12 justify-between  ">
 
             <div >
-              <h1 className=' text-[24px] font-[700] leading-[24px] font-inter ' > Exclusive </h1>
+              <Link to={"/"} className=' text-[24px] font-bold leading-6 font-inter ' > Exclusive </Link>
             </div>
 
             <div className='lg:flex items-center gap-12 justify-center ' >
@@ -128,7 +130,7 @@ export default function NavBar() {
                 <a
                   key={link.to}
                   href={link.to}
-                  className="font-bold font-[16px] text-base dark:text-amber-50 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  className=" font-poppins buttons relative text-base dark:text-amber-50  dark:hover:text-blue-400 transition-colors"
                 >
                   {link.label}
                 </a>
@@ -143,7 +145,7 @@ export default function NavBar() {
                 </div>
 
                 <div className="flex items-center gap-4" >
-                  <Link to={""}>
+                  <Link to={"/wishlist"}>
                     <Heart size={30} color="#000000" strokeWidth={2} absoluteStrokeWidth />
                   </Link>
 
@@ -159,9 +161,32 @@ export default function NavBar() {
                     </button>
                   </Link>
 
-                  {/* <Link to={"account"}>
-                  <img src="user.svg" alt="icon" />
-                </Link> */}
+                  
+
+                    <DropdownMenu>
+                      <DropdownMenuTrigger  className='focus:outline-0 w-10 h-10 flex items-center justify-center   rounded-full data-[state=open]:bg-button2 data-[state=open]:text-white cursor-pointer  '><Icon icon="lucide:user" width="30" height="30" /></DropdownMenuTrigger>
+                      <DropdownMenuContent align='end' className='min-w-56 pt-4.5 pl-5 pb-2.5 pr-3 bg-[rgba(0,0,0,0.50)] backdrop-blur-[100px] text-white  border-none space-y-[13px]' >
+                        <DropdownMenuLabel >
+                          <Link className='flex items-center justify-start gap-4' to={"/account"}><Icon icon="lucide:user" width="30" height="30" />Manage My Account</Link>
+                         </DropdownMenuLabel>
+                         
+                        <DropdownMenuItem>
+                          <Link className='flex items-center justify-start gap-4' to={"/#"}><Icon icon="mage:shopping-bag" width="30" height="30" />My Order</Link>
+                          </DropdownMenuItem>
+                        <DropdownMenuItem>
+                          <Link className='flex items-center justify-start gap-4' to={"/#"}><Icon icon="material-symbols-light:cancel-outline" width="30" height="30" />My Cancellation</Link>
+                          </DropdownMenuItem>
+                        <DropdownMenuItem>
+                          <Link className='flex items-center justify-start gap-4' to={"/#"}><Icon icon="stash:star" width="30" height="30" /> My Reviews</Link>
+                         </DropdownMenuItem>
+                        <DropdownMenuItem>
+                          <Link className='flex items-center justify-start gap-4' to={"#"}><Icon icon="tabler:logout-2" width="30" height="30" /> Log Out</Link>
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+
+                    
+                  
                 </div>
               </div>
             </div>
@@ -170,18 +195,18 @@ export default function NavBar() {
         </div>
 
         {/* Toggle Button */}
-          <label htmlFor="toggleB" className="flex items-center cursor-pointer absolute top-2 right-5">
-            {/* toggle */}
-            <div className="relative">
-              {/* input */}
-              <input onChange={handleChange} type="checkbox" id="toggleB" className="sr-only" />
-              {/* line */}
-              <div className="block bg-gray-600 w-14 h-8 rounded-full" />
-              {/* dot */}
-              <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition" />
-            </div>
-            {/* label */}
-          </label>
+        <label htmlFor="toggleB" className="flex items-center cursor-pointer absolute top-2 right-5">
+          {/* toggle */}
+          <div className="relative">
+            {/* input */}
+            <input onChange={handleChange} type="checkbox" id="toggleB" className="sr-only" />
+            {/* line */}
+            <div className="block bg-gray-600 w-14 h-8 rounded-full" />
+            {/* dot */}
+            <div className="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition" />
+          </div>
+          {/* label */}
+        </label>
 
 
 
@@ -209,9 +234,9 @@ export default function NavBar() {
                     <DropdownMenuContent className="w-56">
                       <DropdownMenuSeparator />
                       <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-                        <DropdownMenuRadioItem onClick={()=> handleTheme("device")} value="top"> Device </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem onClick={()=> handleTheme("light")} value="bottom"> Light </DropdownMenuRadioItem>
-                        <DropdownMenuRadioItem onClick={()=> handleTheme("dark")} value="right"> Dark </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem onClick={() => handleTheme("device")} value="top"> Device </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem onClick={() => handleTheme("light")} value="bottom"> Light </DropdownMenuRadioItem>
+                        <DropdownMenuRadioItem onClick={() => handleTheme("dark")} value="right"> Dark </DropdownMenuRadioItem>
                       </DropdownMenuRadioGroup>
                     </DropdownMenuContent>
                   </DropdownMenu>
