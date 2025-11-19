@@ -1,12 +1,12 @@
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import HeadingHomePage from "../../HeadingHomePage"
-import { nanoid } from "nanoid"
-import { camera, computer, gameconsole, headphone, phone, watch } from "../../../constant/constant"
 import { useGetCategoriesQuery } from "../../../api/categoriesApi"
 import SvgIcon from "../../SvgIcon"
 import Slider from "react-slick"
-import { NextArrow, PrevArrow } from "../../Arrows"
 import { useRef } from "react"
+import { selectedCategory } from "../../../features/category/categorySlice"
+import { useDispatch } from "react-redux"
+import { useNavigate } from "react-router"
 
 interface Categories {
     id: string
@@ -17,46 +17,11 @@ interface Categories {
 
 
 const Categories: React.FC = () => {
-    const categories: Categories[] = [
-        {
-            id: nanoid(),
-            title: "Phones",
-            category: 'phone',
-            icon: phone,
-        },
-        {
-            id: nanoid(),
-            title: "Computers",
-            category: 'computer',
-            icon: computer,
-        },
-        {
-            id: nanoid(),
-            title: "SmartWatch",
-            category: 'watch',
-            icon: watch,
-        },
-        {
-            id: nanoid(),
-            title: "Camera",
-            category: 'camera',
-            icon: camera,
-        },
-        {
-            id: nanoid(),
-            title: "HeadPhones",
-            category: 'headphone',
-            icon: headphone,
-        },
-        {
-            id: nanoid(),
-            title: "Gamepads",
-            category: 'gamepads',
-            icon: gameconsole,
-        },
-    ]
 
-    const sliderRef = useRef(null);
+
+    const sliderRef = useRef<Slider>(null);
+    const navigate = useNavigate()
+    const dispatch = useDispatch();
     
 
     const { isFetching, isLoading, data, isError } = useGetCategoriesQuery('')
@@ -85,6 +50,10 @@ const Categories: React.FC = () => {
     }
 
 
+        const handleFilter = (category:string)=> {
+            dispatch(selectedCategory(category))
+            navigate("/shop")
+        }
 
     return (
         <section className=" pt-20 pb-17.5  mb-17.5 border-y-2">
@@ -110,7 +79,7 @@ const Categories: React.FC = () => {
                     {
                         data?.map((category) => {
                             return (
-                                <div key={category.slug} className="px-3">
+                                <div key={category.slug} className="px-3" onClick={()=> handleFilter(category.slug)}>
                                     <div title={category.name} className="category_item py-6 transition-all duration-400 group cursor-pointer px-10 border border-gray-500 space-y-4 flex flex-col items-center justify-center hover:bg-button2">
                                         <div className="svg_hover">
                                             <SvgIcon />

@@ -39,7 +39,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
 
       {/* title */}
-      <h2 className='font-medium mb-2'>
+      <h2 className='font-medium mb-2 line-clamp-1' title={product.title}>
         {product.title}
       </h2>
 

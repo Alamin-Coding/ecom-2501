@@ -43,7 +43,7 @@ const FlashSale: React.FC = () => {
           <div className="flex items-center justify-start gap-20">
 
             <HeadingHomePage subHeading="Today's" heading="Flash Sales" headingAlign="left" />
-            <Countdown targetDate="2025-11-12T23:59:59" />
+            <Countdown targetDate="2025-12-31T23:59:59" />
           </div>
 
           {/* Right Buttons */}
@@ -76,7 +76,7 @@ const FlashSale: React.FC = () => {
 
         <div className="flex items-center mt-15 justify-center">
 
-          <Button2 >View All Products</Button2>
+          <Button2 to="/shop">View All Products</Button2>
         </div>
 
       </div>
