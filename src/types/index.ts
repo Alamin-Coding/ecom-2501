@@ -40,6 +40,7 @@ export type Product = {
     meta: Meta;
     images: string[];
     thumbnail: string;
+    size?: string[];
 };
 
 export interface ProductsResponse {

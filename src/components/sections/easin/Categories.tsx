@@ -26,9 +26,12 @@ const Categories: React.FC = () => {
 
     const { isFetching, isLoading, data, isError } = useGetCategoriesQuery('')
 
-    isLoading && <p>Loading....</p>
-    isFetching && <p>Fetching....</p>
-    isError && <p>Something went wrong</p>
+
+
+    if(isLoading) return <p>Loading....</p>
+    if(isFetching) return <p>Fetching....</p>
+    if(isError) return <p>Something went wrong</p>
+
   const handleClickPrev = () => {
     if (sliderRef.current) {
       sliderRef.current.slickPrev();
@@ -40,7 +43,7 @@ const Categories: React.FC = () => {
     }
   };
 
-    let settings = {
+    const settings = {
         dots: false,
         infinite: true,
         speed: 500,

@@ -36,10 +36,14 @@ export const productsApi = createApi({
     }),
 
     // GET single product
-    // getProductById: build.query<Product, number>({
-    //   query: (id) => `/products/${id}`,
-    //   providesTags: (result, error, id) => [{ type: 'Product', id }],
-    // }),
+    getProductById: build.query<Product, number|string>({
+      query: (id) => `/products/${id}`,
+    }),
+
+    // GET single product
+    getProductsByCategory: build.query<ProductsResponse, string>({
+      query: (categoryName) => `/products/category/${categoryName}`,
+    }),
 
     // Search
     // searchProducts: build.query<ProductsResponse, { q: string; limit?: number; skip?: number }>({
@@ -118,7 +122,8 @@ export const productsApi = createApi({
 
 export const {
   useGetProductsQuery,
-  // useGetProductByIdQuery,
+  useGetProductByIdQuery,
+  useGetProductsByCategoryQuery
   // useSearchProductsQuery,
   // useGetCategoriesQuery,
   // useGetProductsByCategoryQuery,

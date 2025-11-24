@@ -1,17 +1,17 @@
 import { Heart, Eye } from 'lucide-react';
 import type { Product } from '../types';
+import { Link, useNavigate } from 'react-router';
 
 
 interface ProductCardProps {
   product: Product;
 }
 
+
+
 export default function ProductCard({ product }: ProductCardProps) {
+  const navigation = useNavigate();
   return (
-
-
-
-
     <div className='max-w-[270px] font-poppins'>
       <div className='group relative  bg-secondary dark:bg-slate-400  cursor-pointer rounded-sm h-[250px] mb-4   overflow-hidden flex items-center justify-center py-9 px-10'>
         {/* Image */}
@@ -20,7 +20,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition">
             <Heart className="w-5 h-5 text-gray-600" />
           </button>
-          <button className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition">
+          <button onClick={()=> navigation(`/product/details/${product.id}`)} className="bg-white p-2 rounded-full shadow hover:bg-gray-100 transition">
             <Eye className="w-5 h-5 text-gray-600" />
           </button>
         </div>
