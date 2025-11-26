@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import { productsApi } from '../api/productApi'
 import { categoriesApi } from '../api/categoriesApi'
 import categoryReducer from "../features/category/categorySlice"
+import WishlistReducer from '../features/wishlist/wishlistSlice'
 
 
 export const store = configureStore({
   reducer: {
     // product: productReducer,
     category: categoryReducer,
+    wishlist : WishlistReducer,
     [productsApi.reducerPath]: productsApi.reducer,
     [categoriesApi.reducerPath]: categoriesApi.reducer,
   },

@@ -5,8 +5,11 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenu
 import { Button } from './ui/button';
 import { Icon } from '@iconify/react';
 import { DropdownMenuItem, DropdownMenuLabel } from '@radix-ui/react-dropdown-menu';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../store/store';
 
 export default function NavBar() {
+  const {wishList} = useSelector((state: RootState) => state.wishlist);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [position, setPosition] = React.useState("bottom")
@@ -145,8 +148,11 @@ export default function NavBar() {
                 </div>
 
                 <div className="flex items-center gap-4" >
-                  <Link to={"/wishlist"}>
+                  <Link to={"/wishlist"} className='p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors relative'>
                     <Heart size={30} color="#000000" strokeWidth={2} absoluteStrokeWidth />
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                        {wishList.length}
+                      </span>
                   </Link>
 
                   <Link to={"cart"}>

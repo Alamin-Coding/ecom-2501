@@ -5,10 +5,15 @@ import HeadingHomePage from "../../components/HeadingHomePage"
 import Loading from "../../components/Loading"
 import type { Product } from '../../types/index';
 import { Eye } from "lucide-react"
+import { useDispatch, useSelector } from "react-redux"
+import type { RootState } from "../../store/store"
+import { removeWishlist } from "../../features/wishlist/wishlistSlice"
 
 
 const Wishlist: React.FC = () => {
-    const { data, isLoading } = useGetProductsQuery('')
+    const { data, isLoading } = useGetProductsQuery('');
+    const {wishList} = useSelector((state: RootState) => state.wishlist);
+    const dispatch = useDispatch();
     return (
         <section>
             <div className="container">
@@ -33,11 +38,11 @@ const Wishlist: React.FC = () => {
                         </div>
                         <div className="grid grid-cols-4 gap-x-7.5 gap-y-15">
                             {
-                                data?.products?.slice(0, 4).map((product) => {
+                                wishList?.map((product) => {
                                     return (
                                         <ProductWishlist children={
                                             <Icon icon="bytesize:trash" width="32" height="32" />
-                                        } key={product.id} product={product} />
+                                        } key={product.id} product={product} deleteItem={true} />
                                     )
                                 })
                             }
@@ -57,11 +62,11 @@ const Wishlist: React.FC = () => {
                 </div>
                 <div className="grid grid-cols-4 gap-x-7.5 gap-y-15">
                     {
-                        data?.products?.slice(4, 8).map((product) => {
+                        wishList?.map((product) => {
                             return (
-                                <ProductWishlist children={
+                                <ProductWishlist  children={
                                     <Eye/>
-                                } key={product.id} product={product} />
+                                } key={product.id} product={product} deleteItem={false} />
                             )
                         })
                     }
@@ -81,16 +86,20 @@ export default Wishlist
 interface ProductCardProps {
     product: Product;
     children: React.ReactNode;
+    deleteItem?: boolean;
 }
 
-const ProductWishlist = ({ product, children }: ProductCardProps) => {
+const ProductWishlist = ({ product, children, deleteItem=false }: ProductCardProps) => {
+    const dispatch = useDispatch();
     return (
         <div className='max-w-[270px] font-poppins'>
             <div className='group relative  bg-secondary dark:bg-slate-400  cursor-pointer rounded-sm h-[250px] mb-4   overflow-hidden flex items-center justify-center py-9 px-10'>
                 {/* Image */}
                 {/* Wishlist and view icon */}
                 <div className="absolute top-3 right-3 flex flex-col gap-2">
-                    <button className="bg-white p-2 w-8.5 h-8.5 flex items-center justify-center  rounded-full shadow hover:bg-gray-100 transition">
+                    <button
+                    {...deleteItem ? {onClick: () => dispatch(removeWishlist(product.id))} : null}
+                    className="bg-white p-2 w-8.5 h-8.5 flex items-center justify-center  rounded-full shadow hover:bg-gray-100 transition">
                         {children}
                         
                     </button>
