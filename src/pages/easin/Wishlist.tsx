@@ -11,9 +11,24 @@ import { removeWishlist } from "../../features/wishlist/wishlistSlice"
 
 
 const Wishlist: React.FC = () => {
-    const { data, isLoading } = useGetProductsQuery('');
     const {wishList} = useSelector((state: RootState) => state.wishlist);
-    const dispatch = useDispatch();
+    // const catergoryList = wishList.map(item => item.category);
+    const catergoryList = Array.from(new Set(wishList.map(item => item.category)))
+      const { data:firstItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[0] });
+      const { data:secondItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[1] });
+      const { data:thirdItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[2] });
+      const { data:forthItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[3] });
+
+      console.log(catergoryList);
+      
+
+
+
+    
+    
+
+
+    // const dispatch = useDispatch();
     return (
         <section>
             <div className="container">
@@ -22,9 +37,7 @@ const Wishlist: React.FC = () => {
                         <h2 className="text-xl font-poppins ">Wishlist 
                            <span className="ml-2">
                             (
-                          {4 
-                            // here will be dynamic value
-                            }
+                          {wishList.length}
                             )
                           </span> 
                         </h2>
@@ -32,8 +45,6 @@ const Wishlist: React.FC = () => {
                     </div>
                     <div>
                         <div>
-
-                            {isLoading && <Loading />}
 
                         </div>
                         <div className="grid grid-cols-4 gap-x-7.5 gap-y-15">
@@ -57,12 +68,41 @@ const Wishlist: React.FC = () => {
 
                 <div>
 
-                    {isLoading && <Loading />}
-
                 </div>
                 <div className="grid grid-cols-4 gap-x-7.5 gap-y-15">
                     {
-                        wishList?.map((product) => {
+                        catergoryList[0] &&
+                        firstItems?.products.map((product) => {
+                            return (
+                                <ProductWishlist  children={
+                                    <Eye/>
+                                } key={product.id} product={product} deleteItem={false} />
+                            )
+                        })
+                    }
+                    {
+                        catergoryList[1] &&
+                        secondItems?.products.map((product) => {
+                            return (
+                                <ProductWishlist  children={
+                                    <Eye/>
+                                } key={product.id} product={product} deleteItem={false} />
+                            )
+                        })
+                    }
+                    {
+                        catergoryList[2] &&
+                        thirdItems?.products.map((product) => {
+                            return (
+                                <ProductWishlist  children={
+                                    <Eye/>
+                                } key={product.id} product={product} deleteItem={false} />
+                            )
+                        })
+                    }
+                    {
+                        catergoryList[3] &&
+                        forthItems?.products.map((product) => {
                             return (
                                 <ProductWishlist  children={
                                     <Eye/>

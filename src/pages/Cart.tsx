@@ -12,6 +12,9 @@ import { nanoid } from 'nanoid';
 import Button1 from '../components/Button1';
 import Button2 from '../components/Button2';
 import { Link } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../store/store';
+import { removecart } from '../features/cart/cartSlice';
 
 // Types
 interface CartItem {
@@ -61,9 +64,9 @@ const Cart: React.FC = () => {
 
                     {/* Action Buttons */}
                     <div className="flex items-center justify-between mb-20">
-                        <Button1>
+                        <Link to={"/shop"} className='bg-white cursor-pointer transition-all duration-300 hover:bg-hoverButton2 border-gray-500 border text-black font-medium font-poppins px-12 py-4 rounded-sm'>
                             Return To Shop
-                        </Button1>
+                        </Link>
                         <Button1>
                             Update Cart
                         </Button1>
@@ -94,26 +97,12 @@ const Cart: React.FC = () => {
 
 // Cart Items Component
 const CartItems: React.FC = () => {
-    const cartItems: CartItem[] = [
-        {
-            id: nanoid(),
-            name: "LCD Monitor",
-            price: 650,
-            quantity: 1,
-            image: monitor,
-        },
-        {
-            id: nanoid(),
-            name: "H1 Gamepad",
-            price: 550,
-            quantity: 2,
-            image: gamepad,
-        },
-    ];
+    const {cart} = useSelector((state: RootState) => state.cart);
+    const dispatch = useDispatch();
 
     return (
         <>
-            {cartItems.map((item) => (
+            {cart.map((item) => (
                 <div
                     key={item.id}
                     className="grid shadow-contact py-6 rounded-sm mb-10 px-10 grid-cols-[2fr_1fr_1fr_1fr] gap-4 items-center font-poppins relative group"
@@ -122,18 +111,19 @@ const CartItems: React.FC = () => {
                     <div className="flex items-center gap-5">
                         <div className="relative">
                             <img
-                                src={item.image}
-                                alt={item.name}
+                                src={item.thumbnail}
+                                alt={item.title}
                                 className="w-16 h-16 object-contain"
                             />
                             <button
+                            onClick={()=> dispatch(removecart(item.id))}
                                 className="absolute -top-2 -left-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
                                 aria-label="Remove item"
                             >
                                 <X className="w-3 h-3" />
                             </button>
                         </div>
-                        <p className="text-sm md:text-base">{item.name}</p>
+                        <p className="text-sm md:text-base">{item.title}</p>
                     </div>
 
                     {/* Price */}
@@ -143,14 +133,15 @@ const CartItems: React.FC = () => {
                     <div className="flex items-center border border-gray-400 rounded-sm w-fit">
                       
                         <span className="px-4 py-2 border-x border-gray-400 min-w-[60px] text-center">
-                            {item.quantity}
+                            {/* {item.quantity} */}0
                         </span>
                       
                     </div>
 
                     {/* Subtotal */}
                     <span className="text-sm md:text-base font-medium">
-                        ${item.price * item.quantity}
+                        {/* ${item.price * item.quantity} */}
+                        ${item.price * 1}
                     </span>
                 </div>
             ))}
