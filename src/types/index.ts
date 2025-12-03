@@ -43,6 +43,11 @@ export type Product = {
     size?: string[];
 };
 
+export interface ProductCart extends Product {
+    quantity: number;
+    subtotal: number;
+}
+
 export interface ProductsResponse {
     products: Product[];
     total: number;

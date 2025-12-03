@@ -7,23 +7,14 @@ import {
     BreadcrumbSeparator,
 } from "../components/ui/breadcrumb";
 import { Slash, X } from 'lucide-react';
-import { gamepad, monitor } from '../constant/constant';
-import { nanoid } from 'nanoid';
 import Button1 from '../components/Button1';
 import Button2 from '../components/Button2';
 import { Link } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
-import { removecart } from '../features/cart/cartSlice';
+import { decrementQuantity, incrementQuantity, removecart } from '../features/cart/cartSlice';
 
-// Types
-interface CartItem {
-    id: string;
-    name: string;
-    price: number;
-    quantity: number;
-    image: string;
-}
+
 
 const Cart: React.FC = () => {
     return (
@@ -36,7 +27,7 @@ const Cart: React.FC = () => {
                             <BreadcrumbList>
                                 <BreadcrumbItem className="text-[14px]">
                                     <BreadcrumbLink >
-                                    <Link to={"/"}>Home</Link>
+                                        <Link to={"/"}>Home</Link>
                                     </BreadcrumbLink>
                                 </BreadcrumbItem>
                                 <BreadcrumbSeparator>
@@ -44,7 +35,7 @@ const Cart: React.FC = () => {
                                 </BreadcrumbSeparator>
                                 <BreadcrumbItem>
                                     <BreadcrumbLink>
-                                    <Link to={"/cart"}>Cart</Link>
+                                        <Link to={"/cart"}>Cart</Link>
                                     </BreadcrumbLink>
                                 </BreadcrumbItem>
                             </BreadcrumbList>
@@ -97,7 +88,7 @@ const Cart: React.FC = () => {
 
 // Cart Items Component
 const CartItems: React.FC = () => {
-    const {cart} = useSelector((state: RootState) => state.cart);
+    const { cart } = useSelector((state: RootState) => state.cart);
     const dispatch = useDispatch();
 
     return (
@@ -116,7 +107,7 @@ const CartItems: React.FC = () => {
                                 className="w-16 h-16 object-contain"
                             />
                             <button
-                            onClick={()=> dispatch(removecart(item.id))}
+                                onClick={() => dispatch(removecart(item.id))}
                                 className="absolute -top-2 -left-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
                                 aria-label="Remove item"
                             >
@@ -131,17 +122,18 @@ const CartItems: React.FC = () => {
 
                     {/* Quantity Controls */}
                     <div className="flex items-center border border-gray-400 rounded-sm w-fit">
-                      
-                        <span className="px-4 py-2 border-x border-gray-400 min-w-[60px] text-center">
-                            {/* {item.quantity} */}0
+
+                        <button onClick={()=> dispatch(decrementQuantity(item.id))} className='cursor-pointer px-1'>-</button>
+                        <span className="flex items-center px-4 py-2 border-x border-gray-400 min-w-[60px] text-center">
+                            <span>{item.quantity}</span>
                         </span>
-                      
+                        <button onClick={()=> dispatch(incrementQuantity(item.id))} className='cursor-pointer px-1'>+</button>
+
                     </div>
 
                     {/* Subtotal */}
                     <span className="text-sm md:text-base font-medium">
-                        {/* ${item.price * item.quantity} */}
-                        ${item.price * 1}
+                        ${item.subtotal.toFixed(2)}
                     </span>
                 </div>
             ))}
@@ -155,17 +147,22 @@ export default Cart;
 
 
 const CartTotalBox: React.FC = () => {
-    const subtotal = 1750;
+    const { cart } = useSelector((state: RootState) => state.cart);
+    const subtotal = cart.reduce((acc, item) => acc + item.subtotal, 0);
     // Example total (650*1 + 550*2 = 1750) 
-    const shipping = 50;
+    const city:string = "Inside Dhaka";
+    const shipping = city === "Outside Dhaka" ? 50 : 100;
     // Example shipping cost 
     const total = subtotal + shipping;
+
+
+
     return (
         <div className='flex justify-end font-poppins mb-20 '>
             <div className='border border-black py-8 px-6 rounded-sm w-full max-w-sm'>
                 <h3 className='text-xl font-medium mb-6'>Cart Total</h3> {/* Subtotal Row */}
                 <div className='flex justify-between py-2 border-b border-gray-300'>
-                    <p>Subtotal:</p> <p>${subtotal}</p>
+                    <p>Subtotal:</p> <p>${subtotal.toFixed(2)}</p>
                 </div> {/* Shipping Row */}
                 <div className='flex justify-between py-2 border-b border-gray-300'>
                     <p>Shipping:</p>
@@ -173,7 +170,7 @@ const CartTotalBox: React.FC = () => {
                 </div> {/* Total Row */}
                 <div className='flex justify-between py-2 mb-6'>
                     <p className='font-medium'>Total:</p>
-                    <p className='font-medium'>${total}</p>
+                    <p className='font-medium'>${total.toFixed(2)}</p>
                 </div> {/* Process to Checkout Button (Red/Primary Color) */}
                 <Button2 className="w-full"> Proceed To Checkout </Button2>
             </div>

@@ -1,5 +1,5 @@
 import { Heart, Eye } from 'lucide-react';
-import type { Product } from '../types';
+import type { Product, ProductCart } from '../types';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToWishList } from '../features/wishlist/wishlistSlice';
@@ -36,13 +36,14 @@ export default function ProductCard({ product }: ProductCardProps) {
       dispatch(addToWishList(product));
     }
     }
-   const handleCartAdd = (product:Product) => {
+   const handleCartAdd = (product:ProductCart) => {
+
     if(!user){
       alert("Please login to add items to wishlist");
       navigate('/login');
       return;
     }else {
-      dispatch(addTocart(product));
+      dispatch(addTocart({...product, quantity: 1, subtotal: product.price}));
     }
     }
 
