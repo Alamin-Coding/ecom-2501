@@ -5,10 +5,30 @@ import HeadingHomePage from "../../components/HeadingHomePage"
 import Loading from "../../components/Loading"
 import type { Product } from '../../types/index';
 import { Eye } from "lucide-react"
+import { useDispatch, useSelector } from "react-redux"
+import type { RootState } from "../../store/store"
+import { removeWishlist } from "../../features/wishlist/wishlistSlice"
 
 
 const Wishlist: React.FC = () => {
-    const { data, isLoading } = useGetProductsQuery('')
+    const {wishList} = useSelector((state: RootState) => state.wishlist);
+    // const catergoryList = wishList.map(item => item.category);
+    const catergoryList = Array.from(new Set(wishList.map(item => item.category)))
+      const { data:firstItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[0] });
+      const { data:secondItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[1] });
+      const { data:thirdItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[2] });
+      const { data:forthItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[3] });
+
+      console.log(catergoryList);
+      
+
+
+
+    
+    
+
+
+    // const dispatch = useDispatch();
     return (
         <section>
             <div className="container">
@@ -17,9 +37,7 @@ const Wishlist: React.FC = () => {
                         <h2 className="text-xl font-poppins ">Wishlist 
                            <span className="ml-2">
                             (
-                          {4 
-                            // here will be dynamic value
-                            }
+                          {wishList.length}
                             )
                           </span> 
                         </h2>
@@ -28,16 +46,14 @@ const Wishlist: React.FC = () => {
                     <div>
                         <div>
 
-                            {isLoading && <Loading />}
-
                         </div>
                         <div className="grid grid-cols-4 gap-x-7.5 gap-y-15">
                             {
-                                data?.products?.slice(0, 4).map((product) => {
+                                wishList?.map((product) => {
                                     return (
                                         <ProductWishlist children={
                                             <Icon icon="bytesize:trash" width="32" height="32" />
-                                        } key={product.id} product={product} />
+                                        } key={product.id} product={product} deleteItem={true} />
                                     )
                                 })
                             }
@@ -52,16 +68,45 @@ const Wishlist: React.FC = () => {
 
                 <div>
 
-                    {isLoading && <Loading />}
-
                 </div>
                 <div className="grid grid-cols-4 gap-x-7.5 gap-y-15">
                     {
-                        data?.products?.slice(4, 8).map((product) => {
+                        catergoryList[0] &&
+                        firstItems?.products.map((product) => {
                             return (
-                                <ProductWishlist children={
+                                <ProductWishlist  children={
                                     <Eye/>
-                                } key={product.id} product={product} />
+                                } key={product.id} product={product} deleteItem={false} />
+                            )
+                        })
+                    }
+                    {
+                        catergoryList[1] &&
+                        secondItems?.products.map((product) => {
+                            return (
+                                <ProductWishlist  children={
+                                    <Eye/>
+                                } key={product.id} product={product} deleteItem={false} />
+                            )
+                        })
+                    }
+                    {
+                        catergoryList[2] &&
+                        thirdItems?.products.map((product) => {
+                            return (
+                                <ProductWishlist  children={
+                                    <Eye/>
+                                } key={product.id} product={product} deleteItem={false} />
+                            )
+                        })
+                    }
+                    {
+                        catergoryList[3] &&
+                        forthItems?.products.map((product) => {
+                            return (
+                                <ProductWishlist  children={
+                                    <Eye/>
+                                } key={product.id} product={product} deleteItem={false} />
                             )
                         })
                     }
@@ -81,16 +126,20 @@ export default Wishlist
 interface ProductCardProps {
     product: Product;
     children: React.ReactNode;
+    deleteItem?: boolean;
 }
 
-const ProductWishlist = ({ product, children }: ProductCardProps) => {
+const ProductWishlist = ({ product, children, deleteItem=false }: ProductCardProps) => {
+    const dispatch = useDispatch();
     return (
         <div className='max-w-[270px] font-poppins'>
             <div className='group relative  bg-secondary dark:bg-slate-400  cursor-pointer rounded-sm h-[250px] mb-4   overflow-hidden flex items-center justify-center py-9 px-10'>
                 {/* Image */}
                 {/* Wishlist and view icon */}
                 <div className="absolute top-3 right-3 flex flex-col gap-2">
-                    <button className="bg-white p-2 w-8.5 h-8.5 flex items-center justify-center  rounded-full shadow hover:bg-gray-100 transition">
+                    <button
+                    {...deleteItem ? {onClick: () => dispatch(removeWishlist(product.id))} : null}
+                    className="bg-white p-2 w-8.5 h-8.5 flex items-center justify-center  rounded-full shadow hover:bg-gray-100 transition">
                         {children}
                         
                     </button>

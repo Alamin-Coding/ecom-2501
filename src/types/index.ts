@@ -40,7 +40,13 @@ export type Product = {
     meta: Meta;
     images: string[];
     thumbnail: string;
+    size?: string[];
 };
+
+export interface ProductCart extends Product {
+    quantity: number;
+    subtotal: number;
+}
 
 export interface ProductsResponse {
     products: Product[];

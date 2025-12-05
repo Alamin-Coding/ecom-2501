@@ -1,15 +1,23 @@
-import { ChevronRight } from "lucide-react"
-import { banner } from "../../../constant/constant"
+
 import Slider from "../../Slider/Slider"
 import { useGetCategoriesQuery } from "../../../api/categoriesApi"
+import { useNavigate } from "react-router"
+import { useDispatch } from "react-redux"
+import { selectedCategory } from "../../../features/category/categorySlice"
 
 
 
-const Hero:React.FC = () => {
+const Hero = () => {
     const {data, isLoading} = useGetCategoriesQuery("")
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     if (isLoading) return 
 
+    const handleFilter = (category:string)=> {
+        dispatch(selectedCategory(category))
+        navigate("/shop")
+    }
 
     
   return (
@@ -19,7 +27,7 @@ const Hero:React.FC = () => {
                 {/* Left side */}
                 <div className="hidden lg:block pr-4 border-r-2 pt-10 max-w-[250px]">
                     <ul className="space-y-4 font-poppins max-h-[344px] overflow-y-scroll">
-                        {data?.map((category)=> <li key={category.slug}>{category.name}</li>)}
+                        {data?.map((category)=> <li className="cursor-pointer" onClick={()=> handleFilter(category.slug)} key={category.slug}>{category.name}</li>)}
                     </ul>
                 </div>
 

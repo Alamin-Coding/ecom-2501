@@ -14,7 +14,7 @@ const BestSellProducts:React.FC = () => {
                 <HeadingHomePage subHeading="This Month" heading="Best Selling Products" headingAlign="left"/>
 
                 {/* Right Buttons */}
-                <Button2>View All</Button2>
+                <Button2 to="/shop">View All</Button2>
             </div>
 
             <div>

@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Heart, Menu, Search, ShoppingCart, X } from 'lucide-react';
 import { Link } from 'react-router';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { Button } from './ui/button';
 import { Icon } from '@iconify/react';
 import { DropdownMenuItem, DropdownMenuLabel } from '@radix-ui/react-dropdown-menu';
+import { useSelector } from 'react-redux';
+import type { RootState } from '../store/store';
 
 export default function NavBar() {
+  const navbar = useRef<HTMLElement>(null);
+  const themeButton = useRef<HTMLLabelElement>(null);
+  const {wishList} = useSelector((state: RootState) => state.wishlist);
+  const {cart} = useSelector((state: RootState) => state.cart);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [position, setPosition] = React.useState("bottom")
@@ -19,8 +25,6 @@ export default function NavBar() {
 
     document.querySelector("html")?.classList.toggle("dark")
   }
-
-
 
   const handleTheme = (mode: string) => {
     setDark(mode)
@@ -40,6 +44,23 @@ export default function NavBar() {
     { to: '/signup', label: 'Sign Up' },
   ];
 
+  // scroll event listener for navbar shadow
+  useEffect(() => {
+    // const handleScroll = ;
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        navbar.current?.classList.add('fixed_header');
+        themeButton.current?.classList.add('fixed_theme_button');
+      } else {
+        navbar.current?.classList.remove('fixed_header');
+        themeButton.current?.classList.remove('fixed_theme_button');
+      }
+    });
+    // return () => {
+    //   window.removeEventListener('scroll', handleScroll);
+    // };
+  }, []);
+
   return (
 
     <>
@@ -57,7 +78,7 @@ export default function NavBar() {
         </div>
       </div>
 
-      <nav className="bg-white container max-w-full dark:bg-black border-b border-gray-200 dark:border-gray-700">
+      <nav ref={navbar} className="bg-white container max-w-full dark:bg-black border-b border-gray-200 dark:border-gray-700">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between  ">
             {/* Left: Mobile Menu Button */}
@@ -99,10 +120,10 @@ export default function NavBar() {
               </button>
 
               <button
-                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-red-500 rounded-lg transition-colors md:block"
+                className="text-red-500 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-red-500 rounded-lg transition-colors md:block"
                 aria-label="Wishlist"
               >
-                <Heart className="h-6 w-6 dark:text-amber-50" />
+                <Heart className="h-6 w-6 stroke-red-600" />
               </button>
 
               <button
@@ -111,7 +132,7 @@ export default function NavBar() {
               >
                 <ShoppingCart className="h-6 w-6 dark:text-amber-50" />
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  0
+                  {cart.length}
                 </span>
               </button>
             </div>
@@ -139,14 +160,17 @@ export default function NavBar() {
 
             <div>
               <div className="flex items-center  gap-6">
-                <div className="flex items-center w-[243px] h-[38px] justify-between py-[7px] px-3 bg-[#F5F5F5] ">
+                <div className="flex items-center w-[243px] h-[38px] justify-between py-[7px] px-3 bg-[#F5F5F5] dark:bg-gray-800 rounded-lg">
                   <input className="font-poppins text-[12px] focus:outline-none w-full" type="text" placeholder="What are you looking for?" />
                   <button><Search /></button>
                 </div>
 
                 <div className="flex items-center gap-4" >
-                  <Link to={"/wishlist"}>
-                    <Heart size={30} color="#000000" strokeWidth={2} absoluteStrokeWidth />
+                  <Link to={"/wishlist"} className='p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors relative'>
+                    <Heart size={30} color="#000000" strokeWidth={2} absoluteStrokeWidth className='dark:stroke-white' />
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                        {wishList.length}
+                      </span>
                   </Link>
 
                   <Link to={"cart"}>
@@ -154,9 +178,9 @@ export default function NavBar() {
                       className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors relative"
                       aria-label="Shopping cart"
                     >
-                      <ShoppingCart size={30} color="#000000" strokeWidth={2} />
+                      <ShoppingCart size={30} color="#000000" strokeWidth={2} className='dark:stroke-white' />
                       <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                        0
+                        {cart.length}
                       </span>
                     </button>
                   </Link>
@@ -195,7 +219,7 @@ export default function NavBar() {
         </div>
 
         {/* Toggle Button */}
-        <label htmlFor="toggleB" className="flex items-center cursor-pointer absolute top-2 right-5">
+        <label ref={themeButton} htmlFor="toggleB" className="flex items-center cursor-pointer absolute top-2 right-5">
           {/* toggle */}
           <div className="relative">
             {/* input */}
@@ -219,7 +243,7 @@ export default function NavBar() {
                   <li key={link.to}>
                     <a
                       href={link.to}
-                      className="block px-4 py-3 font-semibold text-base dark:text-amber-50 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                      className="block px-4 py-3 font-semibold text-base dark:bg-slate-600 dark:text-amber-50 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {link.label}

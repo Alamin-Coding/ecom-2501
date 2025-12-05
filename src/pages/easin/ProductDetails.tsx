@@ -1,70 +1,120 @@
-import { Link } from "react-router"
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "../../components/ui/breadcrumb"
-import { Heart, RefreshCw, SlashIcon, Truck } from "lucide-react"
-import { detailed_1, detailed_2, detailed_3, detailed_4, detailedPic } from "../../constant/constant"
-import { nanoid } from "nanoid"
-import { useState } from "react"
-import Button2 from "../../components/Button2"
-import HeadingHomePage from "../../components/HeadingHomePage"
-import { useGetProductsQuery } from "../../api/productApi"
-import ProductCard from "../../components/ProductCard"
-import { Spinner } from "../../components/ui/spinner"
+import { Link, useParams } from "react-router";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "../../components/ui/breadcrumb";
+import { ArrowLeft, ArrowRight, Heart, RefreshCw, SlashIcon, Truck } from "lucide-react";
+import { nanoid } from "nanoid";
+import { useRef, useState } from "react";
+import Button2 from "../../components/Button2";
+import HeadingHomePage from "../../components/HeadingHomePage";
+import {
+  useGetProductByIdQuery,
+  useGetProductsByCategoryQuery,
+} from "../../api/productApi";
+import { Spinner } from "../../components/ui/spinner";
+import ProductCard from "../../components/ProductCard";
+import Slider from "react-slick";
+import SvgIcon from "../../components/SvgIcon";
 
 type Size = {
   id: string;
   size: string;
-}
+};
 
 const ProductDetails: React.FC = () => {
+  const sliderRef = useRef<Slider>(null);
+  const { id } = useParams();
+  const [imageIndex, setImageIndex] = useState(0);
+  // console.log(id);
 
-  const { data, isLoading } = useGetProductsQuery('')
+  const { data, isLoading } = useGetProductByIdQuery(id!);
+  const { data: categoriesData } = useGetProductsByCategoryQuery(
+    data?.category || ""
+  );
   const size: Size[] = [
     {
       id: nanoid(),
-      size: "XS"
+      size: "XS",
     },
     {
       id: nanoid(),
-      size: "S"
+      size: "S",
     },
     {
       id: nanoid(),
-      size: "M"
+      size: "M",
     },
     {
       id: nanoid(),
-      size: "L"
+      size: "L",
     },
     {
       id: nanoid(),
-      size: "XL"
+      size: "XL",
+    },
+  ];
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center mx-auto text-gray-400 text-center justify-center gap-4 text-3xl max-w-[300px]">
+        <Spinner className="size-8" /> Loading....
+      </div>
+    );
+  }
+
+  const handleImageClick = (index: number) => {
+    setImageIndex(index);
+  };
+
+  const handleClickPrev = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
     }
-  ]
+  };
+  const handleClickNext = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickNext();
+    }
+  };
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+  };
 
   return (
     <section>
+      {id}
       <div className="container mt-20 ">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem className="text-[14px] ">
-              <BreadcrumbLink >
-                <Link to={"/account"}>Account</Link>
+              <BreadcrumbLink>
+                <Link to={"/"}>Home</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator>
               <SlashIcon />
             </BreadcrumbSeparator>
             <BreadcrumbItem>
-              <BreadcrumbLink >
-                <Link to={"/gaming"}>Gaming</Link>
+              <BreadcrumbLink>
+                <Link to={`/${data?.category}`}>{data?.category}</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator>
               <SlashIcon />
             </BreadcrumbSeparator>
             <BreadcrumbItem>
-              <BreadcrumbLink >
-                <Link to={"/gaming"}>Havic HV G-92 Gamepad</Link>
+              <BreadcrumbLink>
+                <span>{data?.title}</span>
               </BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
@@ -73,40 +123,37 @@ const ProductDetails: React.FC = () => {
         {/* Grid Layout */}
         <div className="mt-20 grid grid-cols-[1fr_auto] items-center gap-17.5 mb-[140px]">
           {/* Left Side images*/}
-          <div className="max-w-[700] gap-7.5 grid grid-cols-[auto_1fr]">
-            <div className="max-w-[170px] grid gap-y-4 grid-cols-1 ">
-              <div className="bg-secondary flex items-center justify-center rounded-sm py-3 px-6">
-                <img src={detailed_1} alt="image" />
-              </div>
-              <div className="bg-secondary flex items-center justify-center rounded-sm py-3 px-6">
-                <img src={detailed_2} alt="image" />
-              </div>
-              <div className="bg-secondary flex items-center justify-center rounded-sm py-3 px-6">
-                <img src={detailed_3} alt="image" />
-              </div>
-              <div className="bg-secondary flex items-center justify-center rounded-sm py-3 px-6">
-                <img src={detailed_4} alt="image" />
-              </div>
+          <div className="max-w-[700] gap-7.5 grid grid-cols-[170px_1fr]">
+            <div className="w-[170px] grid gap-y-4 grid-cols-1 ">
+              {data?.images.map((img, index) => (
+                <div
+                  onClick={() => handleImageClick(index)}
+                  key={index}
+                  className="size-[100px] xl:size-[170px] bg-secondary flex items-center justify-center rounded-sm py-3 px-6"
+                >
+                  <img src={img} alt="image" />
+                </div>
+              ))}
             </div>
 
-            <div className="max-w-[500px] py-[142px] flex items-center justify-center bg-secondary rounded-sm px-[27px]">
-              <img src={detailedPic} alt="image" />
+            <div className="max-w-[500px] h-[550px] py-[142px] flex items-center justify-center bg-secondary rounded-sm px-[27px]">
+              <img src={data?.images[imageIndex]} alt="image" />
             </div>
-
           </div>
 
           {/* Right Side text */}
           <div className="max-w-[400px]">
             <div className="space-y-4 border-b ">
-              <h2 className="text-2xl font-semibold font-inter">Havic HV G-92 Gamepad</h2>
-              {
-                [1, 2, 3, 4].map((_, i) => (
-                  <span className='text-yellow-400' key={i}>★</span>
-                ))
-              }
-              <p className="mt-3">$192.00</p>
-              <p className="mb-3 ">PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.</p>
-
+              <h2 className="text-2xl font-semibold font-inter">
+                {data?.title}
+              </h2>
+              {[1, 2, 3, 4].map((_, i) => (
+                <span className="text-yellow-400" key={i}>
+                  ★
+                </span>
+              ))}
+              <p className="mt-3">${data?.price.toFixed(2)}</p>
+              <p className="mb-3 ">{data?.description}</p>
             </div>
 
             <p className="mt-7 flex items-center mb-6 gap-3">
@@ -117,51 +164,58 @@ const ProductDetails: React.FC = () => {
 
             <p className="flex mb-6 items-center gap-6">
               Size :
-
-              <div className="flex items-center justify-center gap-4" >
-
-                {
+              <div className="flex items-center justify-center gap-4">
+                {data?.size &&
                   size.map((i) => (
                     <div className="rounded-sm h-8 w-8 flex items-center border border-black hover:bg-button2 hover:text-white transition-all duration-300 cursor-pointer justify-center">
                       {i.size}
                     </div>
-                  ))
-                }
+                  ))}
               </div>
-
             </p>
 
             <ProductActions />
-
-
           </div>
         </div>
 
         <HeadingHomePage subHeading="Related Items" headingAlign="left" />
         <div>
-
-          {isLoading && <div className="flex items-center mx-auto text-gray-400 text-center justify-center gap-4 text-3xl max-w-[300px]"><Spinner className="size-8" /> Loading....</div>}
-
+          {isLoading && (
+            <div className="flex items-center mx-auto text-gray-400 text-center justify-center gap-4 text-3xl max-w-[300px]">
+              <Spinner className="size-8" /> Loading....
+            </div>
+          )}
         </div>
-        <div className="grid grid-cols-4 gap-x-7.5 gap-y-15">
-          {
-            data?.products?.slice(0, 4).map((product) => {
-              return (
-                <ProductCard key={product.id} product={product} />
-              )
-            })
-          }
+        {/* Right Buttons */}
+        <div className="flex justify-end pb-6 items-center gap-2">
+          <div
+            onClick={handleClickPrev}
+            className="bg-secondary rounded-full flex items-center justify-center w-11.5 h-11.5"
+          >
+            <ArrowLeft />
+          </div>
+          <div
+            onClick={handleClickNext}
+            className="bg-secondary rounded-full flex items-center justify-center w-11.5 h-11.5"
+          >
+            <ArrowRight />
+          </div>
         </div>
-
+        <Slider {...settings} ref={sliderRef}>
+          {categoriesData?.products?.map((category) => {
+            return (
+              <div key={category.id} className="px-3">
+                <ProductCard product={category} />
+              </div>
+            );
+          })}
+        </Slider>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ProductDetails
-
-
-
+export default ProductDetails;
 
 const ProductActions = () => {
   const [quantity, setQuantity] = useState(1);
@@ -180,7 +234,9 @@ const ProductActions = () => {
           >
             −
           </button>
-          <div className="px-4 py-2 border-x text-lg font-medium">{quantity}</div>
+          <div className="px-4 py-2 border-x text-lg font-medium">
+            {quantity}
+          </div>
           <button
             onClick={increment}
             className="px-3 py-2 text-lg font-semibold  text-black cursor-pointer hover:text-white hover:bg-button2"
@@ -202,10 +258,7 @@ const ProductActions = () => {
         <div className="flex items-start gap-3 p-3">
           <Truck className="w-6 h-6 text-gray-700" />
           <div>
-            <a
-              href="#"
-              className="font-semibold text-sm  hover:underline"
-            >
+            <a href="#" className="font-semibold text-sm  hover:underline">
               Free Delivery
             </a>
             <p className="text-sm text-gray-600 hover:underline">
@@ -233,5 +286,3 @@ const ProductActions = () => {
     </div>
   );
 };
-
-
