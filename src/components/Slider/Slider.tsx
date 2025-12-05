@@ -47,12 +47,23 @@ const Slider: React.FC<SliderProps> = ({
     >
       {slides.map((slide) => (
         <SwiperSlide key={slide.id} className={styles.swiperSlide}>
-          <img 
+          <div className=' sm:hidden md:block ' >
+            <img 
             src={slide.image} 
             className="w-full aspect-[2.59/1] max-w-[892px]" 
             alt={slide.title}
             loading="lazy"
           />
+          </div>
+
+          <div className=' md:hidden ' >
+            <img 
+            src={slide.image} 
+            className="w-[700px] aspect-[2.59/1] " 
+            alt={slide.title}
+            loading="lazy"
+          />
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>
