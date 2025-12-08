@@ -7,7 +7,9 @@ import type { Product } from '../../types/index';
 import { Eye } from "lucide-react"
 import { useDispatch, useSelector } from "react-redux"
 import type { RootState } from "../../store/store"
-import { removeWishlist } from "../../features/wishlist/wishlistSlice"
+import { addToWishList, removeWishlist } from "../../features/wishlist/wishlistSlice"
+import { addTocart, moveAllToBag, removecart } from "../../features/cart/cartSlice"
+import { Bounce, toast } from "react-toastify"
 
 
 const Wishlist: React.FC = () => {
@@ -19,16 +21,10 @@ const Wishlist: React.FC = () => {
       const { data:thirdItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[2] });
       const { data:forthItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[3] });
 
-      console.log(catergoryList);
-      
-
-
-
-    
-    
-
-
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const handleAddToAllCart = () => {
+        dispatch(moveAllToBag(wishList))
+    }
     return (
         <section>
             <div className="container">
@@ -41,7 +37,7 @@ const Wishlist: React.FC = () => {
                             )
                           </span> 
                         </h2>
-                        <Button1>Move All To Bag</Button1>
+                        <Button1 onClick={handleAddToAllCart} title="Move All To Bag">Move All To Bag</Button1>
                     </div>
                     <div>
                         <div>
@@ -129,7 +125,33 @@ interface ProductCardProps {
     deleteItem?: boolean;
 }
 
+
 const ProductWishlist = ({ product, children, deleteItem=false }: ProductCardProps) => {
+    const {cart} = useSelector((state: RootState) => state.cart);
+    const isExistCart = cart.find(item => item.id === product.id);
+
+        const notify = ()=> toast.success('❤ Successfuly add to wishlist', {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: false,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                  transition: Bounce,
+                  });
+
+    
+       const handleAddToCart = (product:Product) => {
+        
+        if (!isExistCart) {
+            notify()
+            dispatch(addTocart({...product, quantity:1, subtotal:product.price}));
+            dispatch(removeWishlist(product.id))
+        }
+        }
+
     const dispatch = useDispatch();
     return (
         <div className='max-w-[270px] font-poppins'>
@@ -153,7 +175,7 @@ const ProductWishlist = ({ product, children, deleteItem=false }: ProductCardPro
 
                 <img className='h-full' src={product.thumbnail} alt="image" />
 
-                <button className='w-full text-center absolute bg-button p-2 text-white font-poppins transition-all duration-500 cursor-pointer rounded-b-sm opacity-100  bottom-0'>
+                <button onClick={()=> handleAddToCart(product)} className='w-full text-center absolute bg-button p-2 text-white font-poppins transition-all duration-500 cursor-pointer rounded-b-sm opacity-100  bottom-0'>
                     Add To Cart
                 </button>
             </div>

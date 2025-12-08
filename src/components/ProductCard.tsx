@@ -2,9 +2,10 @@ import { Heart, Eye } from 'lucide-react';
 import type { Product, ProductCart } from '../types';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToWishList } from '../features/wishlist/wishlistSlice';
+import { addToWishList, removeWishlist } from '../features/wishlist/wishlistSlice';
 import type { RootState } from '../store/store';
-import { addTocart } from '../features/cart/cartSlice';
+import { addTocart, removecart } from '../features/cart/cartSlice';
+import { Bounce, toast } from 'react-toastify';
 
 
 interface ProductCardProps {
@@ -19,6 +20,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   const {cart} = useSelector((state: RootState) => state.cart);
    const isExist = wishList.find(item => item.id === product.id);
    const isExistCart = cart.find(item => item.id === product.id);
+
+   console.log(isExistCart);
+   
    const user = {
     id: 1,
     name: "John Doe",
@@ -26,6 +30,17 @@ export default function ProductCard({ product }: ProductCardProps) {
     email:  "admin@example.com" 
   };
    const navigate = useNavigate();
+    const notify = ()=> toast.success('❤ Successfuly add to wishlist', {
+                  position: "top-center",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: false,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "light",
+                  transition: Bounce,
+                  });
 
    const handleAddToWishlist = (product:Product) => {
     if(!user){
@@ -33,7 +48,13 @@ export default function ProductCard({ product }: ProductCardProps) {
       navigate('/login');
       return;
     }else {
-      dispatch(addToWishList(product));
+      if (isExistCart) {
+        notify()
+        dispatch(removecart(product.id));
+        dispatch(addToWishList(product));
+      }else{
+        dispatch(addToWishList(product));
+      }
     }
     }
    const handleCartAdd = (product:ProductCart) => {
@@ -43,7 +64,12 @@ export default function ProductCard({ product }: ProductCardProps) {
       navigate('/login');
       return;
     }else {
-      dispatch(addTocart({...product, quantity: 1, subtotal: product.price}));
+      if (!isExistCart) {
+        dispatch(addTocart({...product, quantity: 1, subtotal: product.price}));
+        dispatch(removeWishlist(product.id));
+      }else {
+        dispatch(removecart(product.id));
+      }
     }
     }
 
