@@ -22,6 +22,14 @@ export const cartSlice = createSlice({
             localStorage.setItem("cart", JSON.stringify(state.cart));
         }
     },
+    
+    moveAllToBag: (state, action: PayloadAction<ProductCart[]>) => {
+      const multiProduct = action.payload
+      console.log(multiProduct);
+      state.cart = [...state.cart, ...multiProduct]
+      
+         localStorage.setItem("cart", JSON.stringify(state.cart));
+    },
 
     removecart: (state, action: PayloadAction<number>) => {
         state.cart = state.cart.filter(item => item.id !== action.payload);
@@ -49,13 +57,6 @@ export const cartSlice = createSlice({
             state.cart = state.cart.filter(i => i.id !== action.payload);
             localStorage.setItem("cart", JSON.stringify(state.cart));
         }
-    },
-
-    moveAllToBag: (state, action: PayloadAction<Product[]>) => {
-      // state.cart = [...state.cart, ...action.payload]
-      state.cart.push(action.payload)
-      
-        // localStorage.setItem("wishlist", JSON.stringify(state.wishList));
     }
 
   },

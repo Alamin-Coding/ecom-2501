@@ -1,11 +1,12 @@
 import { Heart, Eye } from 'lucide-react';
 import type { Product, ProductCart } from '../types';
-import { useNavigate } from 'react-router';
+import { data, useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToWishList, removeWishlist } from '../features/wishlist/wishlistSlice';
 import type { RootState } from '../store/store';
 import { addTocart, removecart } from '../features/cart/cartSlice';
 import { Bounce, toast } from 'react-toastify';
+import { useAddToCartApiMutation, useAddToCartMutation } from '../api/cartApi';
 
 
 interface ProductCardProps {
@@ -21,7 +22,7 @@ export default function ProductCard({ product }: ProductCardProps) {
    const isExist = wishList.find(item => item.id === product.id);
    const isExistCart = cart.find(item => item.id === product.id);
 
-   console.log(isExistCart);
+   const [addToCartApi] = useAddToCartApiMutation()
    
    const user = {
     id: 1,
@@ -42,7 +43,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   transition: Bounce,
                   });
 
-   const handleAddToWishlist = (product:Product) => {
+   const handleAddToWishlist = (product:ProductCart) => {
     if(!user){
       alert("Please login to add items to wishlist");
       navigate('/login');
@@ -51,9 +52,9 @@ export default function ProductCard({ product }: ProductCardProps) {
       if (isExistCart) {
         notify()
         dispatch(removecart(product.id));
-        dispatch(addToWishList(product));
+        dispatch(addToWishList({...product, quantity: 1, subtotal: product.price}));
       }else{
-        dispatch(addToWishList(product));
+        dispatch(addToWishList({...product, quantity: 1, subtotal: product.price}));
       }
     }
     }
@@ -73,10 +74,35 @@ export default function ProductCard({ product }: ProductCardProps) {
     }
     }
 
+    
+  
+    
+
+
+
   
    
   const navigation = useNavigate();
   const dispatch = useDispatch();
+
+  
+  const handleAddWish = ()=> {
+   const data = addToCartApi({
+    userId: 1,
+    products: [
+      {
+        id: 144,
+        quantity: 4,
+      },
+      {
+        id: 98,
+        quantity: 1,
+      },
+    ]
+  })
+
+  }
+
   return (
     <div className='max-w-[270px] font-poppins'>
       <div className='group relative  bg-secondary dark:bg-slate-400  cursor-pointer rounded-sm h-[250px] mb-4   overflow-hidden flex items-center justify-center py-9 px-10'>
@@ -104,6 +130,9 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <button disabled={isExistCart? true: false} onClick={()=> handleCartAdd(product)} className={`disabled:cursor-not-allowed w-full text-center absolute bg-button p-2 text-white font-poppins transition-all duration-500 cursor-pointer rounded-b-sm opacity-0 group-hover:opacity-100 bottom-0 ${isExistCart? "bg-green-500": "bg-button"}`}>
           {isExistCart? "Added to Cart" : "Add to Cart"}
+        </button>
+        <button onClick={handleAddWish} className='bg-amber-400 text-white cursor-pointer p-3'>
+          add to cart from Api
         </button>
       </div>
 

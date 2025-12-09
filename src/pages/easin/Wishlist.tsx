@@ -2,18 +2,18 @@ import { Icon } from "@iconify/react"
 import { useGetProductsQuery } from "../../api/productApi"
 import Button1 from "../../components/Button1"
 import HeadingHomePage from "../../components/HeadingHomePage"
-import Loading from "../../components/Loading"
 import type { Product } from '../../types/index';
 import { Eye } from "lucide-react"
 import { useDispatch, useSelector } from "react-redux"
 import type { RootState } from "../../store/store"
-import { addToWishList, removeWishlist } from "../../features/wishlist/wishlistSlice"
-import { addTocart, moveAllToBag, removecart } from "../../features/cart/cartSlice"
+import { removeWishlist } from "../../features/wishlist/wishlistSlice"
+import { addTocart, moveAllToBag } from "../../features/cart/cartSlice"
 import { Bounce, toast } from "react-toastify"
 
 
 const Wishlist: React.FC = () => {
     const {wishList} = useSelector((state: RootState) => state.wishlist);
+    const {cart} = useSelector((state: RootState) => state.cart);
     // const catergoryList = wishList.map(item => item.category);
     const catergoryList = Array.from(new Set(wishList.map(item => item.category)))
       const { data:firstItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[0] });
@@ -24,6 +24,8 @@ const Wishlist: React.FC = () => {
     const dispatch = useDispatch();
     const handleAddToAllCart = () => {
         dispatch(moveAllToBag(wishList))
+        wishList.map(list => dispatch(removeWishlist(list.id)))
+
     }
     return (
         <section>
