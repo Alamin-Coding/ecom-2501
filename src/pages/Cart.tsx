@@ -91,6 +91,9 @@ const CartItems: React.FC = () => {
     const { cart } = useSelector((state: RootState) => state.cart);
     const dispatch = useDispatch();
 
+    console.log(cart);
+    
+
     return (
         <>
             {cart.map((item) => (
@@ -123,11 +126,11 @@ const CartItems: React.FC = () => {
                     {/* Quantity Controls */}
                     <div className="flex items-center border border-gray-400 shadow-2xs rounded-sm w-fit">
 
-                        <button onClick={()=> dispatch(decrementQuantity(item.id))} className='cursor-pointer px-[10px]'>-</button>
-                        <span className="flex items-center px-4 py-2 border-x border-gray-400 min-w-[40px] text-center">
+                        <button onClick={()=> dispatch(decrementQuantity(item.id))} className='cursor-pointer px-2.5'>-</button>
+                        <span className="flex items-center px-4 py-2 border-x border-gray-400 min-w-10 text-center">
                             <span>{item.quantity}</span>
                         </span>
-                        <button onClick={()=> dispatch(incrementQuantity(item.id))} className='cursor-pointer px-[10px]'>+</button>
+                        <button onClick={()=> dispatch(incrementQuantity(item.id))} className='cursor-pointer px-2.5'>+</button>
 
                     </div>
 

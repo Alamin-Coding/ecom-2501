@@ -19,6 +19,11 @@ import { Spinner } from "../../components/ui/spinner";
 import ProductCard from "../../components/ProductCard";
 import Slider from "react-slick";
 import SvgIcon from "../../components/SvgIcon";
+import type { Product, ProductCart } from "../../types";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
+import { addTocart, removecart } from "../../features/cart/cartSlice";
+import { removeWishlist } from "../../features/wishlist/wishlistSlice";
 
 type Size = {
   id: string;
@@ -89,6 +94,8 @@ const ProductDetails: React.FC = () => {
     slidesToScroll: 1,
     autoplay: true,
   };
+
+
 
   return (
     <section>
@@ -174,7 +181,7 @@ const ProductDetails: React.FC = () => {
               </div>
             </p>
 
-            <ProductActions />
+            <ProductActions data={data} id={Number(id)} />
           </div>
         </div>
 
@@ -217,11 +224,30 @@ const ProductDetails: React.FC = () => {
 
 export default ProductDetails;
 
-const ProductActions = () => {
+const ProductActions = ({data, id}: {data:Product, id:number}) => {
   const [quantity, setQuantity] = useState(1);
+
+
 
   const increment = () => setQuantity((prev) => prev + 1);
   const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+
+     const {cart} = useSelector((state: RootState) => state.cart);
+  const isExistCart =  cart?.find(item => item.id === Number(id));
+   const dispatch = useDispatch();
+
+
+
+      const handleCartAdd = (product:ProductCart) => {
+        console.log(product)
+        
+        if (!isExistCart) {
+            dispatch(addTocart({...product, quantity: 1, subtotal: product.price}));
+            dispatch(removeWishlist(product.id));
+          }else {
+            dispatch(removecart(product.id));
+          }
+        }
 
   return (
     <div className="w-full max-w-sm mx-auto space-y-4">
@@ -245,7 +271,7 @@ const ProductActions = () => {
           </button>
         </div>
 
-        <Button2 className="!py-2.5">Buy Now</Button2>
+        <button className={`bg-button2 hover:bg-hoverButton transition-all duration-300 cursor-pointer text-white font-medium font-poppins px-12 py-4 rounded-sm `} onClick={()=> handleCartAdd(data)}>Buy Now</button>
 
         <button className="p-2.5 border border-black  h-full rounded-md hover:bg-gray-100">
           <Heart className="w-6 h-6" />
