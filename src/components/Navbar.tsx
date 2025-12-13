@@ -7,6 +7,7 @@ import { Icon } from '@iconify/react';
 import { DropdownMenuItem, DropdownMenuLabel } from '@radix-ui/react-dropdown-menu';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../store/store';
+import ProductSearch from './sections/ProductSearch';
 
 export default function NavBar() {
   const navbar = useRef<HTMLElement>(null);
@@ -159,10 +160,9 @@ export default function NavBar() {
             </div>
 
             <div>
-              <div className="flex items-center  gap-6">
-                <div className="flex items-center w-[243px] h-[38px] justify-between py-[7px] px-3 bg-[#F5F5F5] dark:bg-gray-800 rounded-lg">
-                  <input className="font-poppins text-[12px] focus:outline-none w-full" type="text" placeholder="What are you looking for?" />
-                  <button><Search /></button>
+              <div className="flex items-center gap-6">
+                <div className="hidden lg:block translate-y-[-5px] " >
+                  <ProductSearch />
                 </div>
 
                 <div className="flex items-center gap-4" >
