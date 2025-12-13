@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Eye, EyeOff} from 'lucide-react';
-import { signup } from '../constant/constant';
+import { google, signup } from '../constant/constant';
 import Button2 from '../components/Button2';
+import Button1 from '../components/Button1';
+import { Link } from 'react-router';
 
 const LoginPages: React.FC = () => {
      const [password, setPassword] = useState('');
@@ -24,7 +26,7 @@ const LoginPages: React.FC = () => {
                     </div>
 
                     <div className=' mt-12 ' >
-                        <input type="text" placeholder='Email or Phone Number' className='w-full text-gray-500 focus:outline-none font-poppins border-b border-button pb-2' />
+                        <input type="text" placeholder='Email or Phone Number' className='w-full text-black font-semibold focus:outline-none border-b border-button pb-2' />
      
                          <div className="validator-hint hidden">Enter valid email address</div>
                     </div>
@@ -51,16 +53,25 @@ const LoginPages: React.FC = () => {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         placeholder="Password"
-                                        className="w-full  py-3 text-gray-500 border-b border-button focus:outline-none "
+                                        className="w-full  py-3 text-black font-semibold border-b border-button focus:outline-none "
                                    />
                               </div>
                          </div>
                     </div>
 
                <div className=' pt-10 ' >
+                    <Button1 className="mb-8 flex gap-4 w-full justify-center items-center font-normal">
+                    <img src={google} alt="icon" />
+                    Sign up with Google
+                </Button1>
+
                <Button2>Log In</Button2>
-               <button className=' ml-15 cursor-pointer text-[16px] leading-6 text-button2 ' >Forget Password?</button>
+               <button className=' loginhover ml-15 cursor-pointer text-[16px] leading-6 hover:border-b-1 hover:border-button2 text-button2' >Forget Password?</button>
                </div>
+
+               <p className="font-poppins pt-8 text-center "> Don't have any account? 
+                    <Link className="font-medium ml-4 underline underline-offset-8" to={"/signup"}> Register </Link>
+               </p>
 
                </div>
 

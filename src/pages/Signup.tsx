@@ -26,11 +26,11 @@ const Signup:React.FC = () => {
                 <div className="flex font-poppins text-gray-500  flex-col gap-10">
                     <input  className=" pb-2 border-b border-button w-full focus:outline-none" type="text" placeholder="Email or Phone Number" />
                     <input  className=" pb-2 border-b border-button w-full focus:outline-none" type="text" placeholder="Name" />
-                    <input  className=" pb-2 border-b border-button w-full focus:outline-none" type="password"  placeholder="Password"/>
+                    <input  className=" pb-2 mb-8 border-b border-button w-full focus:outline-none" type="password"  placeholder="Password"/>
                 </div>
 
-                <Button2 className="mt-10 w-full mb-4">Create Account</Button2>
-                <Button1 className="mb-8 flex gap-4 w-full justify-center items-center font-normal">
+                <Button2 className="w-full mb-4">Create Account</Button2>
+                <Button1 className="mb-8 mt-8 flex gap-4 w-full justify-center items-center font-normal">
                     <img src={google} alt="icon" />
                     Sign up with Google
                 </Button1>

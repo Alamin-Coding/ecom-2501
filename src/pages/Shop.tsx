@@ -46,7 +46,7 @@ const handleNextSkip = ()=> {
               <p className=" font-bold text-xl">Shop by Category</p>
               {
                 categoryData?.map((item) => <li onClick={() => dispatch(selectedCategory(item.slug))}
-                  className={`cursor-pointer ${item.slug === value ? "text-button2" : ""}`}
+                  className={`cursor-pointer ${item.slug === value ? "text-button2 font-semibold " : ""}`}
                   key={item.slug}>
                   {item.name}
                 </li>)

@@ -151,7 +151,7 @@ export default function NavBar() {
                 <a
                   key={link.to}
                   href={link.to}
-                  className=" font-poppins buttons relative text-base dark:text-amber-50  dark:hover:text-blue-400 transition-colors"
+                  className=" buttons font-poppins relative text-base dark:text-amber-50  dark:hover:text-blue-400 transition-colors"
                 >
                   {link.label}
                 </a>

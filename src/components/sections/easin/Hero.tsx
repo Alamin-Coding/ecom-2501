@@ -1,7 +1,7 @@
 
 import Slider from "../../Slider/Slider"
 import { useGetCategoriesQuery } from "../../../api/categoriesApi"
-import { useNavigate } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { useDispatch } from "react-redux"
 import { selectedCategory } from "../../../features/category/categorySlice"
 
@@ -36,14 +36,14 @@ const Hero = () => {
                 </div>
 
                 {/* Right Slider */}
-                <div className="w-[892px] pt-10">
+                <Link to={"/shop"} className="w-[892px] pt-10">
 
                     <div >
                     {/* Here will be slider */}
                     {/* <img  src={banner} className="w-[892px] h-[344px]" alt="image" /> */}
                     <Slider/>
                     </div>
-                </div>
+                </Link>
 
             </div>
         </div>
