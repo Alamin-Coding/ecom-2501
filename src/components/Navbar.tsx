@@ -161,7 +161,7 @@ export default function NavBar() {
 
             <div>
               <div className="flex items-center gap-6">
-                <div className="hidden lg:block translate-y-[-5px] " >
+                <div className="hidden lg:block translate-y-[-5px] z-80 " >
                   <ProductSearch />
                 </div>
 

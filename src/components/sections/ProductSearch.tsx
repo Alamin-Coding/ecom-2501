@@ -206,7 +206,7 @@ export default function ProductSearch() {
 
             {/* Dropdown Results */}
             {isOpen && (
-              <div className="absolute w-[700px] translate-x-[-230px] top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-[1000]">
+              <div className="absolute w-[700px] translate-x-[-230px] top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-1000">
                 {/* Tabs */}
                 <div className="flex border-b border-gray-200">
                   <button
