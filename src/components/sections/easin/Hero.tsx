@@ -32,7 +32,11 @@ const Hero = () => {
                 </div>
 
                 <div className="lg:hidden">
-                    Category
+                    
+                    <ul className="mt-5 font-poppins pb-6 flex gap-5 text-nowrap max-h-[344px] overflow-y-scroll">
+                        {data?.map((category)=> <li className="cursor-pointer p-4 bg-gray-300 rounded-lg dark:text-black " onClick={()=> handleFilter(category.slug)} key={category.slug}>{category.name}</li>)}
+                    </ul>
+                    
                 </div>
 
                 {/* Right Slider */}

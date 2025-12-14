@@ -16,7 +16,7 @@ export const wishListSlice = createSlice({
   reducers: {
     addToWishList: (state, action: PayloadAction<Product>) => {
         const isExist = state.wishList.find(item => item.id === action.payload.id);
-        
+
         if(!isExist){
             state.wishList.push(action.payload);
             localStorage.setItem("wishlist", JSON.stringify(state.wishList));

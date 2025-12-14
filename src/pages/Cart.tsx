@@ -91,6 +91,9 @@ const CartItems: React.FC = () => {
     const { cart } = useSelector((state: RootState) => state.cart);
     const dispatch = useDispatch();
 
+    console.log(cart);
+    
+
     return (
         <>
             {cart.map((item) => (
@@ -121,13 +124,13 @@ const CartItems: React.FC = () => {
                     <span className="text-sm md:text-base">${item.price}</span>
 
                     {/* Quantity Controls */}
-                    <div className="flex items-center border border-gray-400 rounded-sm w-fit">
+                    <div className="flex items-center border border-gray-400 shadow-2xs rounded-sm w-fit">
 
-                        <button onClick={()=> dispatch(decrementQuantity(item.id))} className='cursor-pointer px-1'>-</button>
-                        <span className="flex items-center px-4 py-2 border-x border-gray-400 min-w-[60px] text-center">
+                        <button onClick={()=> dispatch(decrementQuantity(item.id))} className='cursor-pointer px-2.5'>-</button>
+                        <span className="flex items-center px-4 py-2 border-x border-gray-400 min-w-10 text-center">
                             <span>{item.quantity}</span>
                         </span>
-                        <button onClick={()=> dispatch(incrementQuantity(item.id))} className='cursor-pointer px-1'>+</button>
+                        <button onClick={()=> dispatch(incrementQuantity(item.id))} className='cursor-pointer px-2.5'>+</button>
 
                     </div>
 
@@ -164,9 +167,18 @@ const CartTotalBox: React.FC = () => {
                 <div className='flex justify-between py-2 border-b border-gray-300'>
                     <p>Subtotal:</p> <p>${subtotal.toFixed(2)}</p>
                 </div> {/* Shipping Row */}
-                <div className='flex justify-between py-2 border-b border-gray-300'>
+                <div className='flex justify-between flex-col gap-2 py-2 border-b border-gray-300'>
                     <p>Shipping:</p>
-                    <p>${shipping}</p>
+                    <div className='flex justify-between flex-col gap-2'>
+                        <ul>
+                            <li>
+                        <input type="radio" name="shipping" id="inside-dhaka " className=' cursor-pointer ' /> Inside Dhaka <span className=' ml-[154px] ' >${shipping}</span>
+                            </li>
+                            <li>
+                        <input type="radio" name="shipping" id="outside-dhaka" className=' cursor-pointer ' /> Outside Dhaka <span className=' ml-35 ' >${shipping}</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div> {/* Total Row */}
                 <div className='flex justify-between py-2 mb-6'>
                     <p className='font-medium'>Total:</p>

@@ -4,6 +4,7 @@ import { categoriesApi } from '../api/categoriesApi'
 import categoryReducer from "../features/category/categorySlice"
 import WishlistReducer from '../features/wishlist/wishlistSlice'
 import cartReducer from '../features/cart/cartSlice'
+// import { cartApi } from '../api/cartApi'
 
 
 export const store = configureStore({
@@ -14,11 +15,14 @@ export const store = configureStore({
     cart: cartReducer,
     [productsApi.reducerPath]: productsApi.reducer,
     [categoriesApi.reducerPath]: categoriesApi.reducer,
+    // [cartApi.reducerPath]: cartApi.reducer,
+
   },
    middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
    .concat(productsApi.middleware)
-   .concat(categoriesApi.middleware),
+   .concat(categoriesApi.middleware)
+  //  .concat(cartApi.middleware)
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
