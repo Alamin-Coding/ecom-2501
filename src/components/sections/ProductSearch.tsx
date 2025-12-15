@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Search, X } from 'lucide-react';
+import type { Product } from '../../types';
 
 export default function ProductSearch() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -8,43 +9,16 @@ export default function ProductSearch() {
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
-  const products = [
-    {
-      id: 1,
-      name: 'Jedel W926 Wireless Mouse',
-      price: 550,
-      image: '🖱️'
-    },
-    {
-      id: 2,
-      name: 'Jedel M11 Wireless Mouse',
-      price: 550,
-      image: '🖱️'
-    },
-    {
-      id: 3,
-      name: 'Joyroom JR-EC06 In-Ear Metal Type-C Wired Earphone',
-      price: 590,
-      image: '🎧'
-    },
-    {
-      id: 4,
-      name: 'Jedel K26 Wired Keyboard',
-      price: 395,
-      originalPrice: 600,
-      image: '⌨️'
-    },
-    {
-      id: 5,
-      name: 'Joyroom S-A40 Colorful Series 1M 30W Type-C to 3-in-1 Fast Charging Cable',
-      price: 780,
-      image: '🔌'
-    }
-  ];
 
-  const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+    // Products fetched based on search term
+  const [searchProductResult, setSearchProductResult] = useState([]);
+  useEffect(()=> {
+    fetch(`https://dummyjson.com/products/search?q=${searchTerm}`)
+    .then(res => res.json())
+    .then((data) => setSearchProductResult(data.products))
+  }, [searchTerm])
+
+
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -131,27 +105,27 @@ export default function ProductSearch() {
             <div className="flex-1 overflow-y-auto">
               {activeTab === 'products' && (
                 <>
-                  {filteredProducts.length > 0 ? (
+                  {searchTerm.length > 0 ? (
                     <>
-                      {filteredProducts.map((product) => (
+                      {searchTerm.length > 0 && searchProductResult.map((product:Product) => (
                         <div
                           key={product.id}
                           className="flex items-center gap-4 px-4 py-3 border-b border-gray-100"
                         >
                           <div className="w-12 h-12 bg-gray-100 rounded flex items-center justify-center text-2xl flex-shrink-0">
-                            {product.image}
+                            <img src={product.thumbnail} alt={product.thumbnail} />
                           </div>
                           <div className="flex-1 min-w-0">
                             <h3 className="text-sm text-gray-900 font-normal mb-1 line-clamp-2">
-                              {product.name}
+                              {product.title}
                             </h3>
                             <div className="flex items-center gap-2">
                               <span className="text-red-500 font-semibold">
                                 {product.price}৳
                               </span>
-                              {product.originalPrice && (
+                              {product.discountPercentage && (
                                 <span className="text-gray-400 text-sm line-through">
-                                  {product.originalPrice}৳
+                                  {product.discountPercentage} %
                                 </span>
                               )}
                             </div>
@@ -234,30 +208,30 @@ export default function ProductSearch() {
                 {/* Product Results */}
                 {activeTab === 'products' && (
                   <div className="max-h-96 overflow-y-auto">
-                    {filteredProducts.length > 0 ? (
+                    {searchTerm.length > 0 ? (
                       <>
-                        {filteredProducts.map((product) => (
+                        {searchTerm.length>0 && searchProductResult.slice(0,4).map((product:Product) => (
                           <div
                             key={product.id}
                             className="flex items-center gap-4 px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
                           >
                             {/* Product Image */}
                             <div className="w-12 h-12 bg-gray-100 rounded flex items-center justify-center text-2xl flex-shrink-0">
-                              {product.image}
+                              <img src={product.thumbnail} alt="image" />
                             </div>
 
                             {/* Product Info */}
                             <div className="flex-1 min-w-0">
                               <h3 className="text-sm text-gray-900 font-normal mb-1 line-clamp-2">
-                                {product.name}
+                                {product.title}
                               </h3>
                               <div className="flex items-center gap-2">
                                 <span className="text-red-500 font-semibold">
                                   {product.price}৳
                                 </span>
-                                {product.originalPrice && (
+                                {product.discountPercentage && (
                                   <span className="text-gray-400 text-sm line-through">
-                                    {product.originalPrice}৳
+                                    {product.discountPercentage} %
                                   </span>
                                 )}
                               </div>

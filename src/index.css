@@ -32,6 +32,9 @@
   --shadow-contact: 0 1px 13px  rgba(0, 0, 0, 0.050);
 }
 
+.buttons{
+  position: relative;
+}
 .buttons::after{
   content: "";
   position: absolute;
@@ -44,7 +47,21 @@
   
 }
 
+.active.buttons::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 0;
+  background: rgb(0, 0, 0);
+  transition: all linear 0.3s;
+  
+}
 .buttons:hover::after{
+  width: 100%;
+}
+.active.buttons::after{
   width: 100%;
 }
 

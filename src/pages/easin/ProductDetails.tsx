@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -24,6 +24,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
 import { addTocart, removecart } from "../../features/cart/cartSlice";
 import { removeWishlist } from "../../features/wishlist/wishlistSlice";
+import { selectedCategory } from "../../features/category/categorySlice";
 
 type Size = {
   id: string;
@@ -34,6 +35,8 @@ const ProductDetails: React.FC = () => {
   const sliderRef = useRef<Slider>(null);
   const { id } = useParams();
   const [imageIndex, setImageIndex] = useState(0);
+  const dispatch = useDispatch()
+  const navigate = useNavigate() 
   // console.log(id);
 
   const { data, isLoading } = useGetProductByIdQuery(id!);
@@ -95,11 +98,14 @@ const ProductDetails: React.FC = () => {
     autoplay: true,
   };
 
+  const handleCategory = (category:string)=> {
+    navigate("/shop");
+    dispatch(selectedCategory(category))
+  }
 
 
   return (
     <section>
-      {id}
       <div className="container mt-20 ">
         <Breadcrumb>
           <BreadcrumbList>
@@ -113,7 +119,8 @@ const ProductDetails: React.FC = () => {
             </BreadcrumbSeparator>
             <BreadcrumbItem>
               <BreadcrumbLink>
-                <Link to={`/${data?.category}`}>{data?.category}</Link>
+                {/* <Link to={`/${data?.category}`}>{data?.category}</Link> */}
+                <button onClick={()=> handleCategory(data ? data.category : "")}>{data?.category}</button>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator>
