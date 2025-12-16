@@ -23,7 +23,7 @@ import type { Product, ProductCart } from "../../types";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
 import { addTocart, removecart } from "../../features/cart/cartSlice";
-import { removeWishlist } from "../../features/wishlist/wishlistSlice";
+import { removeWishlist, addToWishList } from "../../features/wishlist/wishlistSlice";
 import { selectedCategory } from "../../features/category/categorySlice";
 
 type Size = {
@@ -101,7 +101,8 @@ const ProductDetails: React.FC = () => {
   const handleCategory = (category:string)=> {
     navigate("/shop");
     dispatch(selectedCategory(category))
-  }
+  };
+
 
 
   return (
@@ -240,17 +241,27 @@ const ProductDetails: React.FC = () => {
 
 export default ProductDetails;
 
-const ProductActions = ({data, id}: {data:Product, id:number}) => {
+const ProductActions = ({data, id, isExist}: {data:Product, id:number, isExist?: ProductCart}) => {
   const [quantity, setQuantity] = useState(1);
-
-
 
   const increment = () => setQuantity((prev) => prev + 1);
   const decrement = () => setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
 
-     const {cart} = useSelector((state: RootState) => state.cart);
-  const isExistCart =  cart?.find(item => item.id === Number(id));
-   const dispatch = useDispatch();
+  const {cart} = useSelector((state: RootState) => state.cart);
+  const { wishList } = useSelector((state: RootState) => state.wishlist);
+  const isExistCart = cart?.find(item => item.id === Number(id));
+  const isExist2 = wishList.find(item => item.id === data.id);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleAddToWishlist = (product: ProductCart) => {
+    if (isExistCart) {
+      dispatch(removecart(product.id));
+      dispatch(addToWishList({ ...product, quantity: 1, subtotal: product.price } as ProductCart));
+    } else {
+      dispatch(addToWishList({ ...product, quantity: 1, subtotal: product.price } as ProductCart));
+    }
+  }
 
 
 
@@ -287,11 +298,14 @@ const ProductActions = ({data, id}: {data:Product, id:number}) => {
           </button>
         </div>
 
-        <button className={`bg-button2 hover:bg-hoverButton transition-all duration-300 cursor-pointer text-white font-medium font-poppins px-12 py-4 rounded-sm `} onClick={()=> handleCartAdd(data)}>Buy Now</button>
+        <button className={`bg-button2 hover:bg-hoverButton transition-all duration-300 cursor-pointer text-white font-medium font-poppins px-12 py-4 rounded-sm `} onClick={()=> handleCartAdd(data )}>Buy Now</button>
 
-        <button className="p-2.5 border border-black  h-full rounded-md hover:bg-gray-100">
-          <Heart className="w-6 h-6" />
-        </button>
+        <button onClick={() => handleAddToWishlist({ ...data, quantity: 1, subtotal: data.price })} className={`${isExist2 ? "bg-red-100" : "bg-white"} p-2 rounded-full shadow hover:bg-gray-100 transition`}>
+
+            {!isExist2 ? <Heart className="w-5 h-5 text-gray-600" /> :
+              <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24"><path className='fill-red-600' d="m12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53z"></path></svg>
+            }
+          </button>
       </div>
 
       {/* Delivery Info */}

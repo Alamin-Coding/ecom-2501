@@ -78,28 +78,7 @@ export default function ProductSearch() {
             </div>
 
             {/* Mobile Tabs */}
-            <div className="flex border-b border-gray-200">
-              <button
-                onClick={() => setActiveTab('products')}
-                className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
-                  activeTab === 'products'
-                    ? 'bg-red-500 text-white'
-                    : 'bg-white text-gray-600'
-                }`}
-              >
-                Products
-              </button>
-              <button
-                onClick={() => setActiveTab('categories')}
-                className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
-                  activeTab === 'categories'
-                    ? 'bg-red-500 text-white'
-                    : 'bg-white text-gray-600'
-                }`}
-              >
-                Categories
-              </button>
-            </div>
+            
 
             {/* Mobile Results */}
             <div className="flex-1 overflow-y-auto">
@@ -181,29 +160,6 @@ export default function ProductSearch() {
             {/* Dropdown Results */}
             {isOpen && (
               <div className="absolute w-[700px] translate-x-[-230px] top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-1000">
-                {/* Tabs */}
-                <div className="flex border-b border-gray-200">
-                  <button
-                    onClick={() => setActiveTab('products')}
-                    className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
-                      activeTab === 'products'
-                        ? 'bg-red-500 text-white'
-                        : 'bg-white text-gray-600 hover:bg-gray-50'
-                    }`}
-                  >
-                    Products
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('categories')}
-                    className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
-                      activeTab === 'categories'
-                        ? 'bg-red-500 text-white'
-                        : 'bg-white text-gray-600 hover:bg-gray-50'
-                    }`}
-                  >
-                    Categories
-                  </button>
-                </div>
 
                 {/* Product Results */}
                 {activeTab === 'products' && (
