@@ -62,12 +62,7 @@ export default function NavBar() {
     // };
   }, []);
 
-  const user = {
-    id: 1,
-    name: "John Doe",
-    password: "password123",
-    email: ""
-  }
+  const user = null
 
   const allNavLinks = navLinks.map((link) => {
     if (!user) {

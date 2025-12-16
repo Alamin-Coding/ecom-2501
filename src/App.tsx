@@ -14,6 +14,7 @@ import ErrorPages from './pages/Error';
 import ProductDetails from './pages/easin/ProductDetails';
 import CheckOut from './pages/easin/CheckOut';
 import Wishlist from './pages/easin/Wishlist';
+import SearchCard from './pages/SearchCard';
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,8 @@ const router = createBrowserRouter([
       { path: "product/details/:id", Component: ProductDetails },
       { path: "checkout", Component: CheckOut },
       { path: "wishlist", Component: Wishlist },
-      {path: "*", Component: ErrorPages}
+      {path: "*", Component: ErrorPages},
+      {path: "search", Component: SearchCard },
     ],
   },
 ]);;

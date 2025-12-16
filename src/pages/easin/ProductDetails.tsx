@@ -188,11 +188,10 @@ const ProductDetails: React.FC = () => {
               </div>
             </p>
 
-            <ProductActions data={data} id={Number(id)} />
+            <ProductActions data ={data} id={Number(id)} />
           </div>
         </div>
 
-        <HeadingHomePage subHeading="Related Items" headingAlign="left" />
         <div>
           {isLoading && (
             <div className="flex items-center mx-auto text-gray-400 text-center justify-center gap-4 text-3xl max-w-[300px]">
@@ -200,6 +199,13 @@ const ProductDetails: React.FC = () => {
             </div>
           )}
         </div>
+
+        <div className=" flex items-center justify-between " >
+
+        <div>
+        <HeadingHomePage subHeading="Related Items" headingAlign="left" />
+        </div>
+
         {/* Right Buttons */}
         <div className="flex justify-end pb-6 items-center gap-2">
           <div
@@ -215,6 +221,9 @@ const ProductDetails: React.FC = () => {
             <ArrowRight />
           </div>
         </div>
+
+        </div>
+
         <Slider {...settings} ref={sliderRef}>
           {categoriesData?.products?.map((category) => {
             return (

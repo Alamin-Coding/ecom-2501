@@ -1,32 +1,58 @@
 import { Icon } from "@iconify/react"
-import { useGetProductsQuery } from "../../api/productApi"
+import { useGetProductsByCategoryQuery, useGetProductsQuery } from "../../api/productApi"
 import Button1 from "../../components/Button1"
 import HeadingHomePage from "../../components/HeadingHomePage"
 import type { Product } from '../../types/index';
-import { Eye } from "lucide-react"
+import { ArrowLeft, ArrowRight, Eye } from "lucide-react"
 import { useDispatch, useSelector } from "react-redux"
 import type { RootState } from "../../store/store"
 import { removeWishlist } from "../../features/wishlist/wishlistSlice"
 import { addTocart, moveAllToBag } from "../../features/cart/cartSlice"
 import { Bounce, toast } from "react-toastify"
+import Slider from "react-slick";
+import type { Slider as SliderType } from "react-slick";
+import ProductCard from "../../components/ProductCard";
+import { useRef } from "react";
+import { Link } from "react-router";
 
 
 const Wishlist: React.FC = () => {
+    const sliderRef = useRef<SliderType>(null);
     const {wishList} = useSelector((state: RootState) => state.wishlist);
     const {cart} = useSelector((state: RootState) => state.cart);
     // const catergoryList = wishList.map(item => item.category);
     const catergoryList = Array.from(new Set(wishList.map(item => item.category)))
-      const { data:firstItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[0] });
-      const { data:secondItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[1] });
-      const { data:thirdItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[2] });
-      const { data:forthItems } = useGetProductsQuery({ limit: 2, skip:0, category: catergoryList[3] });
 
     const dispatch = useDispatch();
     const handleAddToAllCart = () => {
         dispatch(moveAllToBag(wishList))
         wishList.map(list => dispatch(removeWishlist(list.id)))
-
     }
+
+    const handleClickPrev = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
+    }
+  };
+  const handleClickNext = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickNext();
+    }
+  };
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+  };
+
+   const { data: categoriesData } = useGetProductsByCategoryQuery(
+      catergoryList[0] || ""
+    );
+
     return (
         <section>
             <div className="container">
@@ -59,56 +85,48 @@ const Wishlist: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="flex items-start justify-between mt-20">
-                    <HeadingHomePage headingAlign="left" subHeading="Just For You" />
-                    <Button1>See All</Button1>
-                </div>
-
                 <div>
 
                 </div>
-                <div className="grid grid-cols-4 gap-x-7.5 gap-y-15">
-                    {
-                        catergoryList[0] &&
-                        firstItems?.products.map((product) => {
-                            return (
-                                <ProductWishlist  children={
-                                    <Eye/>
-                                } key={product.id} product={product} deleteItem={false} />
-                            )
-                        })
-                    }
-                    {
-                        catergoryList[1] &&
-                        secondItems?.products.map((product) => {
-                            return (
-                                <ProductWishlist  children={
-                                    <Eye/>
-                                } key={product.id} product={product} deleteItem={false} />
-                            )
-                        })
-                    }
-                    {
-                        catergoryList[2] &&
-                        thirdItems?.products.map((product) => {
-                            return (
-                                <ProductWishlist  children={
-                                    <Eye/>
-                                } key={product.id} product={product} deleteItem={false} />
-                            )
-                        })
-                    }
-                    {
-                        catergoryList[3] &&
-                        forthItems?.products.map((product) => {
-                            return (
-                                <ProductWishlist  children={
-                                    <Eye/>
-                                } key={product.id} product={product} deleteItem={false} />
-                            )
-                        })
-                    }
-                </div>
+
+                <div className=" flex items-center justify-between mt-20 " >
+
+        <div>
+        <HeadingHomePage headingAlign="left" subHeading="Just For You" />
+        </div>
+
+        {/* Right Buttons */}
+        <div className="flex justify-end pb-6 items-center gap-2">
+          <div
+            onClick={handleClickPrev}
+            className="bg-secondary rounded-full flex items-center justify-center w-11.5 h-11.5"
+          >
+            <ArrowLeft />
+          </div>
+          <div
+            onClick={handleClickNext}
+            className="bg-secondary rounded-full flex items-center justify-center w-11.5 h-11.5"
+          >
+            <ArrowRight />
+          </div>
+        </div>
+
+        </div>
+
+        <Slider {...settings} ref={sliderRef}>
+          {categoriesData?.products?.map((category) => {
+            return (
+              <div key={category.id} className="px-3">
+                <ProductCard product={category} />
+              </div>
+            );
+          })}
+        </Slider>
+
+                <Link to={"/shop"} className="flex items-start justify-center mt-20">
+                    <Button1>See All</Button1>
+                </Link>
+
             </div>
         </section>
     )

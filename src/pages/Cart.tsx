@@ -58,13 +58,7 @@ const Cart: React.FC = () => {
                         <Link to={"/shop"} className='bg-white cursor-pointer transition-all duration-300 hover:bg-hoverButton2 border-gray-500 border text-black font-medium font-poppins px-12 py-4 rounded-sm'>
                             Return To Shop
                         </Link>
-                        <Button1>
-                            Update Cart
-                        </Button1>
-                    </div>
 
-                    {/* Coupon and Cart Total Section */}
-                    <div className="grid grid-cols-[auto_1fr] justify-between  mb-20">
                         {/* Coupon Section */}
                         <div className="flex  items-start gap-4">
                             <input
@@ -76,7 +70,10 @@ const Cart: React.FC = () => {
                                 Apply Coupon
                             </Button2>
                         </div>
+                    </div>
 
+                    {/* Coupon and Cart Total Section */}
+                    <div className=" mb-20">
                         {/* Cart Total Box */}
                         <CartTotalBox />
                     </div>
