@@ -49,9 +49,23 @@ const Wishlist: React.FC = () => {
     autoplay: true,
   };
 
-   const { data: categoriesData } = useGetProductsByCategoryQuery(
-      catergoryList[0] || ""
-    );
+        let categoriesData:Product[] = []
+
+      catergoryList?.map((_, index)=> {
+        const { data:selcetItem } = useGetProductsQuery({ limit: 3, skip:0, category: catergoryList[index] });
+        wishList.find((item) => {
+          const itemId =  item.id
+          const fff =  selcetItem?.products.filter(p => p.id !== itemId)
+          // if (itemId === ) {
+            
+          // }
+          categoriesData.push(...fff || [])
+        })
+      })
+
+
+
+   
 
     return (
         <section>
@@ -114,7 +128,7 @@ const Wishlist: React.FC = () => {
         </div>
 
         <Slider {...settings} ref={sliderRef}>
-          {categoriesData?.products?.map((category) => {
+          {categoriesData?.map((category) => {
             return (
               <div key={category.id} className="px-3">
                 <ProductCard product={category} />

@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { Search, X } from 'lucide-react';
 import type { Product } from '../../types';
+import { Link } from 'react-router';
 
 export default function ProductSearch() {
+  const [allProduct, setAllProducts] = useState([])
   const [searchTerm, setSearchTerm] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('products');
@@ -10,13 +12,33 @@ export default function ProductSearch() {
   const searchRef = useRef<HTMLDivElement>(null);
 
 
-    // Products fetched based on search term
+  // Products fetched based on search term
   const [searchProductResult, setSearchProductResult] = useState([]);
-  useEffect(()=> {
-    fetch(`https://dummyjson.com/products/search?q=${searchTerm}`)
-    .then(res => res.json())
-    .then((data) => setSearchProductResult(data.products))
+
+  useEffect(() => {
+    try {
+      fetch(`https://dummyjson.com/products?limit=193`)
+        .then(res => res.json())
+        .then((data) => setAllProducts(data.products))
+           if (searchTerm.length > 0) {
+        const result = allProduct.filter((item: Product) => item.title.toLowerCase().includes(searchTerm.toLowerCase()))
+        setSearchProductResult(result)
+      }
+
+    } catch (error) {
+      console.log(error);
+
+    }
   }, [searchTerm])
+
+
+
+
+
+
+
+
+
 
 
 
@@ -78,7 +100,7 @@ export default function ProductSearch() {
             </div>
 
             {/* Mobile Tabs */}
-            
+
 
             {/* Mobile Results */}
             <div className="flex-1 overflow-y-auto">
@@ -86,8 +108,9 @@ export default function ProductSearch() {
                 <>
                   {searchTerm.length > 0 ? (
                     <>
-                      {searchTerm.length > 0 && searchProductResult.map((product:Product) => (
-                        <div
+                      {searchTerm.length > 0 && searchProductResult.map((product: Product) => (
+                        <Link 
+                          to={`/product/details/${product.id}`}
                           key={product.id}
                           className="flex items-center gap-4 px-4 py-3 border-b border-gray-100"
                         >
@@ -109,7 +132,7 @@ export default function ProductSearch() {
                               )}
                             </div>
                           </div>
-                        </div>
+                        </Link>
                       ))}
                       <div className="px-4 py-3 text-center border-t border-gray-100">
                         <button className="text-red-500 text-sm font-medium">
@@ -127,7 +150,7 @@ export default function ProductSearch() {
 
               {activeTab === 'categories' && (
                 <div className="px-4 py-8 text-center text-gray-500">
-                 
+
                 </div>
               )}
             </div>
@@ -166,8 +189,9 @@ export default function ProductSearch() {
                   <div className="max-h-96 overflow-y-auto">
                     {searchTerm.length > 0 ? (
                       <>
-                        {searchTerm.length>0 && searchProductResult.slice(0,4).map((product:Product) => (
-                          <div
+                        {searchTerm.length > 0 && searchProductResult.slice(0, 4).map((product: Product) => (
+                          <Link
+                            to={`/product/details/${product.id}`}
                             key={product.id}
                             className="flex items-center gap-4 px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
                           >
@@ -192,9 +216,9 @@ export default function ProductSearch() {
                                 )}
                               </div>
                             </div>
-                          </div>
+                          </Link>
                         ))}
-                        
+
                         {/* See All Results */}
                         <div className="px-4 py-3 text-center border-t border-gray-100">
                           <button className="text-red-500 text-sm font-medium hover:underline">
@@ -213,13 +237,13 @@ export default function ProductSearch() {
                 {/* Categories Tab */}
                 {activeTab === 'categories' && (
                   <div className="px-4 py-8 text-center text-gray-500">
-                    
+
                   </div>
                 )}
               </div>
             )}
           </div>
-          
+
         </div>
       </div>
     </div>
