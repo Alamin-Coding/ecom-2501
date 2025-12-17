@@ -2,9 +2,20 @@ import { Link } from "react-router"
 import Button1 from "../components/Button1"
 import Button2 from "../components/Button2"
 import { google, signup } from "../constant/constant"
+import { useState } from "react"
 
 
 const Signup:React.FC = () => {
+     const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        password: '',
+        
+    });
+     const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+   
+    
   return (
     <div className="relative">
         <div className="absolute">
