@@ -1,47 +1,105 @@
-import { Link } from "react-router"
-import Button1 from "../components/Button1"
-import Button2 from "../components/Button2"
-import { google, signup } from "../constant/constant"
+import { Link } from "react-router";
+import Button1 from "../components/Button1";
+import { google, signup } from "../constant/constant";
+import { useState } from "react";
 
-
-const Signup:React.FC = () => {
-  return (
-    <div className="relative">
-        <div className="absolute">
-                <img src={signup} alt="image" />
-            </div>
-        <div className="container mt-15">
-            <div className="grid grid-cols-2  items-center justify-between gap-[120px]">
-                <div>
-
-                </div>
-
-
-            
-            <div className="py-[125px] max-w-[370px] ">
-                <h2 className="font-inter tracking-wide leading-7.5 text-[36px] font-medium mb-6">Create an account</h2>
-                <p className="font-poppins mb-12">Enter your details below</p>
-
-
-                <div className="flex font-poppins text-gray-500  flex-col gap-10">
-                    <input  className=" pb-2 border-b border-button w-full focus:outline-none" type="text" placeholder="Email or Phone Number" />
-                    <input  className=" pb-2 border-b border-button w-full focus:outline-none" type="text" placeholder="Name" />
-                    <input  className=" pb-2 mb-8 border-b border-button w-full focus:outline-none" type="password"  placeholder="Password"/>
-                </div>
-
-                <Button2 className="w-full mb-4">Create Account</Button2>
-                <Button1 className="mb-8 mt-8 flex gap-4 w-full justify-center items-center font-normal">
-                    <img src={google} alt="icon" />
-                    Sign up with Google
-                </Button1>
-                <p className="font-poppins text-center ">Already have an account? 
-                    <Link className="font-medium ml-4 underline underline-offset-8" to={"/login"}>Log In</Link>
-                </p>
-            </div>
-            </div>
-        </div>
-    </div>
-  )
+interface UserData {
+  fullName: string;
+  email: string;
+  password: string;
 }
 
-export default Signup
+const Signup: React.FC = () => {
+
+  const [userData, setUserData] = useState<UserData>({
+    fullName: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+   
+
+    // signup(userData.email, userData.password);
+  };
+
+  return (
+    <div className="relative">
+      <div className="absolute">
+        <img src={signup} alt="image" />
+      </div>
+
+      <div className="container mt-15">
+        <div className="grid grid-cols-2 items-center gap-[120px]">
+          <div></div>
+
+          <div className="py-[125px] max-w-[370px]">
+            <h2 className="font-inter text-[36px] font-medium mb-6">
+              Create an account
+            </h2>
+            <p className="font-poppins mb-12">Enter your details below</p>
+
+            <form onSubmit={handleSubmit} className="flex flex-col gap-10 font-poppins text-gray-500">
+              <input
+                className="pb-2 border-b border-button focus:outline-none"
+                name="email"
+                type="email"
+                placeholder="Email or Phone Number"
+                value={userData.email}
+                onChange={handleChange}
+              />
+
+              <input
+                className="pb-2 border-b border-button focus:outline-none"
+                name="fullName"
+                type="text"
+                placeholder="Name"
+                value={userData.fullName}
+                onChange={handleChange}
+              />
+
+              <input
+                className="pb-2 border-b border-button mb-8 focus:outline-none"
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={userData.password}
+                onChange={handleChange}
+              />
+
+              <button className= "bg-button2 hover:bg-red-600 transition-all duration-300 cursor-pointer text-white font-medium font-poppins px-12 py-4 rounded-sm w-full ">
+                Create Account
+              </button>
+            </form>
+
+            <Button1  className="mb-8 mt-8 flex gap-4 w-full justify-center items-center font-normal">
+              <img src={google} alt="icon" />
+              Sign up with Google
+            </Button1>
+
+            <p className="font-poppins text-center">
+              Already have an account?
+              <Link
+                className="font-medium ml-4 underline underline-offset-8"
+                to="/login"
+              >
+                Log In
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Signup;
