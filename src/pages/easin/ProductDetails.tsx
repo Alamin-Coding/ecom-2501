@@ -332,13 +332,13 @@ const ProductActions = ({
 			<div className="flex items-center gap-2">
 				{isExistCart ? (
 					<div className="flex border rounded-md overflow-hidden">
-						<button className="px-3 py-2 text-lg font-semibold  text-black cursor-pointer hover:text-white hover:bg-button2">
+						<button className="px-3 py-2 text-lg font-semibold  text-black dark:text-amber-50 cursor-pointer hover:text-white hover:bg-button2">
 							-
 						</button>
 						<div className="px-4 py-2 border-x text-lg font-medium">
 							{selectedProduct?.quantity}
 						</div>
-						<button className="px-3 py-2 text-lg font-semibold  text-black cursor-pointer hover:text-white hover:bg-button2">
+						<button className="px-3 py-2 text-lg font-semibold dark:text-amber-50  text-black cursor-pointer hover:text-white hover:bg-button2">
 							+
 						</button>
 					</div>
@@ -346,7 +346,7 @@ const ProductActions = ({
 					<div className="flex border rounded-md overflow-hidden">
 						<button
 							onClick={decrement}
-							className="px-3 py-2 text-lg font-semibold  text-black cursor-pointer hover:text-white hover:bg-button2"
+							className="px-3 py-2 text-lg font-semibold  text-black dark:text-amber-50 text-w cursor-pointer hover:text-white hover:bg-button2"
 						>
 							-
 						</button>
@@ -355,7 +355,7 @@ const ProductActions = ({
 						</div>
 						<button
 							onClick={increment}
-							className="px-3 py-2 text-lg font-semibold  text-black cursor-pointer hover:text-white hover:bg-button2"
+							className="px-3 py-2 text-lg font-semibold  text-black dark:text-amber-50 cursor-pointer hover:text-white hover:bg-button2"
 						>
 							+
 						</button>
@@ -364,12 +364,19 @@ const ProductActions = ({
 
 				{/* --------------- */}
 
-				<button
-					className={`bg-button2 hover:bg-hoverButton transition-all duration-300 cursor-pointer text-white font-medium font-poppins px-12 py-4 rounded-sm whitespace-nowrap`}
-					onClick={() => handleCartAdd(data)}
-				>
-					{isExistCart ? "Already Added" : "Buy Now"}
-				</button>
+				{isExistCart ? 
+					<button
+					className={`bg-green-600 hover:bg-green-800 transition-all duration-300 cursor-pointer text-white hover:font-bold font-medium font-poppins px-12 py-4 rounded-sm whitespace-nowrap`}
+					onClick={() => handleCartAdd(data)}> 
+					<h1> Add To Card </h1>
+				</button> 
+					: 
+					<button
+					className={`bg-button2 hover:bg-red-600 transition-all duration-300 cursor-pointer text-white font-medium font-poppins px-12 py-4 rounded-sm whitespace-nowrap`}
+					onClick={() => handleCartAdd(data)}> 
+					<h1> Buy Now </h1>
+				</button> 
+				}
 
 				<button
 					onClick={() =>

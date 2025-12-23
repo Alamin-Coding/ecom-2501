@@ -3,6 +3,7 @@ import { Home, ShoppingCart } from "lucide-react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../store/store";
 import ProductCard from "../components/ProductCard";
+import { Link } from "react-router";
 
 const AppleProductSearch: React.FC = () => {
 	const [selectedCategory, setSelectedCategory] = useState<string>("");
@@ -34,12 +35,12 @@ const AppleProductSearch: React.FC = () => {
 	};
 
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen">
 			{/* Navigation */}
-			<div className="bg-white border-b">
+			<div className=" border-b">
 				<div className="max-w-7xl mx-auto px-4 py-3">
-					<div className="flex items-center gap-2 text-sm text-gray-600">
-						<Home size={16} />
+					<div className="flex items-center cursor-pointer gap-2 text-sm text-gray-600">
+						<Link to={"/"}> <Home size={16} /> </Link>
 						<span>/</span>
 						<span>Search</span>
 					</div>
@@ -47,7 +48,7 @@ const AppleProductSearch: React.FC = () => {
 			</div>
 
 			{/* Category Pills */}
-			<div className="bg-white border-b">
+			<div className="bg-slate-300 dark:bg-slate-800 border-b">
 				<div className="max-w-7xl mx-auto px-4 py-4">
 					<div className="flex flex-wrap gap-2">
 						{tags.map((category) => (
