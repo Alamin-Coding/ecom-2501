@@ -1,45 +1,37 @@
-
-
-import Services from "../../components/Services"
-import Arrival from "../../components/sections/easin/Arrival";
-import BestSellProducts from "../../components/sections/easin/BestSellProducts";
-import BgCount from "../../components/sections/easin/BgCount";
-import Categories from "../../components/sections/easin/Categories";
-import ExploreProducts from "../../components/sections/easin/ExploreProducts";
-import FlashSale from "../../components/sections/easin/FlashSale";
-import Hero from "../../components/sections/easin/Hero";
-
-
+import Services from "../../components/Services";
+import Arrival from "../../components/sections/Arrival";
+import BestSellProducts from "../../components/sections/BestSellProducts";
+import BgCount from "../../components/sections/BgCount";
+import Categories from "../../components/sections/Categories";
+import ExploreProducts from "../../components/sections/ExploreProducts";
+import FlashSale from "../../components/sections/FlashSale";
+import Hero from "../../components/sections/Hero";
 
 const Home: React.FC = () => {
+	return (
+		<div className="container">
+			<Hero />
 
+			<FlashSale />
+			{/* Categories */}
+			<Categories />
 
-    return (
-        <div className="container">
+			{/* Best Selling */}
+			<BestSellProducts />
 
-            <Hero/>
+			{/* Counter  */}
+			<BgCount />
 
-            <FlashSale/>
-            {/* Categories */}
-            <Categories/>
+			{/* Products */}
+			<ExploreProducts />
 
-            {/* Best Selling */}
-            <BestSellProducts/>
+			{/* New Arrival Section */}
+			<Arrival />
 
-            {/* Counter  */}
-            <BgCount/>
+			{/* Service Section */}
+			<Services />
+		</div>
+	);
+};
 
-            {/* Products */}
-            <ExploreProducts/>
-
-            {/* New Arrival Section */}
-            <Arrival/>
-
-            {/* Service Section */}
-            <Services />
-
-        </div>
-    )
-}
-
-export default Home
+export default Home;

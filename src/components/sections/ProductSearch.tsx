@@ -12,7 +12,7 @@ export default function ProductSearch() {
 	const [allProduct, setAllProducts] = useState([]);
 	const [searchTerm, setSearchTerm] = useState("");
 	const [isOpen, setIsOpen] = useState(false);
-	const [activeTab, setActiveTab] = useState("products");
+	const [activeTab] = useState("products");
 	const [showMobileSearch, setShowMobileSearch] = useState(false);
 	const searchRef = useRef<HTMLDivElement>(null);
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Home, ShoppingCart } from "lucide-react";
+import { Home } from "lucide-react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../store/store";
 import ProductCard from "../components/ProductCard";
@@ -40,7 +40,10 @@ const AppleProductSearch: React.FC = () => {
 			<div className=" border-b">
 				<div className="max-w-7xl mx-auto px-4 py-3">
 					<div className="flex items-center cursor-pointer gap-2 text-sm text-gray-600">
-						<Link to={"/"}> <Home size={16} /> </Link>
+						<Link to={"/"}>
+							{" "}
+							<Home size={16} />{" "}
+						</Link>
 						<span>/</span>
 						<span>Search</span>
 					</div>

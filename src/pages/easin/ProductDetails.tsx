@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { nanoid } from "nanoid";
 import { useRef, useState } from "react";
-import Button2 from "../../components/Button2";
+// Button2 not used in this file
 import HeadingHomePage from "../../components/HeadingHomePage";
 import {
 	useGetProductByIdQuery,
@@ -25,16 +25,10 @@ import {
 import { Spinner } from "../../components/ui/spinner";
 import ProductCard from "../../components/ProductCard";
 import Slider from "react-slick";
-import SvgIcon from "../../components/SvgIcon";
 import type { Product, ProductCart } from "../../types";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
-import {
-	addTocart,
-	decrementQuantity,
-	incrementQuantity,
-	removecart,
-} from "../../features/cart/cartSlice";
+import { addTocart, removecart } from "../../features/cart/cartSlice";
 import {
 	removeWishlist,
 	addToWishList,
@@ -47,7 +41,7 @@ type Size = {
 };
 
 const ProductDetails: React.FC = () => {
-	const sliderRef = useRef<Slider>(null);
+	const sliderRef = useRef<any>(null);
 	const { id } = useParams();
 	const [imageIndex, setImageIndex] = useState(0);
 	const dispatch = useDispatch();
@@ -206,7 +200,7 @@ const ProductDetails: React.FC = () => {
 							</div>
 						</p>
 
-						<ProductActions data={data} id={Number(id)} />
+						{data && <ProductActions data={data} id={Number(id)} />}
 					</div>
 				</div>
 
@@ -260,10 +254,11 @@ const ProductActions = ({
 	data,
 	id,
 }: {
-	data: Product;
+	data?: Product;
 	id: number;
 	isExist?: ProductCart;
 }) => {
+	if (!data) return null;
 	const [quantity, setQuantity] = useState(1);
 	const { cart: cartItems } = useSelector((state: RootState) => state.cart);
 
@@ -276,7 +271,7 @@ const ProductActions = ({
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const handleAddToWishlist = (product: ProductCart) => {
+	const handleAddToWishlist = (product: Product | ProductCart) => {
 		if (isExistCart) {
 			dispatch(removecart(product.id));
 			dispatch(
@@ -304,7 +299,7 @@ const ProductActions = ({
 		email: "admin@example.com",
 	};
 
-	const handleCartAdd = (product: ProductCart) => {
+	const handleCartAdd = (product: Product | ProductCart) => {
 		if (!user) {
 			alert("Please login to add items to wishlist");
 			navigate("/login");

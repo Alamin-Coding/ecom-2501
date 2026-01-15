@@ -10,14 +10,13 @@ import { removeWishlist } from "../../features/wishlist/wishlistSlice";
 import { addTocart, moveAllToBag } from "../../features/cart/cartSlice";
 import { Bounce, toast } from "react-toastify";
 import Slider from "react-slick";
-import type { Slider as SliderType } from "react-slick";
 import ProductCard from "../../components/ProductCard";
 import { useRef } from "react";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { selectedCategory } from "../../features/category/categorySlice";
 
 const Wishlist: React.FC = () => {
-	const sliderRef = useRef<SliderType>(null);
+	const sliderRef = useRef<any>(null);
 	const { wishList } = useSelector((state: RootState) => state.wishlist);
 	// const catergoryList = wishList.map(item => item.category);
 	const catergoryList = Array.from(
@@ -26,7 +25,11 @@ const Wishlist: React.FC = () => {
 
 	const dispatch = useDispatch();
 	const handleAddToAllCart = () => {
-		dispatch(moveAllToBag(wishList));
+		dispatch(
+			moveAllToBag(
+				wishList.map((p) => ({ ...p, quantity: 1, subtotal: p.price }))
+			)
+		);
 		wishList.map((list) => dispatch(removeWishlist(list.id)));
 	};
 

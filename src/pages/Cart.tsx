@@ -7,7 +7,6 @@ import {
     BreadcrumbSeparator,
 } from "../components/ui/breadcrumb";
 import { Slash, X } from 'lucide-react';
-import Button1 from '../components/Button1';
 import Button2 from '../components/Button2';
 import { Link } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
