@@ -34,15 +34,17 @@ const Signup: React.FC = () => {
 
   return (
     <div className="relative">
-      <div className="absolute">
+      <div className="absolute hidden lg:block ">
         <img src={signup} alt="image" />
       </div>
 
       <div className="container mt-15">
-        <div className="grid grid-cols-2 items-center gap-[120px]">
+        <div className=" ml-12 lg:ml-0 lg:grid lg:grid-cols-2 lg:items-center lg:gap-[120px]">
           <div></div>
 
-          <div className="py-[125px] max-w-[370px]">
+          <h1 className=" ml-20 text-5xl font-extrabold dark:text-amber-50 lg:hidden">Exclusive</h1>
+
+          <div className=" py-14 lg:py-[125px] max-w-[370px]">
             <h2 className="font-inter text-[36px] font-medium mb-6">
               Create an account
             </h2>
@@ -50,7 +52,7 @@ const Signup: React.FC = () => {
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-10 font-poppins text-gray-500">
               <input
-                className="pb-2 border-b border-button focus:outline-none"
+                className="pb-2 border-b border-button dark:border-white dark:text-white focus:outline-none"
                 name="email"
                 type="email"
                 placeholder="Email or Phone Number"
@@ -59,7 +61,7 @@ const Signup: React.FC = () => {
               />
 
               <input
-                className="pb-2 border-b border-button focus:outline-none"
+                className="pb-2 border-b border-button dark:border-white dark:text-white focus:outline-none"
                 name="fullName"
                 type="text"
                 placeholder="Name"
@@ -68,7 +70,7 @@ const Signup: React.FC = () => {
               />
 
               <input
-                className="pb-2 border-b border-button mb-8 focus:outline-none"
+                className="pb-2 border-b border-button dark:border-white dark:text-white mb-8 focus:outline-none"
                 name="password"
                 type="password"
                 placeholder="Password"

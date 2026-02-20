@@ -83,15 +83,15 @@ const Categories: React.FC = () => {
 						return (
 							<div
 								key={category.slug}
-								className="px-3"
+								className="px-3 "
 								onClick={() => handleFilter(category.slug)}
 							>
 								<div
 									title={category.name}
-									className="category_item py-6 transition-all duration-400 group cursor-pointer px-10 border border-gray-500 space-y-4 flex flex-col items-center justify-center hover:bg-button2"
+									className="category_item py-6 transition-all duration-400 group cursor-pointer px-10 border border-gray-500 space-y-4 flex flex-col items-center justify-center rounded-2xl hover:bg-button2 bg-transparent dark:bg-slate-800"
 								>
 									<div className="svg_hover">
-										<SvgIcon />
+										<SvgIcon/>
 									</div>
 									<p className="group-hover:text-white line-clamp-1">
 										{category.name}

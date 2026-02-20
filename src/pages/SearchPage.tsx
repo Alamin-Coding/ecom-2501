@@ -75,7 +75,7 @@ const AppleProductSearch: React.FC = () => {
 			<div className="max-w-7xl mx-auto px-4 py-6">
 				{/* Header */}
 				<div className="flex items-center justify-between mb-6">
-					<h1 className="text-2xl font-semibold text-gray-900">
+					<h1 className="text-2xl font-semibold text-gray-900 dark:text-amber-50">
 						Search - {keyWord.charAt(0).toUpperCase() + keyWord.slice(1)}
 					</h1>
 					<div className="flex items-center gap-2">

@@ -129,10 +129,10 @@ const Countdown: React.FC<{ targetDate: string }> = ({ targetDate }) => {
 						key={unit.label}
 						className="  flex flex-col justify-center items-center "
 					>
-						<span className="text-xs font-poppins text-gray-700 font-medium">
+						<span className="text-xs font-poppins text-gray-700 dark:text-amber-50 font-medium">
 							{unit.label}
 						</span>
-						<p className=" font-bold font-inter text-[32px] text-black">
+						<p className=" font-bold font-inter text-[25px] lg:text-[32px] text-black dark:text-amber-50">
 							{unit.value.toString().padStart(2, "0")}{" "}
 							{index < 3 ? <span className="text-button2">:</span> : ""}
 						</p>
@@ -146,11 +146,13 @@ const Countdown: React.FC<{ targetDate: string }> = ({ targetDate }) => {
 function PrevArrow(props: any) {
 	const { onClick } = props;
 	return (
+		<div className=" hidden lg:block">
 		<div
 			onClick={onClick}
 			className="bg-secondary rounded-full flex items-center justify-center w-11.5 h-11.5 absolute -top-[100px] right-[100px] z-50 cursor-pointer transition-all hover:bg-button2 hover:text-white"
 		>
 			<ArrowLeft />
+		</div>
 		</div>
 	);
 }
@@ -158,11 +160,13 @@ function PrevArrow(props: any) {
 function NextArrow(props: any) {
 	const { onClick } = props;
 	return (
+		<div className=" hidden lg:block">
 		<div
 			onClick={onClick}
-			className="bg-secondary rounded-full flex items-center justify-center w-11.5 h-11.5 absolute -top-[100px] right-5 z-50 cursor-pointer transition-all hover:bg-button2 hover:text-white"
+			className=" bg-secondary rounded-full flex items-center justify-center w-11.5 h-11.5 absolute -top-[100px] right-5 z-50 cursor-pointer transition-all hover:bg-button2 hover:text-white"
 		>
 			<ArrowRight />
+		</div>
 		</div>
 	);
 }

@@ -17,14 +17,14 @@ const Arrival: React.FC = () => {
 		<section>
 			<HeadingHomePage subHeading="Featured" heading="New Arrival" />
 			{/* Main Grid */}
-			<div className="grid grid-cols-2  gap-7.5 h-[600px] items-center justify-between">
+			<div className=" flex-col space-y-3 lg:space-y-0 lg:grid grid-cols-2  gap-7.5  items-center justify-between">
 				{/* Left Column */}
-				<div className="bg-black dark:bg-slate-400 relative flex items-end rounded-sm overflow-hidden justify-end  h-[600px]">
-					<div className="h-full w-full">
+				<div className="bg-black dark:bg-slate-400 relative flex items-end rounded-sm overflow-hidden justify-end  h-[350px] lg:h-[600px]">
+					<div className="h-full w-full grid  justify-center ">
 						<img
 							src={newArival[0].thumbnail}
 							alt="image"
-							className="rounded-sm h-full w-full"
+							className="rounded-sm h-[320px] lg:h-full w-[320px] lg:w-full "
 						/>
 					</div>
 

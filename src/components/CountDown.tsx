@@ -42,12 +42,12 @@ const Countdown: React.FC<{ targetDate: string }> = ({ targetDate }) => {
   ];
 
   return (
-    <section className=" flex max-w-[320px] justify-center">
+    <section className=" flex max-w-[280px] lg:max-w-[320px] justify-center">
       <div className="flex flex-wrap justify-center items-center gap-6">
         {timeUnits.map((unit) => (
           <div
             key={unit.label}
-            className="w-15.5 h-15.5  rounded-full bg-white flex flex-col justify-center items-center "
+            className="w-12 lg:w-15.5 h-12 lg:h-15.5  rounded-full bg-white flex flex-col justify-center items-center "
           >
             <p className=" font-bold text-black">
               {unit.value.toString().padStart(2, "0")}

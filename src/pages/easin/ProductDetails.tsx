@@ -147,10 +147,10 @@ const ProductDetails: React.FC = () => {
 				</Breadcrumb>
 
 				{/* Grid Layout */}
-				<div className="mt-20 grid grid-cols-[1fr_auto] items-center gap-17.5 mb-[140px]">
+				<div className="mt-20 flex-col lg:grid lg:grid-cols-[1fr_auto] items-center gap-17.5 mb-[140px]">
 					{/* Left Side images*/}
-					<div className="max-w-[700] gap-7.5 grid grid-cols-[170px_1fr]">
-						<div className="w-[170px] grid gap-y-4 grid-cols-1 ">
+					<div className="max-w-[700] gap-7.5 flex-col lg:grid lg:grid-cols-[170px_1fr]">
+						<div className=" lg:w-[170px] mb-4 lg:mb-0 justify-center flex gap-10 lg:grid lg:gap-y-4 lg:grid-cols-1 ">
 							{data?.images.map((img, index) => (
 								<div
 									onClick={() => handleImageClick(index)}
@@ -168,8 +168,8 @@ const ProductDetails: React.FC = () => {
 					</div>
 
 					{/* Right Side text */}
-					<div className="max-w-[400px]">
-						<div className="space-y-4 border-b ">
+					<div className="max-w-[400px] ">
+						<div className="space-y-4 border-b mt-8 lg:mt-0 ">
 							<h2 className="text-2xl font-semibold font-inter">
 								{data?.title}
 							</h2>
@@ -382,7 +382,7 @@ const ProductActions = ({
 					} p-2 rounded-full shadow hover:bg-gray-100 transition`}
 				>
 					{!isExist2 ? (
-						<Heart className="w-5 h-5 text-gray-600" />
+						<Heart className="w-5 h-5 text-gray-600 cursor-pointer " />
 					) : (
 						<svg
 							xmlns="http://www.w3.org/2000/svg"

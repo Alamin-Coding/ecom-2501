@@ -22,7 +22,7 @@ const BestSellProducts: React.FC = () => {
 				<div>{isLoading && <Loading />}</div>
 
 				{/* Grid Layout*/}
-				<div className="grid grid-cols-4 gap-x-7.5 gap-y-15">
+				<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-7.5 gap-y-15">
 					{data?.products?.slice(0, 4).map((product) => {
 						return <ProductCard key={product.id} product={product} />;
 					})}

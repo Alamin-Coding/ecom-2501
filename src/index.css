@@ -238,3 +238,15 @@ input:checked ~ .dot {
     top: 0;
   }
 }
+
+.swiper-button-next {
+  visibility: hidden;
+}
+
+.swiper-button-prev {
+  visibility: hidden;
+}
+
+.swiper-pagination-bullets{
+ visibility: hidden;
+}

@@ -69,16 +69,16 @@ export default function ProductSearch() {
 				<div className="flex items-center justify-between px-4 py-3">
 					<button
 						onClick={() => setShowMobileSearch(true)}
-						className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+						className="p-2 hover:bg-gray-100 dark:hover:bg-transparent cursor-pointer rounded-lg transition-colors"
 					>
-						<Search className="w-5 h-5 text-gray-600" />
+						<Search className="w-5 h-5 text-gray-600 dark:text-amber-50" />
 					</button>
 				</div>
 			</div>
 
 			{/* Mobile Search Overlay */}
 			{showMobileSearch && (
-				<div className="fixed inset-0 bg-white z-50 md:hidden">
+				<div className="fixed inset-0 bg-white dark:bg-slate-950 z-50 md:hidden">
 					<div className="flex flex-col h-full">
 						{/* Mobile Search Header */}
 						<div className="flex items-center gap-3 px-4 py-3 border-b border-gray-200">
@@ -90,9 +90,9 @@ export default function ProductSearch() {
 								}}
 								className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
 							>
-								<X className="w-5 h-5 text-gray-600" />
+								<X className="w-5 h-5 text-red-700" />
 							</button>
-							<div className="flex-1 flex items-center bg-gray-100 rounded-lg px-4 py-2">
+							<div className="flex-1 flex items-center bg-gray-100 dark:bg-slate-600 rounded-lg px-4 py-2">
 								<input
 									type="text"
 									placeholder="What are you looking for?"
@@ -176,7 +176,7 @@ export default function ProductSearch() {
 				<div className="w-[243px] h-[38px] mx-auto" ref={searchRef}>
 					<div className="relative">
 						{/* Search Input */}
-						<div className="bg-white rounded-lg shadow-sm border border-gray-200">
+						<div className="bg-white dark:bg-slate-800 rounded-lg shadow-sm border border-gray-200">
 							<div className="flex items-center px-4 py-3">
 								<input
 									type="text"
@@ -189,13 +189,13 @@ export default function ProductSearch() {
 									onFocus={() => setIsOpen(true)}
 									className="flex-1 outline-none text-gray-700 placeholder-gray-400"
 								/>
-								<Search className="w-5 h-5 text-black " />
+								<Search className="w-5 h-5 text-black dark:text-amber-50 " />
 							</div>
 						</div>
 
 						{/* Dropdown Results */}
 						{isOpen && (
-							<div className="absolute w-[700px] translate-x-[-230px] top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden z-1000">
+							<div className="absolute w-[700px] translate-x-[-230px] top-full left-0 right-0 mt-2 bg-white dark:bg-slate-700 rounded-lg shadow-lg border border-gray-200 overflow-hidden z-1000">
 								{/* Product Results */}
 								{activeTab === "products" && (
 									<div className="max-h-96 overflow-y-auto">
@@ -217,7 +217,7 @@ export default function ProductSearch() {
 
 																{/* Product Info */}
 																<div className="flex-1 min-w-0">
-																	<h3 className="text-sm text-gray-900 font-normal mb-1 line-clamp-2">
+																	<h3 className="text-sm text-gray-900 dark:text-amber-50 font-normal mb-1 line-clamp-2">
 																		{product.title}
 																	</h3>
 																	<div className="flex items-center gap-2">

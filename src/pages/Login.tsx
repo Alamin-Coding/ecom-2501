@@ -14,21 +14,21 @@ const LoginPages: React.FC = () => {
      };
 
      return (
-          <div className=' flex items-center  ' >
-               <div>
+          <div className=' flex items-center mt-10 lg:mt-0  ' >
+               <div className=' hidden lg:block' >
                     <img className=' h-[750px] mt-[60px] ' src={signup} alt="loginimages" />
                </div>
 
-               <div className=' ml-[130px] ' >
+               <div className=' ml-16 lg:ml-[130px] ' >
                     <div>
-                         <h2 className='  leading-[30px] text-[36px] font-semibold tracking-wide font-inter' >Log in to Exclusive</h2>
-                         <p className='mt-6 text-[16px] leading-6 ' >Enter your details below</p>
+                         <h2 className='  leading-[30px] text-[36px] font-semibold tracking-wide font-inter' >Log in to <span className=' text-4xl font-extrabold'> Exclusive </span></h2>
+                         <p className='mt-6 dark:text-white text-[16px] lg:text-[20px] leading-6 ' >Enter your details below</p>
                     </div>
 
                     <div className=' mt-12 ' >
-                        <input type="text" placeholder='Email or Phone Number' className='w-full text-black font-semibold focus:outline-none border-b border-button pb-2' />
+                        <input type="text" placeholder='Email or Phone Number' className='w-full text-black dark:text-white font-semibold focus:outline-none border-b border-button dark:border-white pb-2' />
      
-                         <div className="validator-hint hidden">Enter valid email address</div>
+                         <div className="validator-hint dark:text-white hidden">Enter valid email address</div>
                     </div>
 
                     <div className=" pr-4 mt-10 w-[340px]">
@@ -37,7 +37,7 @@ const LoginPages: React.FC = () => {
                                    <button
                                         type="button"
                                         onClick={togglePasswordVisibility}
-                                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-indigo-600 focus:outline-none transition-colors"
+                                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-amber-50 hover:text-indigo-600 focus:outline-none transition-colors"
                                         aria-label={showPassword ? "Hide password" : "Show password"}
                                    >
                                         {showPassword ? (
@@ -53,7 +53,7 @@ const LoginPages: React.FC = () => {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         placeholder="Password"
-                                        className="w-full  py-3 text-black font-semibold border-b border-button focus:outline-none "
+                                        className="w-[362px]  py-3 text-black dark:text-white font-semibold border-b border-button dark:border-white focus:outline-none "
                                    />
                               </div>
                          </div>

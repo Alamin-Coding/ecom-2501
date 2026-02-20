@@ -53,19 +53,23 @@ const Cart: React.FC = () => {
                     <CartItems />
 
                     {/* Action Buttons */}
-                    <div className="flex items-center justify-between mb-20">
-                        <Link to={"/shop"} className='bg-white cursor-pointer transition-all duration-300 hover:bg-hoverButton2 border-gray-500 border text-black font-medium font-poppins px-12 py-4 rounded-sm'>
+                    <Link to={"/shop"} className='bg-white block lg:hidden mb-3 w-[200px] cursor-pointer transition-all duration-300 hover:bg-hoverButton2 border-gray-500 border text-black font-medium font-poppins px-8 lg:px-12 py-2 text-nowrap lg:py-4 rounded-sm'>
+                            Return To Shop
+                        </Link>
+
+                    <div className="flex items-center justify-between mb-20 ">
+                        <Link to={"/shop"} className='bg-white hidden lg:block cursor-pointer transition-all duration-300 hover:bg-hoverButton2 border-gray-500 border text-black font-medium font-poppins px-8 lg:px-12 py-2 text-nowrap lg:py-4 rounded-sm'>
                             Return To Shop
                         </Link>
 
                         {/* Coupon Section */}
-                        <div className="flex  items-start gap-4">
+                        <div className=" flex  items-start gap-4">
                             <input
                                 type="text"
-                                className="py-4 px-6 w-[300px]  font-poppins border border-black rounded-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+                                className="py-4 px-6 w-[250px] lg:w-[300px]  font-poppins border border-black dark:border-amber-50 rounded-sm focus:outline-none focus:ring-2 focus:ring-transparent"
                                 placeholder="Coupon Code"
                             />
-                            <Button2 className=''>
+                            <Button2 className=' text-nowrap py-4'>
                                 Apply Coupon
                             </Button2>
                         </div>
@@ -103,11 +107,11 @@ const CartItems: React.FC = () => {
                             <img
                                 src={item.thumbnail}
                                 alt={item.title}
-                                className="w-16 h-16 object-contain"
+                                className="w-30 lg:w-16 h-16 lg:h-16 object-contain"
                             />
                             <button
                                 onClick={() => dispatch(removecart(item.id))}
-                                className="absolute -top-2 -left-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
+                                className="absolute -top-2 -left-2 bg-red-500 text-white rounded-full w-3 lg:w-5 h-3 lg:h-5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
                                 aria-label="Remove item"
                             >
                                 <X className="w-3 h-3" />
@@ -158,7 +162,7 @@ const CartTotalBox: React.FC = () => {
 
     return (
         <div className='flex justify-end font-poppins mb-20 '>
-            <div className='border border-black py-8 px-6 rounded-sm w-full max-w-sm'>
+            <div className='border border-black py-8 px-6 rounded-sm w-full max-w-full lg:max-w-sm'>
                 <h3 className='text-xl font-medium mb-6'>Cart Total</h3> {/* Subtotal Row */}
                 <div className='flex justify-between py-2 border-b border-gray-300'>
                     <p>Subtotal:</p> <p>${subtotal.toFixed(2)}</p>

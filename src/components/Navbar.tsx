@@ -95,11 +95,27 @@ export default function NavBar() {
 
     <>
       {/* Top Header Design  */}
-      <div className="py-[15px]  bg-black max-w-full text-text relative">
+      <div className="py-[15px]  bg-black dark:bg-slate-800 max-w-full text-text relative hidden lg:block">
         <div className="container">
           <div className="flex items-center justify-between">
             <div className="w-20"></div>
-            <p className="font-poppins sm:text-start md:text-center text-amber-50 text-[14px] ">Summer Sale Free Delivery - OFF 50%! <span><Link className="underline underline-offset-1 font-poppins text-[14px] font-semibold" to="/shop">Shop Now</Link></span></p>
+            <p className="font-poppins sm:text-start md:text-start text-amber-50 text-[14px] ">Summer Sale Free Delivery - OFF 50%! <span><Link className=" underline underline-offset-1 font-poppins text-[14px] font-semibold" to="/shop">Shop Now</Link></span></p>
+            <select className="font-grotesk text-amber-50 self-end">
+              <option className=' bg-black text-amber-50 ' value="english">English</option>
+              <option className=' bg-black text-amber-50 ' value="bengali">Bengali</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile */}
+      <div className="py-[15px]  bg-black max-w-full text-text relative block lg:hidden">
+        <div className="container">
+          <div className="flex items-center justify-between">
+            <p className="font-poppins sm:text-start md:text-center text-amber-50 text-[14px] ">Summer Sale Free Delivery - OFF 50%! <span><Link className=" underline underline-offset-1 font-poppins text-[14px] font-semibold hidden lg:block" to="/shop">Shop Now</Link></span></p>
+           <div className=" block lg:hidden">
+              <p><Link className=" underline underline-offset-1 font-poppins text-[14px] font-semibold block lg:hidden" to="/shop">Shop Now</Link></p>
+            </div>
             <select className="font-grotesk text-amber-50 self-end">
               <option className=' bg-black text-amber-50 ' value="english">English</option>
               <option className=' bg-black text-amber-50 ' value="bengali">Bengali</option>
@@ -137,34 +153,26 @@ export default function NavBar() {
 
             {/* Right: Action Icons */}
             <div className="flex items-center gap-2 md:gap-3 lg:hidden  ">
-              <button
-                onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
-                aria-label="Toggle search"
-              >
-                {isSearchOpen ? (
-                  <X className="h-6 w-6 dark:text-amber-50" />
-                ) : (
-                  <Search className="h-6 w-6 dark:text-amber-50" />
-                )}
-              </button>
+              <ProductSearch/>
 
-              <button
-                className="text-red-500 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-red-500 rounded-lg transition-colors md:block"
-                aria-label="Wishlist"
-              >
-                <Heart className="h-6 w-6 stroke-red-600" />
-              </button>
+              <Link to={"/wishlist"} className='p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors relative'>
+                    <Heart size={25} color="#000000" strokeWidth={2} absoluteStrokeWidth className='dark:stroke-white' />
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                      {wishList.length}
+                    </span>
+              </Link>
 
-              <button
-                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors relative"
-                aria-label="Shopping cart"
-              >
-                <ShoppingCart className="h-6 w-6 dark:text-amber-50" />
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {cart.length}
-                </span>
-              </button>
+               <Link to={"cart"}>
+                    <button
+                      className="p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors relative"
+                      aria-label="Shopping cart"
+                    >
+                      <ShoppingCart size={25} color="#000000" strokeWidth={2} className='dark:stroke-white' />
+                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                        {cart.length}
+                      </span>
+                    </button>
+                  </Link>
             </div>
           </div>
 
@@ -242,7 +250,7 @@ export default function NavBar() {
         {/* Toggle Button */}
         <label ref={themeButton} htmlFor="toggleB" className="flex items-center cursor-pointer absolute top-2 right-5">
           {/* toggle */}
-          <div className="relative">
+          <div className="relative hidden lg:block">
             {/* input */}
             <input onChange={handleChange} type="checkbox" id="toggleB" className="sr-only" />
             {/* line */}
@@ -279,7 +287,6 @@ export default function NavBar() {
                     <DropdownMenuContent className="w-56">
                       <DropdownMenuSeparator />
                       <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-                        <DropdownMenuRadioItem onClick={() => handleTheme("device")} value="top"> Device </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem onClick={() => handleTheme("light")} value="bottom"> Light </DropdownMenuRadioItem>
                         <DropdownMenuRadioItem onClick={() => handleTheme("dark")} value="right"> Dark </DropdownMenuRadioItem>
                       </DropdownMenuRadioGroup>

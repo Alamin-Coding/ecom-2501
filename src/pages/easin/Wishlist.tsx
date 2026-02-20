@@ -142,7 +142,7 @@ const Wishlist: React.FC = () => {
 				<div className="flex justify-center">
 					<button
 						onClick={handleShop}
-						className="flex items-start justify-center mt-20 border border-slate-500"
+						className="flex items-start justify-center mt-20 border-transparent py-3 px-10 rounded-2xl bg-[#bd2b2b] cursor-pointer text-amber-50 font-bold"
 					>
 						See All
 					</button>
